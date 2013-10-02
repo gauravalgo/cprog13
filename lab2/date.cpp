@@ -3,7 +3,7 @@
 
 using namespace lab2;
 
-Date::Date(int y, int m, int d, int m_per_year, int d_per_week):
+Date::Date(int m_per_year, int d_per_week, int y, int m, int d):
 lyear(y),
 lmonth(m),
 lday(d),

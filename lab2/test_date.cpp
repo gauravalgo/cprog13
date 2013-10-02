@@ -7,7 +7,7 @@ public:
 
   void test_default_constructor_date_now( void  )
   {
-    lab2::Date d(2013, 10, 2, 12, 7);
+    lab2::Date d(12, 7, 2013, 10, 2);
     TS_ASSERT_EQUALS(d.year(), 2013 );
     TS_ASSERT_EQUALS(d.month(), 10);
     TS_ASSERT_EQUALS(d.day(), 2);
