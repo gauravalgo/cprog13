@@ -123,9 +123,11 @@ public:
     lab2::Date d2(12, 7, 2013, 10, 4);
     lab2::Date d3(12, 7, 2013, 10, 4);
     lab2::Date d4(12, 7, 2013, 9, 2);
+    lab2::Date d5(12, 7, 2014, 9, 2);
 
     TS_ASSERT_EQUALS(d1==d2, false);
     TS_ASSERT_EQUALS(d2==d3, true);
     TS_ASSERT_EQUALS(d1==d4, false);
+    TS_ASSERT_EQUALS(d4==d5, false);
   }
 };
