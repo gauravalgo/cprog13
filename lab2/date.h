@@ -15,6 +15,8 @@ class lab2::Date {
     void subtract_day();
     void add_day();
     void subtract_month();
+
+    int days_diff(Date);
   public:
    Date(int m_per_year, int d_per_week, int y, int m, int d);
    int year();

@@ -87,13 +87,17 @@ void Date::add_month(int month) {
 
 // Comperators
 bool Date::operator==( Date x) {
-  if (lday == x.day() && lmonth == x.month() && lyear == x.year()) {
+  if (days_diff(x) == 0) {
     return true;
   }
   return false;
 }
 
 int Date::operator-( Date x ) {
+  return days_diff(x);
+}
+
+int Date::days_diff(Date x) {
   int diff = 0;
   int year_diff = std::abs(lyear - x.year());
   
