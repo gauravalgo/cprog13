@@ -43,17 +43,35 @@ int Date::months_per_year() {
 }
 
 Date & Date::operator++() { //prefix
-  lday++;
+  add_day();
   return *this;
-}
-
-Date & Date::operator++(int) { // postfix
-  Date result(*this); // Create a copy
-  ++(*this);
-  return result;
 }
 
 Date & Date::operator--() {
-  lday--;
+  subtract_day();
   return *this;
+}
+
+void Date::subtract_day() {
+  --lday;
+  if (lday < 1) {
+    lday = days_this_month();
+    subtract_month();
+  }
+}
+
+void Date::add_day() {
+  lday++;
+  if (lday > days_this_month()) {
+    lday = 1;
+    add_month();
+  }
+}
+
+void Date::subtract_month() {
+  --lmonth;
+}
+
+void Date::add_month() {
+  ++lmonth;
 }

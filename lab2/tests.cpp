@@ -38,17 +38,23 @@ public:
  void runTest() { suite_MyTestSuite.test_plusplus_prefix(); }
 } testDescription_suite_MyTestSuite_test_plusplus_prefix;
 
-static class TestDescription_suite_MyTestSuite_test_plusplus_postfix : public CxxTest::RealTestDescription {
+static class TestDescription_suite_MyTestSuite_test_plusplus_prefix_month_shift : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_MyTestSuite_test_plusplus_postfix() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 31, "test_plusplus_postfix" ) {}
- void runTest() { suite_MyTestSuite.test_plusplus_postfix(); }
-} testDescription_suite_MyTestSuite_test_plusplus_postfix;
+ TestDescription_suite_MyTestSuite_test_plusplus_prefix_month_shift() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 32, "test_plusplus_prefix_month_shift" ) {}
+ void runTest() { suite_MyTestSuite.test_plusplus_prefix_month_shift(); }
+} testDescription_suite_MyTestSuite_test_plusplus_prefix_month_shift;
 
 static class TestDescription_suite_MyTestSuite_test_minnusminus_prefix : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_MyTestSuite_test_minnusminus_prefix() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 38, "test_minnusminus_prefix" ) {}
+ TestDescription_suite_MyTestSuite_test_minnusminus_prefix() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 39, "test_minnusminus_prefix" ) {}
  void runTest() { suite_MyTestSuite.test_minnusminus_prefix(); }
 } testDescription_suite_MyTestSuite_test_minnusminus_prefix;
+
+static class TestDescription_suite_MyTestSuite_test_minusminus_prefix_month_shift : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_minusminus_prefix_month_shift() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 46, "test_minusminus_prefix_month_shift" ) {}
+ void runTest() { suite_MyTestSuite.test_minusminus_prefix_month_shift(); }
+} testDescription_suite_MyTestSuite_test_minusminus_prefix_month_shift;
 
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";

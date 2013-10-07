@@ -11,6 +11,11 @@ class lab2::Date {
     int lday = 0;
     int ldays_per_week = 7;
     int lmonth_per_year = 10;
+
+    void subtract_day();
+    void add_day();
+    void subtract_month();
+    void add_month();
   public:
    Date(int m_per_year, int d_per_week, int y, int m, int d);
    int year();
