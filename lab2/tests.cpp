@@ -92,5 +92,11 @@ public:
  void runTest() { suite_MyTestSuite.test_add_year_w_n(); }
 } testDescription_suite_MyTestSuite_test_add_year_w_n;
 
+static class TestDescription_suite_MyTestSuite_test_subtract_year : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_subtract_year() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 102, "test_subtract_year" ) {}
+ void runTest() { suite_MyTestSuite.test_subtract_year(); }
+} testDescription_suite_MyTestSuite_test_subtract_year;
+
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";

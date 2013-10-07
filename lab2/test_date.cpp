@@ -98,4 +98,10 @@ public:
     d.add_year(19);
     TS_ASSERT_EQUALS(d.year(), 2032);
   }
+
+  void test_subtract_year( void  ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d.add_year(-10);
+    TS_ASSERT_EQUALS(d.year(), 2003);
+  }
 };

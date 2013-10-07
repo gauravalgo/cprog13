@@ -73,9 +73,24 @@ void Date::add_year() {
 }
 
 void Date::add_year(int years) {
+  if (years < 0) {
+    subtract_years(years);
+    return;
+  }
+
   for (int i = 0; i < years; i++) {
     add_year();
   }
+}
+
+void Date::subtract_years(int years) {
+  for (int i = 0; i > years; i--) {
+    subtract_year();
+  }
+}
+
+void Date::subtract_year() {
+  --lyear;
 }
 
 // -----------------------
