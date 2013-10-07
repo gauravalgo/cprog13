@@ -86,7 +86,7 @@ void Date::add_month(int month) {
 
 // Comperators
 bool Date::operator==( Date x) {
-  if (lday == x.day()) {
+  if (lday == x.day() && lmonth == x.month()) {
     return true;
   }
   return false;
