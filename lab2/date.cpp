@@ -72,6 +72,12 @@ void Date::add_year() {
   ++lyear;
 }
 
+void Date::add_year(int years) {
+  for (int i = 0; i < years; i++) {
+    add_year();
+  }
+}
+
 // -----------------------
 // Internal helper methods
 void Date::subtract_day() {

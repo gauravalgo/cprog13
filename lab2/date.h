@@ -33,6 +33,7 @@ class lab2::Date {
    Date & operator+=(int);
 
    void add_year();
+   void add_year(int);
 
 };
 

@@ -91,5 +91,11 @@ public:
     lab2::Date d(12, 7, 2013, 10, 2);
     d.add_year(); // n = 1;
     TS_ASSERT_EQUALS(d.year(), 2014);
+  };
+
+  void test_add_year_w_n( void ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d.add_year(19);
+    TS_ASSERT_EQUALS(d.year(), 2032);
   }
 };
