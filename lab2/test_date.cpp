@@ -104,4 +104,16 @@ public:
     d.add_year(-10);
     TS_ASSERT_EQUALS(d.year(), 2003);
   }
+
+  void test_add_month( void ) {
+    lab2::Date d(12,7, 2013, 10, 2);
+    d.add_month();
+    TS_ASSERT_EQUALS(d.month(), 11);
+  }
+
+  void test_add_month_n_negative( void ){
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d.add_month(-9);
+    TS_ASSERT_EQUALS(d.month(), 1);
+  }
 };

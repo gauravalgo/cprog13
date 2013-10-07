@@ -15,7 +15,6 @@ class lab2::Date {
     void subtract_day();
     void add_day();
     void subtract_month();
-    void add_month();
   public:
    Date(int m_per_year, int d_per_week, int y, int m, int d);
    int year();
@@ -33,9 +32,10 @@ class lab2::Date {
    Date & operator+=(int);
 
    void add_year();
-   void subtract_year();
    void add_year(int);
-   void subtract_years(int);
+
+   void add_month();
+   void add_month(int);
 
 };
 

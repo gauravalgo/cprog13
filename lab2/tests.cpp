@@ -98,5 +98,17 @@ public:
  void runTest() { suite_MyTestSuite.test_subtract_year(); }
 } testDescription_suite_MyTestSuite_test_subtract_year;
 
+static class TestDescription_suite_MyTestSuite_test_add_month : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_add_month() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 108, "test_add_month" ) {}
+ void runTest() { suite_MyTestSuite.test_add_month(); }
+} testDescription_suite_MyTestSuite_test_add_month;
+
+static class TestDescription_suite_MyTestSuite_test_add_month_n_negative : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_add_month_n_negative() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 114, "test_add_month_n_negative" ) {}
+ void runTest() { suite_MyTestSuite.test_add_month_n_negative(); }
+} testDescription_suite_MyTestSuite_test_add_month_n_negative;
+
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";

@@ -76,6 +76,14 @@ void Date::add_year(int years) {
   lyear += years;
 }
 
+void Date::add_month() {
+  add_month(1);
+}
+
+void Date::add_month(int month) {
+  lmonth += month;
+}
+
 // -----------------------
 // Internal helper methods
 void Date::subtract_day() {
@@ -96,8 +104,4 @@ void Date::add_day() {
 
 void Date::subtract_month() {
   --lmonth;
-}
-
-void Date::add_month() {
-  ++lmonth;
 }
