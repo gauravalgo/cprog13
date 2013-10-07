@@ -41,6 +41,9 @@ class lab2::Date {
    // Comperators
    bool operator==( Date );
 
+   // Diff operators
+   int operator-( Date );
+
 
 };
 

@@ -130,4 +130,18 @@ public:
     TS_ASSERT_EQUALS(d1==d4, false);
     TS_ASSERT_EQUALS(d4==d5, false);
   }
+
+  void test_diff_operator( void ) {
+    lab2::Date d1(12, 7, 2013, 10, 2);
+    lab2::Date d2(12, 7, 2013, 10, 4);
+    lab2::Date d3(12, 7, 2013, 10, 4);
+    lab2::Date d4(12, 7, 2013, 9, 2);
+    lab2::Date d5(12, 7, 2014, 9, 2);
+
+    TS_ASSERT_EQUALS(d1-d2, 2);
+    TS_ASSERT_EQUALS(d2-d3, 0);
+    TS_ASSERT_EQUALS(d1-d4, 31); // assumes 31 days in this month
+    TS_ASSERT_EQUALS(d4-d5, 31*12); // assumes 31 days per month
+    
+  }
 };

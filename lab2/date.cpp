@@ -1,5 +1,6 @@
 #include "date.h"
 #include <iostream>
+#include <cmath> // abs
 
 using namespace lab2;
 
@@ -90,6 +91,17 @@ bool Date::operator==( Date x) {
     return true;
   }
   return false;
+}
+
+int Date::operator-( Date x ) {
+  int diff = 0;
+  int year_diff = std::abs(lyear - x.year());
+  
+  int month_diff = std::abs(lmonth - x.month())+year_diff*months_per_year();
+  int day_diff = std::abs(lday - x.day());
+
+  diff = day_diff + days_this_month()*month_diff;
+  return std::abs(diff);
 }
 
 // -----------------------

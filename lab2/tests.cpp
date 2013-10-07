@@ -116,5 +116,11 @@ public:
  void runTest() { suite_MyTestSuite.test_equalsequals(); }
 } testDescription_suite_MyTestSuite_test_equalsequals;
 
+static class TestDescription_suite_MyTestSuite_test_diff_operator : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 134, "test_diff_operator" ) {}
+ void runTest() { suite_MyTestSuite.test_diff_operator(); }
+} testDescription_suite_MyTestSuite_test_diff_operator;
+
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";
