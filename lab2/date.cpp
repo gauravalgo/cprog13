@@ -1,6 +1,4 @@
 #include "date.h"
-#include <iostream>
-#include <cmath> // abs
 
 using namespace lab2;
 
@@ -14,15 +12,15 @@ lmonth_per_year(m_per_year)
   std::cout << "Default constructor" << std::endl;
 }
 
-int Date::year() {
+int Date::year() const {
   return lyear;
 }
 
-int Date::month() {
+int Date::month() const {
   return lmonth;
 }
 
-int Date::day() {
+int Date::day() const {
   return lday;
 }
 
@@ -106,6 +104,12 @@ int Date::days_diff(Date x) {
 
   diff = day_diff + days_this_month()*month_diff;
   return std::abs(diff);
+}
+
+// ---------
+// printouts
+std::ostream& lab2::operator<<(std::ostream & os, const Date & d) {
+  os << d.year() << "-" << d.month() << "-" << d.day() <<"\n";
 }
 
 // -----------------------

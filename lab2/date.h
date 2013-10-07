@@ -1,9 +1,13 @@
 #ifndef DATE_H
+#include <iostream>
+#include <cmath> // abs
 #define DATE_H
 
 namespace lab2 {
   class Date;
+  std::ostream & operator<<(std::ostream & os, const Date &);
 }
+
 class lab2::Date {
   private:
     int lyear = 0;
@@ -19,9 +23,9 @@ class lab2::Date {
     int days_diff(Date);
   public:
     Date(int m_per_year, int d_per_week, int y, int m, int d);
-    int year();
-    int month();
-    int day();
+    int year() const;
+    int month() const;
+    int day() const;
     int week_day();
     int days_per_week();
     int days_this_month();
