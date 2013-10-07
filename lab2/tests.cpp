@@ -116,15 +116,27 @@ public:
  void runTest() { suite_MyTestSuite.test_equalsequals(); }
 } testDescription_suite_MyTestSuite_test_equalsequals;
 
+static class TestDescription_suite_MyTestSuite_test_not_equals : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_not_equals() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 135, "test_not_equals" ) {}
+ void runTest() { suite_MyTestSuite.test_not_equals(); }
+} testDescription_suite_MyTestSuite_test_not_equals;
+
+static class TestDescription_suite_MyTestSuite_test_greater_then : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_greater_then() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 144, "test_greater_then" ) {}
+ void runTest() { suite_MyTestSuite.test_greater_then(); }
+} testDescription_suite_MyTestSuite_test_greater_then;
+
 static class TestDescription_suite_MyTestSuite_test_diff_operator : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 135, "test_diff_operator" ) {}
+ TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 157, "test_diff_operator" ) {}
  void runTest() { suite_MyTestSuite.test_diff_operator(); }
 } testDescription_suite_MyTestSuite_test_diff_operator;
 
 static class TestDescription_suite_MyTestSuite_test_print_outs : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_MyTestSuite_test_print_outs() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 148, "test_print_outs" ) {}
+ TestDescription_suite_MyTestSuite_test_print_outs() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 170, "test_print_outs" ) {}
  void runTest() { suite_MyTestSuite.test_print_outs(); }
 } testDescription_suite_MyTestSuite_test_print_outs;
 

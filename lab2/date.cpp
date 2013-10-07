@@ -85,10 +85,15 @@ void Date::add_month(int month) {
 
 // Comperators
 bool Date::operator==( Date x) {
-  if (days_diff(x) == 0) {
-    return true;
-  }
-  return false;
+  return (days_diff(x) == 0);
+}
+
+bool Date::operator!=(Date x) {
+  return (days_diff(x) != 0);
+}
+
+bool Date::operator>(Date x) {
+  return (days_diff(x) > 0);
 }
 
 int Date::operator-( Date x ) {

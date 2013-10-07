@@ -132,6 +132,28 @@ public:
     TS_ASSERT_EQUALS(d4==d5, false);
   }
 
+  void test_not_equals( void ) {
+    lab2::Date d1(12, 7, 2013, 10, 2);
+    lab2::Date d2(12, 7, 2013, 10, 4);
+    lab2::Date d3(12, 7, 2013, 10, 4);
+
+    TS_ASSERT_EQUALS(d1 != d2, true)
+    TS_ASSERT_EQUALS(d2 != d3, false)
+  }
+
+  void test_greater_then( void  ){
+    lab2::Date d1(12, 7, 2013, 10, 2);
+    lab2::Date d2(12, 7, 2013, 10, 4);
+    lab2::Date d3(12, 7, 2013, 10, 4);
+    lab2::Date d4(12, 7, 2013, 9, 2);
+
+    TS_ASSERT_EQUALS(d1 > d2, true)
+    TS_ASSERT_EQUALS(d2 > d3, false)
+    TS_ASSERT_EQUALS(d4 > d3, true)
+    TS_ASSERT_EQUALS(d3 > d4, false)
+    
+  }
+
   void test_diff_operator( void ) {
     lab2::Date d1(12, 7, 2013, 10, 2);
     lab2::Date d2(12, 7, 2013, 10, 4);
