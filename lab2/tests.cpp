@@ -130,15 +130,9 @@ public:
 
 static class TestDescription_suite_MyTestSuite_test_diff_operator : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 157, "test_diff_operator" ) {}
+ TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 158, "test_diff_operator" ) {}
  void runTest() { suite_MyTestSuite.test_diff_operator(); }
 } testDescription_suite_MyTestSuite_test_diff_operator;
-
-static class TestDescription_suite_MyTestSuite_test_print_outs : public CxxTest::RealTestDescription {
-public:
- TestDescription_suite_MyTestSuite_test_print_outs() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 170, "test_print_outs" ) {}
- void runTest() { suite_MyTestSuite.test_print_outs(); }
-} testDescription_suite_MyTestSuite_test_print_outs;
 
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";
