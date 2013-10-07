@@ -52,6 +52,8 @@ Date & Date::operator--() {
   return *this;
 }
 
+// -----------------------
+// Internal helper methods
 void Date::subtract_day() {
   --lday;
   if (lday < 1) {
