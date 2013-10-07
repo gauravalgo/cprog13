@@ -32,9 +32,14 @@ public:
     lab2::Date d(12,7, 2013, 10, 2);
     d++;
 
-    TS_ASSERT_EQUALS(d.day(), 3);
+    TS_ASSERT_EQUALS(d.day(), 3); // TODO test this better!
+  }
 
-    // TODO test this better!
+  void test_minnusminus_prefix( void ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    --d;
+
+    TS_ASSERT_EQUALS(d.day(), 1);
   }
 
 };

@@ -52,3 +52,8 @@ Date & Date::operator++(int) { // postfix
   ++(*this);
   return result;
 }
+
+Date & Date::operator--() {
+  lday--;
+  return *this;
+}

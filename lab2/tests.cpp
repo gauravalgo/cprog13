@@ -44,5 +44,11 @@ public:
  void runTest() { suite_MyTestSuite.test_plusplus_postfix(); }
 } testDescription_suite_MyTestSuite_test_plusplus_postfix;
 
+static class TestDescription_suite_MyTestSuite_test_minnusminus_prefix : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_minnusminus_prefix() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 38, "test_minnusminus_prefix" ) {}
+ void runTest() { suite_MyTestSuite.test_minnusminus_prefix(); }
+} testDescription_suite_MyTestSuite_test_minnusminus_prefix;
+
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";

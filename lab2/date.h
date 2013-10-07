@@ -24,6 +24,10 @@ class lab2::Date {
    Date & operator++(); // Prefix
    Date & operator++(int); //postfix
 
+   Date & operator--();
+
+
+
 
 };
 
