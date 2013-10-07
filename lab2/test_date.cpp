@@ -73,4 +73,16 @@ public:
     TS_ASSERT_EQUALS(d.day(), 2);
     TS_ASSERT_EQUALS(d.month(), 11);
   }
+
+  void test_add_equals_negative_value( void ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d+= -10;
+    TS_ASSERT_EQUALS(d.day(), 2); // does nothing
+  }
+
+  void test_subtract_equals_negative_value( void ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d -= -10;
+    TS_ASSERT_EQUALS(d.day(), 2);
+  }
 };

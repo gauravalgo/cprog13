@@ -68,5 +68,17 @@ public:
  void runTest() { suite_MyTestSuite.test_add_equals(); }
 } testDescription_suite_MyTestSuite_test_add_equals;
 
+static class TestDescription_suite_MyTestSuite_test_add_equals_negative_value : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_add_equals_negative_value() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 77, "test_add_equals_negative_value" ) {}
+ void runTest() { suite_MyTestSuite.test_add_equals_negative_value(); }
+} testDescription_suite_MyTestSuite_test_add_equals_negative_value;
+
+static class TestDescription_suite_MyTestSuite_test_subtract_equals_negative_value : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_subtract_equals_negative_value() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 83, "test_subtract_equals_negative_value" ) {}
+ void runTest() { suite_MyTestSuite.test_subtract_equals_negative_value(); }
+} testDescription_suite_MyTestSuite_test_subtract_equals_negative_value;
+
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";
