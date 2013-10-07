@@ -116,4 +116,14 @@ public:
     d.add_month(-9);
     TS_ASSERT_EQUALS(d.month(), 1);
   }
+
+  // comperators
+  void test_equalsequals( void) {
+    lab2::Date d1(12, 7, 2013, 10, 2);
+    lab2::Date d2(12, 7, 2013, 10, 4);
+    lab2::Date d3(12, 7, 2013, 10, 4);
+
+    TS_ASSERT_EQUALS(d1==d2, false);
+    TS_ASSERT_EQUALS(d2==d3, true);
+  }
 };

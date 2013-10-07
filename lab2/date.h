@@ -25,17 +25,22 @@ class lab2::Date {
    int days_this_month();
    int months_per_year();
 
+   void add_year();
+   void add_year(int);
+
+   void add_month();
+   void add_month(int);
+
+   // Operators
    Date & operator++(); // Prefix
    Date & operator--();
 
    Date & operator-=(int);
    Date & operator+=(int);
 
-   void add_year();
-   void add_year(int);
+   // Comperators
+   bool operator==( Date );
 
-   void add_month();
-   void add_month(int);
 
 };
 

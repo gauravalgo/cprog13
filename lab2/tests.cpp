@@ -110,5 +110,11 @@ public:
  void runTest() { suite_MyTestSuite.test_add_month_n_negative(); }
 } testDescription_suite_MyTestSuite_test_add_month_n_negative;
 
+static class TestDescription_suite_MyTestSuite_test_equalsequals : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_equalsequals() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 121, "test_equalsequals" ) {}
+ void runTest() { suite_MyTestSuite.test_equalsequals(); }
+} testDescription_suite_MyTestSuite_test_equalsequals;
+
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";

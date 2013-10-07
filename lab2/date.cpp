@@ -84,8 +84,16 @@ void Date::add_month(int month) {
   lmonth += month;
 }
 
+// Comperators
+bool Date::operator==( Date x) {
+  if (lday == x.day()) {
+    return true;
+  }
+  return false;
+}
+
 // -----------------------
-// Internal helper methods
+// Internal/private helper methods
 void Date::subtract_day() {
   --lday;
   if (lday < 1) {
