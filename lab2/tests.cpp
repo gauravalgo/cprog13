@@ -32,5 +32,17 @@ public:
  void runTest() { suite_MyTestSuite.test_default_constructor_date_now(); }
 } testDescription_suite_MyTestSuite_test_default_constructor_date_now;
 
+static class TestDescription_suite_MyTestSuite_test_plusplus_prefix : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_plusplus_prefix() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 24, "test_plusplus_prefix" ) {}
+ void runTest() { suite_MyTestSuite.test_plusplus_prefix(); }
+} testDescription_suite_MyTestSuite_test_plusplus_prefix;
+
+static class TestDescription_suite_MyTestSuite_test_plusplus_postfix : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_plusplus_postfix() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 31, "test_plusplus_postfix" ) {}
+ void runTest() { suite_MyTestSuite.test_plusplus_postfix(); }
+} testDescription_suite_MyTestSuite_test_plusplus_postfix;
+
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";

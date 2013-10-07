@@ -21,6 +21,9 @@ class lab2::Date {
    int days_this_month();
    int months_per_year();
 
+   Date & operator++(); // Prefix
+   Date & operator++(int); //postfix
+
 
 };
 

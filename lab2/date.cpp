@@ -41,3 +41,14 @@ int Date::days_this_month() {
 int Date::months_per_year() {
   return lmonth_per_year;
 }
+
+Date & Date::operator++() { //prefix
+  lday++;
+  return *this;
+}
+
+Date & Date::operator++(int) { // postfix
+  Date result(*this); // Create a copy
+  ++(*this);
+  return result;
+}
