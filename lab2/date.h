@@ -27,11 +27,10 @@ class lab2::Date {
    int months_per_year();
 
    Date & operator++(); // Prefix
-
    Date & operator--();
 
-
-
+   Date & operator-=(int);
+   Date & operator+=(int);
 
 };
 

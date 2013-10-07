@@ -42,6 +42,8 @@ int Date::months_per_year() {
   return lmonth_per_year;
 }
 
+// ---------
+// Operators
 Date & Date::operator++() { //prefix
   add_day();
   return *this;
@@ -49,6 +51,20 @@ Date & Date::operator++() { //prefix
 
 Date & Date::operator--() {
   subtract_day();
+  return *this;
+}
+
+Date & Date::operator-=(int days) {
+  for (int i = 0; i < days; i++) {
+    subtract_day();
+  }
+  return *this;
+}
+
+Date & Date::operator+=(int days) {
+  for (int i = 0; i < days; i++) {
+    add_day();
+  }
   return *this;
 }
 

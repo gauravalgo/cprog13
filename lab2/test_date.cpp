@@ -21,6 +21,7 @@ public:
 
   }
 
+  // ++d prefix
   void test_plusplus_prefix(void) {
     lab2::Date d(12, 7, 2013, 10, 2);
     ++d;
@@ -36,6 +37,7 @@ public:
     TS_ASSERT_EQUALS(d.month(), 11);
   }
 
+  // --d prefix
   void test_minnusminus_prefix( void ) {
     lab2::Date d(12, 7, 2013, 10, 2);
     --d;
@@ -51,4 +53,24 @@ public:
     TS_ASSERT_EQUALS(d.month(), 9);
   }
 
+  // d -= 10
+  void test_minus_equlas( void ) {
+    lab2::Date d(12,7, 2013, 10, 2);
+
+    d -= 10;
+
+    TS_ASSERT_EQUALS(d.day(), 23); // Assumes 31 days in sept.
+    TS_ASSERT_EQUALS(d.month(), 9);
+  }
+
+  void test_add_equals( void ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d += 10;
+    TS_ASSERT_EQUALS(d.day(), 12);
+    TS_ASSERT_EQUALS(d.month(), 10);
+
+    d += 21;
+    TS_ASSERT_EQUALS(d.day(), 2);
+    TS_ASSERT_EQUALS(d.month(), 11);
+  }
 };
