@@ -68,6 +68,10 @@ Date & Date::operator+=(int days) {
   return *this;
 }
 
+void Date::add_year() {
+  ++lyear;
+}
+
 // -----------------------
 // Internal helper methods
 void Date::subtract_day() {

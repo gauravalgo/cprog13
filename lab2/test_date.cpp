@@ -85,4 +85,11 @@ public:
     d -= -10;
     TS_ASSERT_EQUALS(d.day(), 2);
   }
+
+  // add year and month
+  void test_add_year( void ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d.add_year(); // n = 1;
+    TS_ASSERT_EQUALS(d.year(), 2014);
+  }
 };

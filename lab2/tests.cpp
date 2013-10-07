@@ -80,5 +80,11 @@ public:
  void runTest() { suite_MyTestSuite.test_subtract_equals_negative_value(); }
 } testDescription_suite_MyTestSuite_test_subtract_equals_negative_value;
 
+static class TestDescription_suite_MyTestSuite_test_add_year : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_add_year() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 90, "test_add_year" ) {}
+ void runTest() { suite_MyTestSuite.test_add_year(); }
+} testDescription_suite_MyTestSuite_test_add_year;
+
 #include <cxxtest/Root.cpp>
 const char* CxxTest::RealWorldDescription::_worldName = "cxxtest";
