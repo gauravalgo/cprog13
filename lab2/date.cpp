@@ -102,6 +102,10 @@ bool Date::operator<=(Date x) {
   return (days_diff(x) <= 0);
 }
 
+bool Date::operator<(Date x) {
+  return (days_diff(x) < 0);
+}
+
 int Date::operator-( Date x ) {
   return days_diff(x);
 }
