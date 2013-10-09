@@ -74,11 +74,23 @@ void Date::add_year(int years) {
 }
 
 void Date::add_month() {
-  add_month(1);
+  lmonth += 1;
+  if (lmonth > months_per_year()) {
+    lmonth = 1;
+    add_year();
+  }
 }
 
 void Date::add_month(int month) {
-  lmonth += month;
+  if (month > 0) {
+    for (int i = 0; i < month; i++) {
+      add_month();
+    }
+  } else {
+    for (int i = 0; i > month; i--) {
+      subtract_month();
+    }
+  }
 }
 
 // Comperators
@@ -147,4 +159,9 @@ void Date::add_day() {
 
 void Date::subtract_month() {
   --lmonth;
+  if (lmonth < 0) {
+    lmonth = months_per_year();
+    lyear -= 1;
+  }
 }
+

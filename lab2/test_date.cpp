@@ -116,6 +116,21 @@ public:
     lab2::Date d(12, 7, 2013, 10, 2);
     d.add_month(-9);
     TS_ASSERT_EQUALS(d.month(), 1);
+    TS_ASSERT_EQUALS(d.year(), 2013);
+  }
+
+  void test_add_month_n_changes_year( void ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d.add_month(3);
+    TS_ASSERT_EQUALS(d.year(), 2014);
+    TS_ASSERT_EQUALS(d.month(), 1);
+  }
+
+  void test_add_negative_month_n_changes_year( void ) {
+    lab2::Date d(12, 7, 2013, 10, 2);
+    d.add_month(-11);
+    TS_ASSERT_EQUALS(d.year(), 2012);
+    TS_ASSERT_EQUALS(d.month(), 12);
   }
 
   // comperators
