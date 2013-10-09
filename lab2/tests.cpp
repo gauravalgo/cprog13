@@ -128,9 +128,15 @@ public:
  void runTest() { suite_MyTestSuite.test_greater_then(); }
 } testDescription_suite_MyTestSuite_test_greater_then;
 
+static class TestDescription_suite_MyTestSuite_test_greater_equals : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_greater_equals() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 158, "test_greater_equals" ) {}
+ void runTest() { suite_MyTestSuite.test_greater_equals(); }
+} testDescription_suite_MyTestSuite_test_greater_equals;
+
 static class TestDescription_suite_MyTestSuite_test_diff_operator : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 158, "test_diff_operator" ) {}
+ TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 169, "test_diff_operator" ) {}
  void runTest() { suite_MyTestSuite.test_diff_operator(); }
 } testDescription_suite_MyTestSuite_test_diff_operator;
 
