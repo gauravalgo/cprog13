@@ -12,4 +12,9 @@ public:
     TS_ASSERT_EQUALS(j.month(), 10);
     TS_ASSERT_EQUALS(j.day(), 2);
   }
+
+  void test_default_constructor( void ) {
+    lab2::Julian j;
+    TS_ASSERT_EQUALS(j.year(), 2013);
+  }
 };

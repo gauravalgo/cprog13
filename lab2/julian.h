@@ -6,6 +6,7 @@
 namespace lab2 {
   class Julian : public Date {
     public:
+      Julian();
       Julian(int y, int m, int d);
   };
 }
