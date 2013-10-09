@@ -8,9 +8,7 @@ lmonth(m),
 lday(d),
 ldays_per_week(d_per_week),
 lmonth_per_year(m_per_year)
-{
-  std::cout << "Default constructor" << std::endl;
-}
+{}
 
 int Date::year() const {
   return lyear;
