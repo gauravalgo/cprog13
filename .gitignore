@@ -15,3 +15,4 @@
 
 # VIM temp files
 *.swp
+tests.cpp
