@@ -134,9 +134,15 @@ public:
  void runTest() { suite_MyTestSuite.test_greater_equals(); }
 } testDescription_suite_MyTestSuite_test_greater_equals;
 
+static class TestDescription_suite_MyTestSuite_test_less_or_equal_then : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_MyTestSuite_test_less_or_equal_then() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 168, "test_less_or_equal_then" ) {}
+ void runTest() { suite_MyTestSuite.test_less_or_equal_then(); }
+} testDescription_suite_MyTestSuite_test_less_or_equal_then;
+
 static class TestDescription_suite_MyTestSuite_test_diff_operator : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 169, "test_diff_operator" ) {}
+ TestDescription_suite_MyTestSuite_test_diff_operator() : CxxTest::RealTestDescription( Tests_MyTestSuite, suiteDescription_MyTestSuite, 178, "test_diff_operator" ) {}
  void runTest() { suite_MyTestSuite.test_diff_operator(); }
 } testDescription_suite_MyTestSuite_test_diff_operator;
 
