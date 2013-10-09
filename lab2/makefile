@@ -1,14 +1,17 @@
-date: clean
+date: 
 	g++ -std=c++0x -c date.cpp
 
-test_date.out:
-	g++ -std=c++0x -o test_date.out -I cxxtest tests.cpp date.o
+julian:
+	g++ -std=c++0x -c julian.cpp
+
+test.out: date julian
+	g++ -std=c++0x -o test.out -I cxxtest tests.cpp date.o julian.o
 
 tests.cpp:
-	cxxtestgen --error-printer -o tests.cpp test_date.cpp
+	cxxtestgen --error-printer -o tests.cpp test_date.cpp test_julian.cpp
 
-test: clean date tests.cpp test_date.out
-	./test_date.out
+test: clean tests.cpp test.out
+	./test.out
 
 clean:
 	$(RM) count *.out *~ *.o tests.cpp
