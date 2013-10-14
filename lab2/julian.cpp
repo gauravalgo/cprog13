@@ -1,4 +1,5 @@
 #include "julian.h"
+#include "kattistime.h"
 
 using namespace lab2;
 
@@ -9,3 +10,5 @@ Julian::Julian(int y, int m, int d)
 Julian::Julian()
   : Date(12, 7, 2013, 10, 2)
 {}
+
+

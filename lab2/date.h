@@ -10,6 +10,8 @@ namespace lab2 {
 
 class lab2::Date {
   private:
+    const long MODIFED_JULIAN_DAY_CONSTANT = 2400001;
+    long JDN = 0;
     int lyear = 0;
     int lmonth = 0;
     int lday = 0;
@@ -21,6 +23,8 @@ class lab2::Date {
     void subtract_month();
 
     int days_diff(Date);
+
+    long convert_to_jdn(int y, int m, int d);
   public:
     Date(int m_per_year, int d_per_week, int y, int m, int d);
     int year() const;
@@ -54,6 +58,8 @@ class lab2::Date {
 
     // Diff operators
     int operator-( Date );
+
+    long mod_julian_day();
 };
 
 #endif

@@ -212,4 +212,14 @@ public:
     TS_ASSERT_EQUALS(d1-d4, 31); // assumes 31 days in this month
     TS_ASSERT_EQUALS(d4-d5, -31*12); // assumes 31 days per month
   }
+
+  void test_mod_julian_day_day_zero( void ) {
+    lab2::Date d1(12, 7, 1858, 11, 17);
+    TS_ASSERT_EQUALS(d1.mod_julian_day(), 0);
+  }
+
+  void test_mod_julian_day_first( void ) {
+    lab2::Date d1(12, 7, 1858, 11, 18);
+    TS_ASSERT_EQUALS(d1.mod_julian_day(), 1);
+  }
 };

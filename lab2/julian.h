@@ -2,6 +2,7 @@
 #define JULIAN_H
 
 #include "date.h"
+#include "kattistime.h"
 
 namespace lab2 {
   class Julian : public Date {

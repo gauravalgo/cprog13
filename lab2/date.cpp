@@ -8,7 +8,9 @@ lmonth(m),
 lday(d),
 ldays_per_week(d_per_week),
 lmonth_per_year(m_per_year)
-{}
+{
+  JDN = convert_to_jdn(y, m, d) - MODIFED_JULIAN_DAY_CONSTANT;
+}
 
 int Date::year() const {
   return lyear;
@@ -133,6 +135,10 @@ int Date::days_diff(Date x) {
   return (diff);
 }
 
+long Date::mod_julian_day() {
+  return JDN;
+}
+
 // ---------
 // printouts
 std::ostream& lab2::operator<<(std::ostream & os, const Date & d) {
@@ -165,3 +171,13 @@ void Date::subtract_month() {
   }
 }
 
+long Date::convert_to_jdn(int y, int m, int d) {
+  long jdn;
+  int Y = lyear;
+  int M = lmonth;
+  int D = lday;
+  
+  jdn = (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075; // julian day number algorithm
+
+  return jdn;
+}
