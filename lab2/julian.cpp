@@ -1,5 +1,4 @@
 #include "julian.h"
-#include "kattistime.h"
 
 using namespace lab2;
 
