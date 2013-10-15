@@ -22,6 +22,12 @@ public:
 
   }
 
+  void test_empty_constructor( void ) {
+    lab2::Date d;
+
+    TS_ASSERT_EQUALS(d.year(), 0);
+  }
+
   // ++d prefix
   void test_plusplus_prefix(void) {
     lab2::Date d(12, 7, 2013, 10, 2);

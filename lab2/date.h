@@ -1,7 +1,8 @@
 #ifndef DATE_H
+#define DATE_H
+
 #include <iostream>
 #include <cmath> // abs
-#define DATE_H
 
 namespace lab2 {
   class Date;
@@ -9,7 +10,7 @@ namespace lab2 {
 }
 
 class lab2::Date {
-  private:
+  protected:
     const long MODIFED_JULIAN_DAY_CONSTANT = 2400001;
     long JDN = 0;
     int lyear = 0;
@@ -26,6 +27,9 @@ class lab2::Date {
 
     long convert_to_jdn(int y, int m, int d);
   public:
+    Date();
+    Date(int m_per_year, int d_per_week);
+    Date(int, int, int);
     Date(int m_per_year, int d_per_week, int y, int m, int d);
     int year() const;
     int month() const;

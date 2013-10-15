@@ -2,6 +2,14 @@
 
 using namespace lab2;
 
+Date::Date()
+{}
+
+Date::Date(int m_per_year, int d_per_week) :
+  ldays_per_week(d_per_week),
+  lmonth_per_year(m_per_year)
+{}
+
 Date::Date(int m_per_year, int d_per_week, int y, int m, int d):
 lyear(y),
 lmonth(m),
