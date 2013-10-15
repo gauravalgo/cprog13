@@ -7,10 +7,10 @@ public:
 
   void test_initializing_and_basic_inheritance( void )
   {
-    lab2::Julian j(2013, 10, 2);
+    lab2::Julian j(2013, 11, 3);
     TS_ASSERT_EQUALS(j.year(), 2013);
-    TS_ASSERT_EQUALS(j.month(), 10);
-    TS_ASSERT_EQUALS(j.day(), 2);
+    TS_ASSERT_EQUALS(j.month(), 11);
+    TS_ASSERT_EQUALS(j.day(), 3);
   }
 
   void test_default_constructor( void ) {
