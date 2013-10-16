@@ -14,8 +14,18 @@ public:
   }
 
   void test_default_constructor( void ) {
+
+    time_t tp;
+    time(&tp);    
+    set_k_time(tp);
+    
+    struct tm *t = gmtime(&tp);
+    int year  = t->tm_year + 1900;
+    int month = t->tm_mon + 1;      // m mytimenaderna och dagarna
+    int day   = t->tm_mday;         // indexerade fr =n ETTt k_time(NULL);
+
     lab2::Julian j;
-    TS_ASSERT_EQUALS(j.year(), 2013);
+    TS_ASSERT_EQUALS(j.year(), year);
   }
   
   void test_default_constructor_date_now( void  )
@@ -29,7 +39,6 @@ public:
 
     TS_ASSERT_EQUALS(d.days_per_week(), 7);
 
-    TS_ASSERT_EQUALS(d.days_this_month(), 31);
     TS_ASSERT_EQUALS(d.months_per_year(), 12);
   }
 };

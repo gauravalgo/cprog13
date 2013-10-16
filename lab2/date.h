@@ -23,20 +23,19 @@ class lab2::Date {
     void add_day();
     void subtract_month();
 
-    int days_diff(Date);
-
-    long convert_to_jdn(int y, int m, int d);
+    virtual long convert_to_jdn() const = 0;
   public:
     Date();
     Date(int m_per_year, int d_per_week);
     Date(int, int, int);
     Date(int m_per_year, int d_per_week, int y, int m, int d);
+
     int year() const;
     int month() const;
     int day() const;
     int week_day();
     int days_per_week();
-    int days_this_month();
+    virtual int days_this_month() const;
     int months_per_year();
 
     void add_year();
@@ -44,6 +43,9 @@ class lab2::Date {
 
     void add_month();
     void add_month(int);
+
+    virtual bool leap_year(int) const; 
+    virtual bool leap_year() const;
 
     // Operators
     Date & operator++(); // Prefix
@@ -53,17 +55,17 @@ class lab2::Date {
     Date & operator+=(int);
 
     // Comperators
-    bool operator == ( Date );
-    bool operator != ( Date );
-    bool operator >  ( Date );
-    bool operator <  ( Date );
-    bool operator >= ( Date );
-    bool operator <= ( Date );
+    bool operator == ( const Date & ) const;
+    bool operator != ( const Date & ) const;
+    bool operator >  ( const Date & ) const;
+    bool operator <  ( const Date & ) const;
+    bool operator >= ( const Date & ) const;
+    bool operator <= ( const Date & ) const;
 
     // Diff operators
-    int operator-( Date );
+    int operator-( const Date & ) const;
 
-    long mod_julian_day();
+    long mod_julian_day() const;
 };
 
 #endif
