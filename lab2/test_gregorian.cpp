@@ -84,5 +84,4 @@ public:
     TS_ASSERT_EQUALS(g.leap_year(1904), true)
     TS_ASSERT_EQUALS(g.leap_year(2000), true)
   }
-
 };

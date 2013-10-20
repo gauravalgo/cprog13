@@ -41,6 +41,7 @@ int Date::months_per_year() {
 // Operators
 Date & Date::operator++() { //prefix
   add_day();
+  convert_to_jdn();
   return *this;
 }
 

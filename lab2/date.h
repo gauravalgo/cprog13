@@ -48,7 +48,8 @@ class lab2::Date {
     virtual bool leap_year() const;
 
     // Operators
-    Date & operator++(); // Prefix
+    // Prefix
+    Date & operator++();
     Date & operator--();
 
     Date & operator-=(int);
