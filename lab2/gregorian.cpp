@@ -60,17 +60,11 @@ void Gregorian::convert_to_gregorian() {
   lday = (int)d;
 }
 
-int Gregorian::year() const {
-  return lyear;
-}
+int Gregorian::year() const { return lyear; }
 
-int Gregorian::month() const {
-  return lmonth;
-}
+int Gregorian::month() const { return lmonth; }
 
-int Gregorian::day() const {
-  return lday;
-}
+int Gregorian::day() const { return lday; }
 
 void Gregorian::init(int y, int m, int d) {
   if (!isValid(y, m , d)) {
