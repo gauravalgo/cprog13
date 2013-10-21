@@ -5,7 +5,7 @@
 
 using namespace lab2;
 
-const int month_length[13] = {-1, 31,28,31,30,31,30,31,31,30,31,30,31};
+const int month_length[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 const std::string WEEK_DAY_NAMES[8] = { "", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
 const std::string MONTH_NAMES[13] = {"", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
 
@@ -101,10 +101,14 @@ bool Gregorian::isValid(int y, int m, int d) const {
 }
 
 int Gregorian::get_month_length(int y,int m) const {
+  if (m < 1 || m > 12) {
+    throw std::out_of_range("Invalid date. Check the range for days and month.");
+  }
   if (m == 2 && leap_year(y)) {
     return 29;
   }
-  return month_length[m];
+
+  return month_length[m - 1];
 }
 
 int Gregorian::get_month_length(int m) const {
@@ -124,23 +128,37 @@ int Gregorian::days_this_month() const {
   get_month_length(month());
 }
 
-void Gregorian::add_month() {
-  int year = lyear;
-  int month = lmonth;
-  int day = lday;
+void Gregorian::modify_month(int m) {
 
-  if (get_month_length(( lmonth +1) % 12) > day) {
-    JDN = convert_to_jdn(year, month + 1 , day);
+  int toMonth = (month() + m) % 12;
+  int toYear = year();
+
+  if (toMonth == 0) {
+    toMonth = 12;
+    toYear = year() - 1;
+  }
+  assert(toMonth > 0 && toMonth < 13);
+  
+  if (get_month_length(toMonth) > day()) {
+    JDN = convert_to_jdn(toYear, toMonth , day());
   } else {
-    add_day(30);
+    add_day(30 * m);
   }
 
   convert_to_gregorian();
 }
 
+void Gregorian::add_month() {
+  modify_month(1);
+}
+
 void Gregorian::add_month(int times) {
-  for (int i = 0; i < times; i++) {
-    add_month();
+  for (int i = 0; i < std::abs(times); i++) {
+    if (times > 0) {
+      modify_month(1);
+    } else {
+      modify_month(-1);
+    }
   }
 }
 

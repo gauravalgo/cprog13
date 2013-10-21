@@ -8,6 +8,7 @@ namespace lab2 {
   class Gregorian : public Date {
     private:
       void modify_year(int);
+      void modify_month(int);
     protected:
       int lyear;
       int lmonth;

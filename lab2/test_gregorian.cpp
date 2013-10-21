@@ -132,6 +132,16 @@ public:
     TS_ASSERT_EQUALS(g.year(), 2013);
     TS_ASSERT_EQUALS(g.month(), 1);
     TS_ASSERT_EQUALS(g.day(), 15);
+    
+    g.add_month(-1);
+    TS_ASSERT_EQUALS(g.year(), 2012);
+    TS_ASSERT_EQUALS(g.month(), 12);
+    TS_ASSERT_EQUALS(g.day(), 15);
+
+    g.add_month(-2);
+    TS_ASSERT_EQUALS(g.year(), 2012);
+    TS_ASSERT_EQUALS(g.month(), 10);
+    TS_ASSERT_EQUALS(g.day(), 15);
   }
 
   void test_days_in_feb( void ) {
