@@ -106,12 +106,6 @@ int Gregorian::week_day() const {
 
 int Gregorian::days_this_month() const {
   get_month_length(month());
-  // int m = month();
-  // if (m == 2 && leap_year()) {
-  //   return 29;
-  // }
-  // 
-  // return month_length[m];
 }
 
 int Gregorian::days_per_week() const {
