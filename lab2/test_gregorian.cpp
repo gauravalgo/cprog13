@@ -94,7 +94,7 @@ public:
     
     lab2::Gregorian h(2012,2,2);
     TS_ASSERT_EQUALS(h.leap_year(), true);
-    TS_ASSERT_EQUALS(g.get_month_length(2), 29);
+    TS_ASSERT_EQUALS(h.get_month_length(2), 29);
 
   }
   void test_add_month_shift_year() {
@@ -124,7 +124,7 @@ public:
     TS_ASSERT_EQUALS(g.leap_year(1904), true)
     TS_ASSERT_EQUALS(g.leap_year(2000), true)
     TS_ASSERT_EQUALS(g.leap_year(2012), true)
-    TS_ASSERT_EQUALS(g.leap_year(2012), false)
+    TS_ASSERT_EQUALS(g.leap_year(2012), true)
     TS_ASSERT_EQUALS(g.leap_year(2016), true)
     TS_ASSERT_EQUALS(g.leap_year(2004), true)
     TS_ASSERT_EQUALS(g.leap_year(2008), true)
