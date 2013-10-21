@@ -201,6 +201,9 @@ public:
     TS_ASSERT_EQUALS(g.year(), 1999);
     TS_ASSERT_EQUALS(g.month(), 2);
     TS_ASSERT_EQUALS(g.day(), 28);
+
+    g.add_year(-3);
+    TS_ASSERT_EQUALS(g.year(), 1996);
   }
 
   void test_starting_weekday( void ) {
