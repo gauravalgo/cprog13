@@ -194,4 +194,26 @@ public:
     TS_ASSERT_EQUALS(g.month(), 2);
     TS_ASSERT_EQUALS(g.day(), 28);
   }
+  void test_add_negative_month_leap_year( void ) {
+    lab2::Gregorian g(2000, 2,29);
+    g.add_year(-1);
+
+    TS_ASSERT_EQUALS(g.year(), 1999);
+    TS_ASSERT_EQUALS(g.month(), 2);
+    TS_ASSERT_EQUALS(g.day(), 28);
+  }
+
+  void test_starting_weekday( void ) {
+    lab2::Gregorian g(1858, 11, 17);
+
+    TS_ASSERT_EQUALS(g.week_day(), 3);
+    TS_ASSERT_EQUALS(g.week_day_name(), "wednesday");
+  }
+
+  void test_other_days( void  ) {
+    lab2::Gregorian g(2013, 10, 21);
+
+    TS_ASSERT_EQUALS(g.week_day(), 1);
+    TS_ASSERT_EQUALS(g.week_day_name(), "monday");
+  }
 };

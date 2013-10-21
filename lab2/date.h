@@ -19,6 +19,7 @@ class lab2::Date {
     virtual bool isValid(int, int, int) const = 0;
 
     virtual long convert_to_jdn(int, int, int) const = 0;
+    
   public:
     Date();
     Date(Date&);
@@ -33,18 +34,21 @@ class lab2::Date {
     virtual int days_this_month() const = 0;
     virtual int months_per_year() const = 0;
 
-    virtual void add_day(int) = 0;
+    virtual std::string week_day_name() const = 0;
+
     virtual void add_day() = 0;
-    virtual void subtract_day() = 0;
+    virtual void add_day(int) = 0;
 
     virtual void add_year() = 0;
     virtual void add_year(int) = 0;
 
     virtual void add_month() = 0;
     virtual void add_month(int) = 0;
-
+    
     virtual bool leap_year(int) const = 0; 
     virtual bool leap_year() const = 0;
+    virtual void subtract_day() = 0;
+
 
     // Operators
     // Prefix

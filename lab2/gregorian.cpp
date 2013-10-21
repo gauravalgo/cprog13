@@ -1,10 +1,12 @@
 #include "gregorian.h"
 #include <stdexcept>
 #include <assert.h>
+#include <math.h>
 
 using namespace lab2;
 
 const int month_length[13] = {-1, 31,28,31,30,31,30,31,31,30,31,30,31};
+const std::string week_day_names[8] = { "", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
 
 Gregorian::Gregorian()
   : Date()
@@ -109,7 +111,11 @@ int Gregorian::get_month_length(int m) const {
 }
 
 int Gregorian::week_day() const {
-  return 0;
+  return (mod_julian_day() + 3)% 7;
+}
+
+std::string Gregorian::week_day_name() const {
+  return week_day_names[week_day()];
 }
 
 int Gregorian::days_this_month() const {
@@ -159,25 +165,28 @@ void Gregorian::subtract_day() {
   convert_to_gregorian();
 }
 
-void Gregorian::add_year() {
+void Gregorian::modify_year(int y) {
   if (month() == 2 && day() == 29) {
     lday = 28;
   }
-  lyear++;
+  lyear += y;
   JDN = convert_to_jdn();
 }
 
+void Gregorian::add_year() {
+  modify_year(1);
+}
+
 void Gregorian::add_year(int y) {
-  if (y > 0) {
-    for (int i = 0; i < y; i++) {
-      add_year();
+  for (int i = 0; i < std::abs(y); i++) {
+    if (y > 0) {
+      modify_year(1);
+    } else {
+      modify_year(-1);
     }
-  } else {
-    lyear += y;
   }
 
   JDN = convert_to_jdn();
-  
 }
 
 bool Gregorian::leap_year(int year) const {
