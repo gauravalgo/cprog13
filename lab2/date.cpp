@@ -9,6 +9,16 @@ long Date::get_jdn() const {
   return JDN;
 }
 
+int Date::week_day() const {
+  // mod julian day ( 1858/11/17 är en onsdag, däröfr plus 3)
+  int weekday = (mod_julian_day() + 3) % days_per_week();
+
+  if (weekday < 1) {
+    weekday += 7;
+  }
+  return weekday;
+}
+
 // ---------
 // Operators
 Date & Date::operator++() { //prefix
@@ -69,42 +79,3 @@ long Date::mod_julian_day() const {
 std::ostream& lab2::operator<<(std::ostream & os, const Date & d) {
   os << d.year() << "-" << d.month() << "-" << d.day() <<"\n";
 }
-
-// -----------------------
-// Internal/private helper methods
-// void Date::subtract_day() {
-//   --lday;
-//   if (lday < 1) {
-//     lday = days_this_month();
-//     subtract_month();
-//   }
-// }
-// 
-// void Date::add_day() {
-//   lday++;
-//   if (lday > days_this_month()) {
-//     lday = 1;
-//     add_month();
-//   }
-// }
-// 
-// int Date::days_this_month() const {
-//   return 31;
-// }
-
-// void Date::subtract_month() {
-//   --lmonth;
-//   if (lmonth < 0) {
-//     lmonth = months_per_year();
-//     lyear -= 1;
-//   }
-// }
-// 
-// 
-// bool Date::leap_year(int) const {
-//   return false; // TODO!! should be pure virutal
-// }
-// 
-// bool Date::leap_year() const {
-//   return false; // TODO!! should be pure virutal
-// }

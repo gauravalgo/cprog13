@@ -210,10 +210,34 @@ public:
     TS_ASSERT_EQUALS(g.week_day_name(), "wednesday");
   }
 
+  void test_weekdays_before_day_zero( void ) {
+    lab2::Gregorian g(1858,11,16);
+
+    TS_ASSERT_EQUALS(g.week_day(), 2);
+    --g;
+    TS_ASSERT_EQUALS(g.week_day(), 1);
+    g.add_day(-2);
+    TS_ASSERT_EQUALS(g.week_day(), 6);
+
+    g.add_day(-7);
+    TS_ASSERT_EQUALS(g.week_day(), 6);
+
+    --g;
+
+    TS_ASSERT_EQUALS(g.mod_julian_day(), -12);
+
+  }
+
   void test_other_days( void  ) {
     lab2::Gregorian g(2013, 10, 21);
 
     TS_ASSERT_EQUALS(g.week_day(), 1);
     TS_ASSERT_EQUALS(g.week_day_name(), "monday");
+  }
+
+  void test_month_name( void ) {
+    lab2::Gregorian g(2013, 10, 21);
+
+    TS_ASSERT_EQUALS(g.month_name(), "october");
   }
 };

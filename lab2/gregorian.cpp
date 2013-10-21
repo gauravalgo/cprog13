@@ -6,7 +6,9 @@
 using namespace lab2;
 
 const int month_length[13] = {-1, 31,28,31,30,31,30,31,31,30,31,30,31};
-const std::string week_day_names[8] = { "", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
+const std::string WEEK_DAY_NAMES[8] = { "", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
+const std::string MONTH_NAMES[13] = {"", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
+
 
 Gregorian::Gregorian()
   : Date()
@@ -110,24 +112,16 @@ int Gregorian::get_month_length(int m) const {
   return get_month_length(year(), m);
 }
 
-int Gregorian::week_day() const {
-  return (mod_julian_day() + 3)% 7;
+std::string Gregorian::week_day_name() const {
+  return WEEK_DAY_NAMES[week_day()];
 }
 
-std::string Gregorian::week_day_name() const {
-  return week_day_names[week_day()];
+std::string Gregorian::month_name() const {
+  return MONTH_NAMES[month()];
 }
 
 int Gregorian::days_this_month() const {
   get_month_length(month());
-}
-
-int Gregorian::days_per_week() const {
-  return 7;
-}
- 
-int Gregorian::months_per_year() const {
-  return 12;
 }
 
 void Gregorian::add_month() {

@@ -20,21 +20,21 @@ class lab2::Date {
 
     virtual long convert_to_jdn(int, int, int) const = 0;
     
+    virtual void subtract_day() = 0;
   public:
     Date();
     Date(Date&);
-    Date(int, int, int);
 
     virtual int year() const = 0;
     virtual int month() const = 0;
     virtual int day() const = 0;
 
-    virtual int week_day() const = 0;
+    virtual int week_day() const; // ska den vara virtual
+    virtual std::string week_day_name() const = 0;
+    virtual std::string month_name() const = 0;
     virtual int days_per_week() const = 0;
     virtual int days_this_month() const = 0;
     virtual int months_per_year() const = 0;
-
-    virtual std::string week_day_name() const = 0;
 
     virtual void add_day() = 0;
     virtual void add_day(int) = 0;
@@ -47,7 +47,6 @@ class lab2::Date {
     
     virtual bool leap_year(int) const = 0; 
     virtual bool leap_year() const = 0;
-    virtual void subtract_day() = 0;
 
 
     // Operators

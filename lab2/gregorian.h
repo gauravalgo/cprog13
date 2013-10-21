@@ -29,15 +29,15 @@ namespace lab2 {
       int month() const;
       int day() const;
 
-      int week_day() const;
-      int days_per_week() const;
+      std::string week_day_name() const;
+      std::string month_name() const;
+      int days_per_week() const { return 7; };
       int days_this_month() const;
-      int months_per_year() const;
+      int months_per_year() const { return 12; };
       
       int get_month_length(int) const;
       int get_month_length(int, int) const;
 
-      std::string week_day_name() const;
 
       void add_day();
       void add_day(int);
