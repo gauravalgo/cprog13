@@ -105,8 +105,26 @@ public:
     lab2::Gregorian i(2001,2,2);
     TS_ASSERT_EQUALS(i.leap_year(),false);
     TS_ASSERT_EQUALS(i.get_month_length(2), 28);
-
   }
+
+  void test_add_month( void ) {
+    lab2::Gregorian g(2000,1,1);
+    int j = g.mod_julian_day();
+    g.add_month(2);
+
+    TS_ASSERT_EQUALS(g.month(),3);
+    TS_ASSERT_EQUALS(g.day(), 1);
+    TS_ASSERT_DIFFERS(g.mod_julian_day(), j);
+  }
+
+  void test_add_month_many_with_leap_year( void ) {
+    lab2::Gregorian g(2000,1,30);
+    g.add_month(2);
+
+    TS_ASSERT_EQUALS(g.month(),3);
+    TS_ASSERT_EQUALS(g.day(), 29);
+  }
+
   void test_add_month_shift_year() {
     lab2::Gregorian g(2012,12,15);
     g.add_month();
@@ -138,5 +156,42 @@ public:
     TS_ASSERT_EQUALS(g.leap_year(2016), true)
     TS_ASSERT_EQUALS(g.leap_year(2004), true)
     TS_ASSERT_EQUALS(g.leap_year(2008), true)
+  }
+
+  void test_add_year_single( void ) {
+    lab2::Gregorian g(1995, 1,1);
+
+    int j = g.mod_julian_day();
+    g.add_year();
+    TS_ASSERT_EQUALS(g.year(), 1996);
+    TS_ASSERT_EQUALS(g.month(), 1);
+    TS_ASSERT_EQUALS(g.day(), 1);
+    TS_ASSERT_DIFFERS(g.mod_julian_day(), j);
+  }
+
+  void test_add_year_29_feb( void ) {
+    lab2::Gregorian g(2000,2,29);
+    g.add_year();
+    
+    TS_ASSERT_EQUALS(g.year(), 2001);
+    TS_ASSERT_EQUALS(g.day(), 28);
+  }
+
+  void test_add_3_years( void ) {
+    lab2::Gregorian g(2000,2,29);
+    g.add_year(3);
+
+    TS_ASSERT_EQUALS(g.year(), 2003);
+    TS_ASSERT_EQUALS(g.month(), 2);
+    TS_ASSERT_EQUALS(g.day(), 28);
+  }
+
+  void test_add_negative_month( void ) {
+    lab2::Gregorian g(2001, 2,28);
+    g.add_year(-1);
+
+    TS_ASSERT_EQUALS(g.year(), 2000);
+    TS_ASSERT_EQUALS(g.month(), 2);
+    TS_ASSERT_EQUALS(g.day(), 28);
   }
 };

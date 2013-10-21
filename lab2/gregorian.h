@@ -14,6 +14,7 @@ namespace lab2 {
       void init(int, int, int);
       bool isValid(int, int, int) const;
       long convert_to_jdn(int, int, int) const;
+      long convert_to_jdn() const;
 
       void convert_to_gregorian();
 

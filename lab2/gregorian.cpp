@@ -84,6 +84,10 @@ long Gregorian::convert_to_jdn(int Y, int M, int D) const {
   return jdn;
 }
 
+long Gregorian::convert_to_jdn() const {
+  return convert_to_jdn(lyear, lmonth, lday);
+}
+
 bool Gregorian::isValid(int y, int m, int d) const {
   if (d < 1 || m < 1 || m > months_per_year() || d > get_month_length(y, m)) {
     return false;
@@ -134,8 +138,10 @@ void Gregorian::add_month() {
   convert_to_gregorian();
 }
 
-void Gregorian::add_month(int i) {
-
+void Gregorian::add_month(int times) {
+  for (int i = 0; i < times; i++) {
+    add_month();
+  }
 }
 
 void Gregorian::add_day() {
@@ -154,10 +160,23 @@ void Gregorian::subtract_day() {
 }
 
 void Gregorian::add_year() {
-
+  if (month() == 2 && day() == 29) {
+    lday = 28;
+  }
+  lyear++;
+  JDN = convert_to_jdn();
 }
 
 void Gregorian::add_year(int y) {
+  if (y > 0) {
+    for (int i = 0; i < y; i++) {
+      add_year();
+    }
+  } else {
+    lyear += y;
+  }
+
+  JDN = convert_to_jdn();
   
 }
 

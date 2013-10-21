@@ -1,9 +1,6 @@
 date: 
 	g++ -std=c++0x -c date.cpp
 
-# julian:
-	# g++ -std=c++0x -c julian.cpp
-
 gregorian:
 	g++ -std=c++0x -c gregorian.cpp
 
@@ -13,7 +10,7 @@ test.out: date gregorian
 tests.cpp:
 	/info/cprog12/cxxtest/cxxtestgen.py --error-printer -o tests.cpp test_date.cpp test_gregorian.cpp
 
-test: clean tests.cpp test.out
+test: clean date gregorian tests.cpp test.out
 	./test.out
 
 clean:
