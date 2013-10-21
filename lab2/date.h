@@ -11,42 +11,36 @@ namespace lab2 {
 
 class lab2::Date {
   protected:
-    const long MODIFED_JULIAN_DAY_CONSTANT = 2400001;
-    long JDN = 0;
-    int lyear = 0;
-    int lmonth = 0;
-    int lday = 0;
+    // long MODIFIED_JULIAN_DAY_CONSTANT = 2400001;
+    long JDN;
+    
+    long get_jdn() const;
 
-    int ldays_per_week = 7;
-    int lmonth_per_year = 10;
+    virtual bool isValid(int, int, int) const = 0;
 
-    void subtract_day();
-    void add_day();
-    void subtract_month();
-
-    virtual long convert_to_jdn() const = 0;
+    virtual long convert_to_jdn(int, int, int) const = 0;
   public:
     Date();
-    Date(int m_per_year, int d_per_week);
+    Date(Date&);
     Date(int, int, int);
-    Date(int m_per_year, int d_per_week, int y, int m, int d);
 
-    int year() const;
-    int month() const;
-    int day() const;
-    int week_day();
-    int days_per_week();
-    virtual int days_this_month() const;
-    int months_per_year();
+    virtual int year() const = 0;
+    virtual int month() const = 0;
+    virtual int day() const = 0;
 
-    void add_year();
-    void add_year(int);
+    virtual int week_day() const = 0;
+    virtual int days_per_week() const = 0;
+    virtual int days_this_month() const = 0;
+    virtual int months_per_year() const = 0;
 
-    void add_month();
-    void add_month(int);
+    virtual void add_year() const = 0;
+    virtual void add_year(int) const = 0;
 
-    virtual bool leap_year(int) const; 
-    virtual bool leap_year() const;
+    virtual void add_month() const = 0;
+    virtual void add_month(int) const = 0;
+
+    virtual bool leap_year(int) const = 0; 
+    virtual bool leap_year() const = 0;
 
     // Operators
     // Prefix
@@ -67,7 +61,7 @@ class lab2::Date {
     // Diff operators
     int operator-( const Date & ) const;
 
-    long mod_julian_day() const;
+    virtual long mod_julian_day() const = 0;
 };
 
 #endif

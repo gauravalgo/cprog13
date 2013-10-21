@@ -42,4 +42,8 @@ bool Julian::leap_year() {
   leap_year(lyear);
 }
 
+long Julian::mod_julian_day() const {
+  return 0;
+}
+
 

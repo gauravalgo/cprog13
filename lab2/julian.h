@@ -15,6 +15,7 @@ namespace lab2 {
       
       bool leap_year();
       bool leap_year(int);
+      long mod_julian_day() const;
   };
 }
 

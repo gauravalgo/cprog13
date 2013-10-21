@@ -1,17 +1,17 @@
 date: 
 	g++ -std=c++0x -c date.cpp
 
-julian:
-	g++ -std=c++0x -c julian.cpp
+# julian:
+	# g++ -std=c++0x -c julian.cpp
 
 gregorian:
 	g++ -std=c++0x -c gregorian.cpp
 
-test.out: date julian gregorian
-	g++ -std=c++0x -o test.out -I cxxtest tests.cpp date.o julian.o gregorian.o kattistime.cpp
+test.out: date gregorian
+	g++ -std=c++0x -o test.out -I /info/cprog12/cxxtest/ tests.cpp date.o gregorian.o kattistime.cpp
 
 tests.cpp:
-	cxxtestgen --error-printer -o tests.cpp test_date.cpp test_julian.cpp test_gregorian.cpp
+	/info/cprog12/cxxtest/cxxtestgen.py --error-printer -o tests.cpp test_date.cpp test_gregorian.cpp
 
 test: clean tests.cpp test.out
 	./test.out

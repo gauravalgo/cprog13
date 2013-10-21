@@ -3,10 +3,10 @@
 
 using namespace lab2;
 
-const int month_length[13] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+const int month_length[13] = {-1,31,28,31,30,31,30,31,31,30,31,30,31};
 
 Gregorian::Gregorian()
-  : Date(12, 7)
+  : Date()
 {
   // get kattis time.
   time_t mytime;
@@ -21,49 +21,83 @@ Gregorian::Gregorian()
 }
 
 Gregorian::Gregorian(int y, int m, int d)
-  : Date(12, 7)
+  : Date()
 {
   init(y, m, d);
+}
+
+int Gregorian::year() const {
+  return 0;
+}
+
+int Gregorian::month() const {
+  return 0;
+}
+
+int Gregorian::day() const {
+  return 0;
 }
 
 void Gregorian::init(int y, int m, int d) {
   if (!isValid(y, m , d)) {
     throw std::out_of_range("Invalid date. Check the range for days and month.");
   }
-  lyear = y;
-  lmonth = m;
-  lday = d;
-  
-  JDN = convert_to_jdn();
+
+  JDN = convert_to_jdn(y, m, d);
 
 }
 
-long Gregorian::convert_to_jdn() const {
+long Gregorian::convert_to_jdn(int Y, int M, int D) const {
   long jdn;
-  int Y = lyear;
-  int M = lmonth;
-  int D = lday;
   
   jdn = (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075; // julian day number algorithm
 
   return jdn;
 }
 
-
-int Gregorian::days_this_month() const {
-  if (lmonth == 2 && leap_year(lyear)) {
-    return 29;
-  }
-  
-  return month_length[lmonth];
-}
-
-bool Gregorian::isValid(int y, int m, int d) {
+bool Gregorian::isValid(int y, int m, int d) const {
   if (d < 1 || m < 1) {
     return false;
   }
 
   return true;
+}
+
+int Gregorian::week_day() const {
+  return 0;
+}
+
+int Gregorian::days_this_month() const {
+  int m = month();
+  if (m == 2 && leap_year()) {
+    return 29;
+  }
+  
+  return month_length[m];
+}
+
+int Gregorian::days_per_week() const {
+  return 7;
+}
+ 
+int Gregorian::months_per_year() const {
+  return 12;
+}
+
+void Gregorian::add_month() const {
+}
+
+void Gregorian::add_month(int i) const {
+
+}
+
+
+void Gregorian::add_year() const {
+
+}
+
+void Gregorian::add_year(int y) const {
+  
 }
 
 bool Gregorian::leap_year(int year) const {
@@ -77,6 +111,10 @@ bool Gregorian::leap_year(int year) const {
   return false;
 }
 
+long Gregorian::mod_julian_day() const {
+  return this->get_jdn() - 2400001;
+}
+
 bool Gregorian::leap_year() const {
-  return leap_year(lyear);
+  return leap_year(year());
 }
