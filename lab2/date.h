@@ -16,6 +16,7 @@ class lab2::Date {
     int lyear = 0;
     int lmonth = 0;
     int lday = 0;
+
     int ldays_per_week = 7;
     int lmonth_per_year = 10;
 
