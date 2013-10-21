@@ -1,4 +1,4 @@
-/*#include <cxxtest/TestSuite.h>
+#include <cxxtest/TestSuite.h>
 #include "Vector.h"
 #include "Vector.cpp"
 
@@ -110,6 +110,21 @@ public:
   
   }
 
+  void test_sort_unique_2 ( void ) {
+    Vector<int> v(10,2);
+    v[2] = 7;
+    v[5] = 9;
+    v.unique_sort(true);
+    TS_ASSERT_EQUALS(v[0], 2);
+    TS_ASSERT_EQUALS(v[1], 7);
+    TS_ASSERT_EQUALS(v[2], 9);
+    TS_ASSERT_THROWS_ANYTHING(v[3]);
+    Vector<int> a(0);
+    a.unique_sort(true);
+    TS_ASSERT_EQUALS(a.size(), 0);
+
+  }
+
   void test_exists(void){
     Vector<int> v(2);
     v[0] = 2;
@@ -181,4 +196,4 @@ public:
     v.alloc_more();
     TS_ASSERT_EQUALS(2, v.bufSize);
   }
-};*/
+};

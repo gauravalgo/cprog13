@@ -1,25 +1,25 @@
 /////////////////////////////////////////////////////////////////
 //
-// Personuppgifter (namn, pnr, epost) på dem som gjort labben
+// Personuppgifter (namn, pnr, epost) pÃ¥ dem som gjort labben
 //
 	Johanna Axelsson, 900427, joaxel@kth.se
-	Simon Ström, 870727, simon.strom@gmail.com
+	Simon StrÃ¶m, 870727, simon.strom@gmail.com
 
 /////////////////////////////////////////////////////////////////
 //
 // 1.1
 //
 // vad betyder \$* i en makefile? 
-	- när man kör en makefile expanderas variablerna som deklareras i två omgångar. Ex
+	- nÃ¤r man kÃ¶r en makefile expanderas variablerna som deklareras i tvÃ¥ omgÃ¥ngar. Ex
 	hej = hopp
 	hej1 = $(hej)
 	hej2 = $$(hej)
 	hej = hoppsan
-	då skulle första expansionen ge att hej1 blir hopp, men eftersom hej2 har två $ så expanderas bara det första tecknet. Vid nästa expansion expanderas hej2 också, nu till det nya värdet hoppsan. Om man då har ett / framför $ så expanderas inte denna variabel. 
+	dÃ¥ skulle fÃ¶rsta expansionen ge att hej1 blir hopp, men eftersom hej2 har tvÃ¥ $ sÃ¥ expanderas bara det fÃ¶rsta tecknet. Vid nÃ¤sta expansion expanderas hej2 ocksÃ¥, nu till det nya vÃ¤rdet hoppsan.
 
 
-// vad gör -Wall och -g ?
-	-Wall visar varningar man får när man kompilerar
+// vad gÃ¶r -Wall och -g ?
+	-Wall visar varningar man fÃ¥r nÃ¤r man kompilerar
 	-g ger debuginfo
 
 /////////////////////////////////////////////////////////////////
@@ -40,23 +40,23 @@
 // 
 //     int res = powerof(x, y);
 // 
-//     std::cout << x << " upphöjt till " << y << " är " << res << std::endl;
+//     std::cout << x << " upphÃ¶jt till " << y << " Ã¤r " << res << std::endl;
 // 
 //     float z = 0.29;
 //     int w = (int) (z * x * x);
 //     if (z * x * x == 29)
-//         std::cout << z << "*" << x * x << " är 29" << std::endl;
+//         std::cout << z << "*" << x * x << " Ã¤r 29" << std::endl;
 //     else
-//         std::cout << z << "*" << x * x << " är inte 29" << std::endl;           
+//         std::cout << z << "*" << x * x << " Ã¤r inte 29" << std::endl;           
 // }
 // 
-// Varför blir värdet på variabeln w inte det man tror (0.29*100)? 
-	-För att z sparas som en float, alltså ett ungefärligt värde. När w senare sparas som en int kapas alla decimaler. Ex z = 0.2899999999… -> w = 28.99999 -> 28. 
+// VarfÃ¶r blir vÃ¤rdet pÃ¥ variabeln w inte det man tror (0.29*100)? 
+	-FÃ¶r att z sparas som en float, alltsÃ¥ ett ungefÃ¤rligt vÃ¤rde. NÃ¤r w senare sparas som en int kapas alla decimaler. Ex z = 0.2899999999â€¦ -> w = 28.99999 -> 28. 
 
 
-// Hur många varv körs for-loopen i funktionen powerof? 
-	- 1. Detta pga ett semikolon som gör att det inte blir en for-loop, och raden efteråt bara 
-	tolkas som en “vanlig” rad, alltså kör programmet vidare efter den. 
+// Hur mÃ¥nga varv kÃ¶rs for-loopen i funktionen powerof? 
+	- 1. Detta pga ett semikolon som gÃ¶r att det inte blir en for-loop, och raden efterÃ¥t bara 
+	tolkas som en â€œvanligâ€ rad, alltsÃ¥ kÃ¶r programmet vidare efter den. 
 
 
 // 1.2 b)
@@ -71,34 +71,34 @@
 // }
 // 
 // Dina tre testfall
-	//testar "vanlig" funktionalitet, förväntas fungera. 
+	//testar "vanlig" funktionalitet, fÃ¶rvÃ¤ntas fungera. 
     void test_1( void )
     {
         char vek[] = {'x', 'a', 'b', 'x', 'a', 'b', 'x'};
         int result = must_follow_a(vek, 7, 'a', 'b');
         TS_ASSERT_EQUALS( result, 2);        
     }
-    //visar när det inte fungerar, man förväntar sig inte att hitta 1 resultat.
+    //visar nÃ¤r det inte fungerar, man fÃ¶rvÃ¤ntar sig inte att hitta 1 resultat.
     void test_2( void ){
         char vek2[] = {'b', 'b', 'a', 'b', 'b'};
         int res = must_follow_a(vek2, 3, 'a', 'b');
         TS_ASSERT_EQUALS( res, 1);
     }
-    //testar fall utan att hitta nåt. 
+    //testar fall utan att hitta nÃ¥t. 
     void test_3( void ){
         char vek2[] = {'c', 'a', 'a', 'a', 'a'};
         int res = must_follow_a(vek2, 3, 'a', 'b');
         TS_ASSERT_EQUALS( res, 0);
     }
 
-// Varför är det så viktigt att testa randvillkoren?
-	- När man börjar skriva ett program märker man ofta inte om det är fel vid randvillkoren eftersom dessa "används" mer sällan. 
+// VarfÃ¶r Ã¤r det sÃ¥ viktigt att testa randvillkoren?
+	- NÃ¤r man bÃ¶rjar skriva ett program mÃ¤rker man ofta inte om det Ã¤r fel vid randvillkoren eftersom dessa "anvÃ¤nds" mer sÃ¤llan. 
 
 /////////////////////////////////////////////////////////////////
 //
 // 1.3 
 // 
-// Bifoga källkoden till din version av A.cpp
+// Bifoga kÃ¤llkoden till din version av A.cpp
 ----------------------------
 #include <iostream>
 using namespace std;
@@ -119,7 +119,7 @@ public:
 
 //kopia
 void no_ref(A a) {}
-//referens, kan modda a, kan inte ändra på referens
+//referens, kan modda a, kan inte Ã¤ndra pÃ¥ referens
 void with_ref(const A & a) {}
 
 int main()
@@ -130,19 +130,19 @@ int main()
     A d;             // constructs a new A object.
     d = a;           // assignment op, ?
     cout << "before no_ref\n";
-    no_ref(a);       // kör copy, så temporära objekt bildas, kör sedan destruktor så objektet tas bort
-    with_ref(a);     // Skickar in en referens, så inga kopior bildas
+    no_ref(a);       // kÃ¶r copy, sÃ¥ temporÃ¤ra objekt bildas, kÃ¶r sedan destruktor sÃ¥ objektet tas bort
+    with_ref(a);     // Skickar in en referens, sÃ¥ inga kopior bildas
     cout << "after no_ref\n";
     A *aa = new A[5]; // 5ggr default
     cout << "before delete\n";
-    delete[] aa;       // Vad kommer att hända? Destruct, segmentation fault
-    //delete är mer keyword, anropar tillhörande destruktor
+    delete[] aa;       // Vad kommer att hÃ¤nda? Destruct, segmentation fault
+    //delete Ã¤r mer keyword, anropar tillhÃ¶rande destruktor
     cout << "after delete\n";
     return 0;
 }
 -----------------------
 
-// Vad skriver ditt program ut, var förberedd att förklara varför. 
+// Vad skriver ditt program ut, var fÃ¶rberedd att fÃ¶rklara varfÃ¶r. 
 The copy contructor
 The copy contructor
 The default contructor
@@ -168,29 +168,29 @@ The destructor
 The destructor
 
 
-// När frigörs objekten?  
-	- Kopior frigörs när man returnerar från en metod och allt i main frigörs när vi returnerar i main. Innan dess frigörs arrayen manuellt med delete[]. 
+// NÃ¤r frigÃ¶rs objekten?  
+	- Kopior frigÃ¶rs nÃ¤r man returnerar frÃ¥n en metod och allt i main frigÃ¶rs nÃ¤r vi returnerar i main. Innan dess frigÃ¶rs arrayen manuellt med delete[]. 
 
-// När skapas temporära objekt?
-	- När vi skickar in objekt utan referens så skapas kopior (temporära objekt)
+// NÃ¤r skapas temporÃ¤ra objekt?
+	- NÃ¤r vi skickar in objekt utan referens sÃ¥ skapas kopior (temporÃ¤ra objekt)
 
-//   A b = a;         // vad är skillnaden
+//   A b = a;         // vad Ã¤r skillnaden
 //   A c(a);          // mellan dessa
 //   A d;             // tre tekniker?
 	1. Denna anropar copy och kopierar a -> b skapas.
-	2. c skapas som en kopia av a, ingen skillnad från 1. 
+	2. c skapas som en kopia av a, ingen skillnad frÃ¥n 1. 
 	3. Skapar ett helt nytt objekt d med default konstruktor
 
 
-//   no_ref(a);       // Bildas temporära objekt?
+//   no_ref(a);       // Bildas temporÃ¤ra objekt?
 	- Ja, eftersom en kopia skapas.
 
 
-//   with_ref(a);     // Bildas temporära objekt?
-	- Nej, eftersom vi har fått en referens och kan använda det objektet
+//   with_ref(a);     // Bildas temporÃ¤ra objekt?
+	- Nej, eftersom vi har fÃ¥tt en referens och kan anvÃ¤nda det objektet
 
-//   delete aa;       // Vad kommer att hända
-	- man läcker minne för att man måste ta bort aa som en array, delete[] aa hjälper.  
+//   delete aa;       // Vad kommer att hÃ¤nda
+	- man lÃ¤cker minne fÃ¶r att man mÃ¥ste ta bort aa som en array, delete[] aa hjÃ¤lper.  
 
 /////////////////////////////////////////////////////////////////
 //
@@ -244,28 +244,28 @@ The destructor
 ==6697== ERROR SUMMARY: 6 errors from 2 contexts (suppressed: 2 from 2)
 
 
-// Blir det någon skillnad i hur mycket minne som läcker när man
+// Blir det nÃ¥gon skillnad i hur mycket minne som lÃ¤cker nÃ¤r man
 // kommenterar if-satsen?
-	- Nja, definitely lost är samma summa men inderectly lost är 60 bytes vilket inte hände innan. 
+	- Nja, definitely lost Ã¤r samma summa men inderectly lost Ã¤r 60 bytes vilket inte hÃ¤nde innan. 
 
-// Borde det ha blivit någon skillnad?
-	- Ja, eftersom vi numera lägger in grejer i for-loopen så fem blocks går förlorade eftersom vi tar bort pekaren till arrayen. 
+// Borde det ha blivit nÃ¥gon skillnad?
+	- Ja, eftersom vi numera lÃ¤gger in grejer i for-loopen sÃ¥ fem blocks gÃ¥r fÃ¶rlorade eftersom vi tar bort pekaren till arrayen. 
 
-// Varför läcker programmet fortfarande minne?
-	- För att vi fortfarande bara tar bort pekaren, Dataobjekten tas inte bort. Dom skulle behöva hämtas ut mha pekarna och sedan deletas en i taget. 
+// VarfÃ¶r lÃ¤cker programmet fortfarande minne?
+	- FÃ¶r att vi fortfarande bara tar bort pekaren, Dataobjekten tas inte bort. Dom skulle behÃ¶va hÃ¤mtas ut mha pekarna och sedan deletas en i taget. 
 
 /////////////////////////////////////////////////////////////////
 //
 // 1.4
 //
-// Generellt är det ofta en god idé att låta konstruktorer som
-// tar ett argument deklareras som explicit. Varför? Ange ett
-// exempel där det annars kan bli dumt.
-	- För att vissa anrop som ser "likadana" ut kan vara menade att göra olika saker. Om en klass tar t ex en char som indata och sedan använder den på något sätt, men man anropat konstruktorn med en int som då castas om kan man få jätteknasiga värden. 
+// Generellt Ã¤r det ofta en god idÃ© att lÃ¥ta konstruktorer som
+// tar ett argument deklareras som explicit. VarfÃ¶r? Ange ett
+// exempel dÃ¤r det annars kan bli dumt.
+	- FÃ¶r att vissa anrop som ser "likadana" ut kan vara menade att gÃ¶ra olika saker. Om en klass tar t ex en char som indata och sedan anvÃ¤nder den pÃ¥ nÃ¥got sÃ¤tt, men man anropat konstruktorn med en int som dÃ¥ castas om kan man fÃ¥ jÃ¤tteknasiga vÃ¤rden. 
 
 
-// operatorn[] måste vara en konstant medlemsfunktion i vissa
-// fall. När och varför? Hur kopierar man vektorn?
-	- Det behövs för att kunna använda både a[1] = 2 och int b = a[1], den ena ändrar på elementet men den andra returnerar det bara. 
-	- Om man säger att Vector-objektet ska vara const så måste man kunna garantera att alla metoder på det som man anropar också är const, för att man inte får ändra nåt på objektet. 
-	- Loopar igenom den och skapar en ny vektor med dessa värden på motsv index. 
+// operatorn[] mÃ¥ste vara en konstant medlemsfunktion i vissa
+// fall. NÃ¤r och varfÃ¶r? Hur kopierar man vektorn?
+	- Det behÃ¶vs fÃ¶r att kunna anvÃ¤nda bÃ¥de a[1] = 2 och int b = a[1], den ena Ã¤ndrar pÃ¥ elementet men den andra returnerar det bara. 
+	- Om man sÃ¤ger att Vector-objektet ska vara const sÃ¥ mÃ¥ste man kunna garantera att alla metoder pÃ¥ det som man anropar ocksÃ¥ Ã¤r const, fÃ¶r att man inte fÃ¥r Ã¤ndra nÃ¥t pÃ¥ objektet. 
+	- Loopar igenom den och skapar en ny vektor med dessa vÃ¤rden pÃ¥ motsv index. 

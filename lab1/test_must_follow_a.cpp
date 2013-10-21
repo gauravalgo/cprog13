@@ -14,23 +14,21 @@ public:
 
     // Do make additional tests of your own and try it out. 
 
-    void test_a_is_second_to_last( void )
+    void test_1( void )
     {
-      char vek[] = {'x', 'x', 'a', 'b', 'x'};
-      int result = must_follow_a(vek, 4, 'a', 'b');
-      TS_ASSERT_EQUALS( result, 1);
+        char vek[] = {'x', 'a', 'b', 'x', 'a', 'b', 'x'};
+        int result = must_follow_a(vek, 7, 'a', 'b');
+        TS_ASSERT_EQUALS( result, 2);        
+    }
+    void test_2( void ){
+        char vek2[] = {'b', 'b', 'a', 'b', 'b'};
+        int res = must_follow_a(vek2, 3, 'a', 'b');
+        TS_ASSERT_EQUALS( res, 0);
+    }
+    void test_3( void ){
+        char vek2[] = {'c', 'a', 'a', 'a', 'a'};
+        int res = must_follow_a(vek2, 3, 'a', 'b');
+        TS_ASSERT_EQUALS( res, 0);
     }
 
-    void test_a_is_followed_by_two_b( void ) {
-      char vek[] = {'a','b', 'a', 'b', 'b'};
-      int result = must_follow_a(vek, 4, 'a', 'b');
-      TS_ASSERT_EQUALS( result, 2 );
-    }
-
-    void test_should_failed( void )
-    {
-      char vek2[] = {'b','b', 'a', 'b', 'b'};
-      int result = must_follow_a(vek2, 3, 'a', 'b');
-      TS_ASSERT_EQUALS( result, 0 );
-    }
 };
