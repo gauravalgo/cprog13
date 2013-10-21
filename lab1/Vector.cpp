@@ -1,7 +1,4 @@
-#ifndef VECTOR_H
-#include "vector.h"
-#endif
-
+#include "Vector.h"
 //initializer without argument
 template <class T>
 Vector<T>::Vector(){
@@ -72,6 +69,7 @@ void Vector<T>::alloc_more(){
 	{
 		tmp[i] = v[i];
 	}
+
 	delete[] v;
 	v = tmp;
 	bufSize = tmpBuf;
@@ -137,7 +135,7 @@ void Vector<T>::unique_sort(bool order){
 	curSize = tmp-v;
 }
 template <class T>
-bool Vector<T>::exists(const T & elem) const{
+bool Vector<T>::exists(const T & elem)const{
 	T* tmp = std::find(v, v+curSize, elem);
 	return (tmp != v+curSize);
 }
@@ -214,9 +212,6 @@ Vector<T> & Vector<T>::operator=(Vector && ref)
 		delete[] v;
 		curSize = ref.size();
 		bufSize = ref.bufSize;
-		for (int i = 0; i < (int) curSize; ++i){
-			v[i] = ref[i];
-		}
 		ref.v = NULL;
 		ref.curSize = 0;
 		ref.bufSize = 0;
@@ -237,4 +232,12 @@ Vector<T> & Vector<T>::operator=(const std::initializer_list<T>& list) {
 		i++;
 	}
 	return *this;
+}
+template <class T>
+void Vector<T>::print(){
+	std::cout << "\nprinting vector: ";
+	for (int i = 0; i < bufSize; ++i)
+	{
+		std::cout << "\n" << v[i];
+	}
 }

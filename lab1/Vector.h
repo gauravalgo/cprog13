@@ -38,6 +38,6 @@ public:
 	Vector & operator=(const Vector & ref);
 	Vector & operator=(Vector && ref);
 	Vector & operator=(const std::initializer_list<T>& list);
-
+	void print();
 };
 #endif

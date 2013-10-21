@@ -1,5 +1,6 @@
 #include <cxxtest/TestSuite.h>
-#include "Vector.h"
+#include "Vector14.h"
+#include "Vector14.cpp"
 
 class MyTestSuite : public CxxTest::TestSuite
 {
@@ -42,6 +43,15 @@ public:
     v = list;
     unsigned int result = v[1];
     TS_ASSERT_EQUALS( result, 20 );
+  }
+  void test_move(void){
+    Vector v(5);
+    auto list = { 10, 20, 30, 40, 50 };  
+    v = list;
+    TS_ASSERT_EQUALS(v.get_size(), 5);
+    Vector a = std::move(v);
+    TS_ASSERT_EQUALS(a.get_size(), 5);
+    TS_ASSERT_EQUALS(v.get_size(),0);
   }
 
 };
