@@ -1,5 +1,6 @@
 #include "gregorian.h"
 #include <stdexcept>
+#include <assert.h>
 
 using namespace lab2;
 
@@ -84,20 +85,23 @@ long Gregorian::convert_to_jdn(int Y, int M, int D) const {
 }
 
 bool Gregorian::isValid(int y, int m, int d) const {
-  if (d < 1 || m < 1) {
+  if (d < 1 || m < 1 || m > months_per_year() || d > get_month_length(y, m)) {
     return false;
   }
 
   return true;
 }
 
-int Gregorian::get_month_length(int m) const {
-  m = (m);
-
-  if (m == 2 && leap_year()) {
+int Gregorian::get_month_length(int y,int m) const {
+  if (m == 2 && leap_year(y)) {
     return 29;
   }
   return month_length[m];
+}
+
+int Gregorian::get_month_length(int m) const {
+  assert(year()>0);
+  return get_month_length(year(), m);
 }
 
 int Gregorian::week_day() const {
@@ -173,5 +177,6 @@ long Gregorian::mod_julian_day() const {
 }
 
 bool Gregorian::leap_year() const {
+  assert(year() > 0);
   return leap_year(year());
 }

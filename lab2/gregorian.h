@@ -20,6 +20,7 @@ namespace lab2 {
 
     public:
       int get_month_length(int) const;
+      int get_month_length(int, int) const;
       Gregorian();
       Gregorian(int y, int m, int d);
 

@@ -61,8 +61,14 @@ public:
 
   void test_invalid_date( void  ) {
     TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(1900, 0, 1) );
+    TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(1900, 1, 32) );
     TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(1900, 1, 0) );
     TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(1900, 0, 0) );
+    TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(1900, 2, 31) );
+    TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(1900, 13, 1) );
+    
+    TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(2000, 2, 30) );
+    TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(2001, 2, 29) );
   }
 
   void test_days_this_month( void ) {
@@ -92,9 +98,13 @@ public:
     TS_ASSERT_EQUALS(g.get_month_length(12), 31);
     TS_ASSERT_EQUALS(g.get_month_length(2), 28);
     
-    lab2::Gregorian h(2012,2,2);
+    lab2::Gregorian h(2000,2,2);
     TS_ASSERT_EQUALS(h.leap_year(), true);
     TS_ASSERT_EQUALS(h.get_month_length(2), 29);
+    
+    lab2::Gregorian i(2001,2,2);
+    TS_ASSERT_EQUALS(i.leap_year(),false);
+    TS_ASSERT_EQUALS(i.get_month_length(2), 28);
 
   }
   void test_add_month_shift_year() {
