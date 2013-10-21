@@ -4,6 +4,15 @@
 class GregorianTestSuite : public CxxTest::TestSuite
 {
 public:
+
+  void test_initializing_day_zero( void ) {
+    lab2::Gregorian g(1858, 11, 17);
+    TS_ASSERT_EQUALS(g.year(), 1858);
+    TS_ASSERT_EQUALS(g.month(), 11);
+    TS_ASSERT_EQUALS(g.day(), 17);
+    TS_ASSERT_EQUALS(g.mod_julian_day(), 0);
+  }
+
   void test_initializing( void )
   {
     lab2::Gregorian g(2013,10,3);
@@ -63,7 +72,38 @@ public:
 
     g.add_month();
 
+    TS_ASSERT_EQUALS(g.year(), 2013);
+    TS_ASSERT_EQUALS(g.month(), 11);
+    TS_ASSERT_EQUALS(g.day(), 3);
+
     TS_ASSERT_EQUALS(g.days_this_month(), 30);
+
+    lab2::Gregorian h(2013, 3, 31);
+    h.add_month();
+
+    TS_ASSERT_EQUALS(h.month(), 4);
+    TS_ASSERT_EQUALS(h.day(), 30);
+  }
+
+  void test_get_month_lenght( void ) {
+    lab2::Gregorian g(2013,2,2);
+
+    TS_ASSERT_EQUALS(g.get_month_length(1), 31);
+    TS_ASSERT_EQUALS(g.get_month_length(12), 31);
+    TS_ASSERT_EQUALS(g.get_month_length(2), 28);
+    
+    lab2::Gregorian h(2012,2,2);
+    TS_ASSERT_EQUALS(h.leap_year(), true);
+    TS_ASSERT_EQUALS(g.get_month_length(2), 29);
+
+  }
+  void test_add_month_shift_year() {
+    lab2::Gregorian g(2012,12,15);
+    g.add_month();
+
+    TS_ASSERT_EQUALS(g.year(), 2013);
+    TS_ASSERT_EQUALS(g.month(), 1);
+    TS_ASSERT_EQUALS(g.day(), 15);
   }
 
   void test_days_in_feb( void ) {
@@ -83,5 +123,10 @@ public:
     TS_ASSERT_EQUALS(g.leap_year(1903), false)
     TS_ASSERT_EQUALS(g.leap_year(1904), true)
     TS_ASSERT_EQUALS(g.leap_year(2000), true)
+    TS_ASSERT_EQUALS(g.leap_year(2012), true)
+    TS_ASSERT_EQUALS(g.leap_year(2012), false)
+    TS_ASSERT_EQUALS(g.leap_year(2016), true)
+    TS_ASSERT_EQUALS(g.leap_year(2004), true)
+    TS_ASSERT_EQUALS(g.leap_year(2008), true)
   }
 };

@@ -7,10 +7,19 @@
 namespace lab2 {
   class Gregorian : public Date {
     protected:
+      int lyear;
+      int lmonth;
+      int lday;
+
       void init(int, int, int);
       bool isValid(int, int, int) const;
       long convert_to_jdn(int, int, int) const;
+
+      void convert_to_gregorian();
+
+
     public:
+      int get_month_length(int) const;
       Gregorian();
       Gregorian(int y, int m, int d);
 
@@ -23,11 +32,15 @@ namespace lab2 {
       int days_this_month() const;
       int months_per_year() const;
 
-      void add_month() const;
-      void add_month(int) const;
+      void add_day();
+      void add_day(int);
+      void subtract_day();
+      
+      void add_month();
+      void add_month(int);
 
-      void add_year() const;
-      void add_year(int) const;
+      void add_year();
+      void add_year(int);
 
       bool leap_year(int) const;
       bool leap_year() const;

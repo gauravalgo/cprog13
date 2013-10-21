@@ -12,12 +12,12 @@ long Date::get_jdn() const {
 // ---------
 // Operators
 Date & Date::operator++() { //prefix
-  JDN++;
+  add_day();
   return *this;
 }
 
 Date & Date::operator--() {
-  JDN--;
+  subtract_day();
   return *this;
 }
 
