@@ -18,4 +18,5 @@
 tests.cpp
 *~
 tags
-.*swo
+*.swo
+*.swm

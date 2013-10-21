@@ -154,11 +154,6 @@ void Gregorian::add_day(int days) {
   convert_to_gregorian();
 }
 
-void Gregorian::subtract_day() {
-  JDN--;
-  convert_to_gregorian();
-}
-
 void Gregorian::modify_year(int y) {
   if (month() == 2 && day() == 29) {
     lday = 28;

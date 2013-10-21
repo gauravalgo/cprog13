@@ -20,7 +20,6 @@ class lab2::Date {
 
     virtual long convert_to_jdn(int, int, int) const = 0;
     
-    virtual void subtract_day() = 0;
   public:
     Date();
     Date(Date&);

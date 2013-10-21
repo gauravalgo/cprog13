@@ -27,18 +27,23 @@ Date & Date::operator++() { //prefix
 }
 
 Date & Date::operator--() {
-  subtract_day();
+  add_day(-1);
   return *this;
 }
 
 Date & Date::operator-=(int days) {
-  JDN -= days;
+  for (int i = 0; i < std::abs(days); i++) {
+    if (days < 0) {
+      ++*this;
+    } else {
+      --*this;
+    }
+  }
   return *this;
 }
 
 Date & Date::operator+=(int days) {
-  JDN += days;
-  return *this;
+  return *this -=- days;
 }
 
 // Comperators

@@ -20,7 +20,6 @@ namespace lab2 {
 
       void convert_to_gregorian();
 
-      void subtract_year();
     public:
       Gregorian();
       Gregorian(int y, int m, int d);
