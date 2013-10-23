@@ -177,25 +177,15 @@ void Gregorian::add_day(int days) {
   convert_to_gregorian();
 }
 
-void Gregorian::modify_year(int y) {
-  if (month() == 2 && day() == 29) {
-    lday = 28;
-  }
-  lyear += y;
-  JDN = convert_to_jdn();
-}
-
 void Gregorian::add_year() {
-  modify_year(1);
+  add_year(1);
 }
 
 void Gregorian::add_year(int y) {
-  for (int i = 0; i < std::abs(y); i++) {
-    if (y > 0) {
-      modify_year(1);
-    } else {
-      modify_year(-1);
-    }
+  lyear += y;
+
+  if (month() == 2 && day() == 29 && !leap_year()) {
+    lday = 28;
   }
 
   JDN = convert_to_jdn();
