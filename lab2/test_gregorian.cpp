@@ -185,6 +185,12 @@ public:
     
     TS_ASSERT_EQUALS(g.year(), 2001);
     TS_ASSERT_EQUALS(g.day(), 28);
+
+    lab2::Gregorian h(2000,2,29);
+    h.add_year(4);
+
+    TS_ASSERT_EQUALS(h.year(), 2004);
+    TS_ASSERT_EQUALS(h.day(), 29);
   }
 
   void test_add_3_years( void ) {
