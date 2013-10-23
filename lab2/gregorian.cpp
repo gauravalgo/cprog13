@@ -128,38 +128,43 @@ int Gregorian::days_this_month() const {
   get_month_length(month());
 }
 
-void Gregorian::modify_month(int m) {
+void Gregorian::subtract_month() {
 
-  int toMonth = (month() + m) % 12;
-  int toYear = year();
+  lmonth--;
 
-  if (toMonth == 0) {
-    toMonth = 12;
-    toYear = year() - 1;
-  }
-  assert(toMonth > 0 && toMonth < 13);
-  
-  if (get_month_length(toMonth) > day()) {
-    JDN = convert_to_jdn(toYear, toMonth , day());
-  } else {
-    add_day(30 * m);
+  if (lmonth < 1) {
+    lmonth = 12;
+    lyear--;
   }
 
-  convert_to_gregorian();
+  JDN = convert_to_jdn();
 }
 
 void Gregorian::add_month() {
-  modify_month(1);
+  int m = (lmonth + 1) % 12;
+
+  if (get_month_length(m) < lday) {
+    JDN += 30;
+    convert_to_gregorian();
+  } else {
+    lmonth++;
+    if (lmonth > 12) {
+      lmonth = 1;
+      ++lyear;
+    }
+    JDN = convert_to_jdn();
+  }
 }
 
 void Gregorian::add_month(int times) {
   for (int i = 0; i < std::abs(times); i++) {
     if (times > 0) {
-      modify_month(1);
+      add_month();
     } else {
-      modify_month(-1);
+      subtract_month();
     }
   }
+  
 }
 
 void Gregorian::add_day() {
