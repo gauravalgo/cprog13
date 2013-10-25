@@ -1,5 +1,6 @@
 #include <cxxtest/TestSuite.h>
 #include "gregorian.h"
+#include "kattistime.h"
 
 class GregorianTestSuite : public CxxTest::TestSuite
 {

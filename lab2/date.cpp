@@ -82,5 +82,20 @@ long Date::mod_julian_day() const {
 // ---------
 // printouts
 std::ostream& lab2::operator<<(std::ostream & os, const Date & d) {
-  os << d.year() << "-" << d.month() << "-" << d.day() <<"\n";
+  os << d.year() << "-";
+  if(d.month() < 10) {
+    os << "0" << d.month();
+  } else {
+    os << d.month();
+  }
+
+  os << "-";
+
+  if (d.day() < 10) {
+    os << "0" << d.day();
+  } else {
+    os << d.day();
+  }
+
+  os << "\n";
 }

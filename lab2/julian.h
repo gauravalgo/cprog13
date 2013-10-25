@@ -1,21 +1,14 @@
 #ifndef JULIAN_H
 #define JULIAN_H
 
-#include "date.h"
-#include "kattistime.h"
+#include "caesar_date.h"
 
 namespace lab2 {
-  class Julian : public Date {
-    private:
-      void init(int, int, int);
-      long convert_to_jdn() const;
+  class Julian : public CaesarDate {
     public:
       Julian();
-      Julian(int y, int m, int d);
-      
-      bool leap_year();
-      bool leap_year(int);
-      long mod_julian_day() const;
+      Julian(int, int, int);
+
   };
 }
 
