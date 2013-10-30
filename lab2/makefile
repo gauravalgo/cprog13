@@ -23,5 +23,8 @@ tests.cpp:
 test: clean date gregorian julian tests.cpp test.out
 	./test.out
 
+calendar:
+	g++ -std=c++0x -c calendar.cpp
+
 clean:
 	$(RM) count *.out *~ *.o tests.cpp
