@@ -16,7 +16,6 @@ bool Gregorian::leap_year() const {
 }
 
 bool Gregorian::leap_year(int year) const {
-  std::cout << "Gregorian leap_year("<<year<<")" << std::endl;
   if (year % 400 == 0) return true; 
   if (year % 100 == 0) return false; 
   if (year % 4 == 0) return true; 

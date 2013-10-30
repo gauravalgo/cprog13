@@ -56,6 +56,5 @@ public:
     TS_ASSERT_EQUALS(d.leap_year(1902), false);
     TS_ASSERT_EQUALS(d.leap_year(1903), false);
     TS_ASSERT_EQUALS(d.leap_year(1904), true);
-    std::cout << "hello"<< std::endl;
   }
 };

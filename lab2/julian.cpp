@@ -118,7 +118,6 @@ bool Julian::leap_year() const {
 }
 
 bool Julian::leap_year(int y) const {
-  std::cout << "Julian::leap_year("<<y<<")"<<std::endl;
   if (y%4==0) return true;
   return false;
 }
