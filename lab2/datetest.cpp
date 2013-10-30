@@ -41,8 +41,8 @@ int main()
       Julian j1;
       Date & d1 = j1;
       Julian j2(d1);
-      Date * dp = &j2;
-      Julian j3(dp);
+      // Date * dp = &j2;
+      // Julian j3(dp);
     }
      
     time_t tp;

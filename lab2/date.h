@@ -22,7 +22,7 @@ class lab2::Date {
     
   public:
     Date();
-    Date(Date&);
+    Date(const Date&);
 
     virtual int year() const = 0;
     virtual int month() const = 0;

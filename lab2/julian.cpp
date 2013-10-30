@@ -31,7 +31,7 @@ Julian::Julian(int y, int m, int d)
   init(y, m, d);
 }
 
-Julian::Julian(const Date & d) {
+Julian::Julian(const Date & d) : Date(d) {
   
 }
 

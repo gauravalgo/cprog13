@@ -5,6 +5,10 @@ using namespace lab2;
 Date::Date()
 {}
 
+Date::Date(const Date & d) {
+  JDN = d.get_jdn();
+}
+
 long Date::get_jdn() const {
   return JDN;
 }
