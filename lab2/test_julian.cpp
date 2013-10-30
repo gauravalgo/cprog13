@@ -51,6 +51,11 @@ public:
   void test_leap_year( void ) {
     lab2::Julian d(1902,2,20);
 
-    TS_ASSERT_EQUALS(d.leap_year(), true);
+    TS_ASSERT_EQUALS(d.leap_year(1900), true);
+    TS_ASSERT_EQUALS(d.leap_year(1901), false);
+    TS_ASSERT_EQUALS(d.leap_year(1902), false);
+    TS_ASSERT_EQUALS(d.leap_year(1903), false);
+    TS_ASSERT_EQUALS(d.leap_year(1904), true);
+    std::cout << "hello"<< std::endl;
   }
 };
