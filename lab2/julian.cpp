@@ -31,9 +31,10 @@ Julian::Julian(int y, int m, int d)
   init(y, m, d);
 }
 
-Julian::Julian(const Date & d) : Date(d) {
-  
+Julian::Julian(const Date & d) : Date(d) { 
 }
+
+Julian::Julian(Date * d) : Date(d) {}
 
 // http://www8.cs.umu.se/~isak/Snippets/jdn.c
 void Julian::convert_to_gregorian() {

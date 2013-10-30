@@ -23,6 +23,7 @@ namespace lab2 {
     public:
       Julian();
       Julian(const Date &);
+      Julian(Date *);
       Julian(int y, int m, int d);
 
       virtual int year() const;

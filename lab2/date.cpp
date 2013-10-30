@@ -9,6 +9,10 @@ Date::Date(const Date & d) {
   JDN = d.get_jdn();
 }
 
+Date::Date(Date * d) {
+  JDN = d->get_jdn();
+}
+
 long Date::get_jdn() const {
   return JDN;
 }
