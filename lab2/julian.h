@@ -1,5 +1,5 @@
-#ifndef CEASAR_H
-#define CEASAR_H
+#ifndef JULIAN_H
+#define JULIAN_H
 
 #include "date.h"
 #include "kattistime.h"

@@ -2,22 +2,22 @@
 
 using namespace lab2;
 
-Calendar::Calendar() {
+template<class T>
+Calendar<T>::Calendar(const Calendar<T> & d) {
 
 }
 
-Calendar::Calendar(const Calendar & d) {
+template<class T>
+bool Calendar<T>::set_date(int y, int m, int d) {
 
 }
 
-bool Calendar::set_date(int y, int m, int d) {
+template<class T>
+bool Calendar<T>::add_event(std::string event, int y, int m, int d) {
 
 }
 
-bool Calendar::add_event(std::string event, int y, int m, int d) {
-
-}
-
-bool Calendar::remove_event(std::string event, int y, int m, int d) {
+template<class T>
+bool Calendar<T>::remove_event(std::string event, int y, int m, int d) {
 
 }
