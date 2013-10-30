@@ -40,5 +40,17 @@ public:
     TS_ASSERT_EQUALS(d.days_per_week(), 7);
 
     TS_ASSERT_EQUALS(d.months_per_year(), 12);
+
+  }
+
+  void test_mod_julian_day_zero( void ) {
+    lab2::Julian d(1858, 11, 17);
+    TS_ASSERT_EQUALS(d.mod_julian_day(), 0);
+  }
+
+  void test_leap_year( void ) {
+    lab2::Julian d(1902,2,20);
+
+    TS_ASSERT_EQUALS(d.leap_year(), true);
   }
 };
