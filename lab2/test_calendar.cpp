@@ -42,4 +42,13 @@ public:
     cal.add_event("event1", 2013, 2, 2);
     TS_ASSERT_EQUALS( cal.events_count(), 1);
   }
+
+  void test_add_event_out_of_range( void )
+  {
+    lab2::Calendar<lab2::Gregorian> cal;
+
+    TS_ASSERT_EQUALS(cal.events_count(), 0);    
+    TS_ASSERT_THROWS_NOTHING( cal.add_event("event 1", 2013, 1, 0) );
+
+  }
 };
