@@ -104,6 +104,4 @@ std::ostream& lab2::operator<<(std::ostream & os, const Date & d) {
   } else {
     os << d.day();
   }
-
-  os << "\n";
 }

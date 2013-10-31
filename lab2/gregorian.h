@@ -1,5 +1,5 @@
 #ifndef GREGORIAN_H
-#define GREGOIRAN_H
+#define GREGORIAN_H
 
 #include "middle.h"
 

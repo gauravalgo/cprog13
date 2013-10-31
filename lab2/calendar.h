@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "date.h"
+
 #include <stdexcept>
 
 #include "kattistime.h"
@@ -24,6 +25,11 @@ namespace lab2 {
 			std::cout << "Calendar() in .h" << std::endl;
 		}
 
+		template< class Q>
+		Calendar(const Calendar<Q> & d) : current_date( Q() ) {
+			
+		}
+
 		bool set_date(int y, int m, int d) {
 			try {
 				current_date = T(y,m,d);
@@ -33,6 +39,16 @@ namespace lab2 {
 			return true;
 		};
 
+		bool add_event(std::string s) {
+			return true;
+		}
+
+		bool add_event(const std::string & s, int & i) {
+			return true;
+		}
+
+		bool add_event(std::string event, int y, int m) {
+		}
 		bool add_event(std::string event, int y, int m, int d) {
 			try {
 				T date = T( y, m , d);
@@ -61,7 +77,10 @@ namespace lab2 {
 			return true;
 		}
 
-		bool remove_event(std::string, int, int, int);
+		bool remove_event(std::string, int, int, int) {};
+		bool remove_event(std::string, int, int) {};
+		bool remove_event(std::string, int) {};
+		bool remove_event(std::string) {};
 
 		int events_count() {
 			return calendar.size();
