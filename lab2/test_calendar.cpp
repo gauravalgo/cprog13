@@ -110,6 +110,8 @@ public:
   }
 
   void test_of_output_version2( void ) {
+
+    std::cout << "version2"<< std::endl;
     lab2::Calendar<lab2::Gregorian> cal;
     cal.set_date(2000, 12, 2);
     cal.add_event("Basketträning", 4, 12, 2000);
@@ -127,5 +129,6 @@ public:
     cal.remove_event("Basketträning", 4);
     std::cout << cal; // OBS! Vårdagjämning och första advent är
     // före nuvarande datum och skrivs inte ut
+    std::cout << "slut på version 2"<< std::endl;
   }
 };

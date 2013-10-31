@@ -47,9 +47,13 @@ namespace lab2 {
 			return true;
 		}
 
+		bool add_event(const std::string s, int i) {
+			add_event(s, i, current_date.month(), current_date.year());
+		}
+
 		bool add_event(std::string event, int y, int m) {
 		}
-		bool add_event(std::string event, int y, int m, int d) {
+		bool add_event(std::string event, int d, int m, int y) {
 			try {
 				T date = T( y, m , d);
 
