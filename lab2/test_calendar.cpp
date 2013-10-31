@@ -70,8 +70,8 @@ public:
   {
     lab2::Calendar<lab2::Gregorian> cal;
 
-    cal.add_event("event 1", 2013, 1, 1);
-    cal.add_event("event 1", 2013, 1, 1);
+    TS_ASSERT_EQUALS( cal.add_event("event 1", 2013, 1, 1), true );
+    TS_ASSERT_EQUALS( cal.add_event("event 1", 2013, 1, 1), false );
     TS_ASSERT_EQUALS(cal.events_count(), 1);
   }
 };

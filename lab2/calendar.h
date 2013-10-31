@@ -36,10 +36,21 @@ namespace lab2 {
 		bool add_event(std::string event, int y, int m, int d) {
 			try {
 				T date = T( y, m , d);
+
+				std::multimap<T,std::string>::iterator it;
+				std::pair <std::multimap<T, std::string>::iterator, std::multimap<T,std::string>::iterator> ret;
+				ret = calendar.equal_range(date);
+
+				std::cout << ch << " =>";
+			    for (it=ret.first; it!=ret.second; ++it)
+			      std::cout << ' ' << it->second;
+			    std::cout << '\n';
+
 				calendar.insert(std::pair<T, std::string>(date, event));
 			} catch ( std::out_of_range & e) {
 				return false;	
 			}
+
 			return true;
 		}
 
