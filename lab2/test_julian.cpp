@@ -44,8 +44,11 @@ public:
   }
 
   void test_mod_julian_day_zero( void ) {
-    lab2::Julian d(1858, 11, 17);
+    lab2::Julian d(1858, 11, 5);
     TS_ASSERT_EQUALS(d.mod_julian_day(), 0);
+
+    lab2::Julian d2(1858, 11, 6);
+    TS_ASSERT_EQUALS(d2.mod_julian_day(), 1);
   }
 
   void test_leap_year( void ) {
