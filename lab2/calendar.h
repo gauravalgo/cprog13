@@ -35,11 +35,15 @@ namespace lab2 {
 		};
 
 		bool add_event(std::string event, int y, int m, int d) {
-			T date = T( y, m , d);
-			calendar.insert(std::pair<T, std::string>(date, event));
+			try {
+				T date = T( y, m , d);
+				calendar.insert(std::pair<T, std::string>(date, event));
+			} catch ( std::out_of_range & e) {
+				return false;	
+			}
 			return true;
-
 		}
+
 		bool remove_event(std::string, int, int, int);
 
 		int events_count() {

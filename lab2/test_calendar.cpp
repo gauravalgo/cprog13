@@ -50,5 +50,9 @@ public:
     TS_ASSERT_EQUALS(cal.events_count(), 0);    
     TS_ASSERT_THROWS_NOTHING( cal.add_event("event 1", 2013, 1, 0) );
 
+    TS_ASSERT_EQUALS(cal.events_count(), 0); // Nothing shoul dhave been added
+
+    TS_ASSERT_EQUALS(cal.add_event("event 1", 2013, 1, 0), false);
+
   }
 };
