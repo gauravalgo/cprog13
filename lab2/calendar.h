@@ -96,9 +96,12 @@ namespace lab2 {
 		    		return true;
 		    	}
 		    }
+		    return false;
 		};
 
-		bool remove_event(std::string, int, int) {};
+		bool remove_event(std::string s, int d, int m) {
+			return remove_event(s, d, m, current_date.year());
+		};
 
 		bool remove_event(std::string s, int d) {
 			return remove_event(s, d, current_date.month(), current_date.year());

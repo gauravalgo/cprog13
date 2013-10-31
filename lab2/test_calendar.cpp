@@ -150,4 +150,21 @@ public:
     TS_ASSERT_EQUALS( cal.remove_event("ett",4), true);
     TS_ASSERT_EQUALS( cal.events_count(), 0); 
   }
+
+  void test_remove_string_that_does_not_exists( void ) {
+    lab2::Calendar<lab2::Gregorian> cal;
+    cal.set_date(2000, 12, 2);
+    TS_ASSERT_EQUALS( cal.remove_event("ett", 4,12,2000), false);
+    cal.add_event("ett", 4, 12, 2000);
+    TS_ASSERT_EQUALS( cal.remove_event("ett", 5), false);
+  }
+
+  void test_remove_string_other_int_constalations( void ) {
+    lab2::Calendar<lab2::Gregorian> cal;
+    cal.set_date(2000,12,2);
+    cal.add_event("ett", 4, 12, 2000);
+    TS_ASSERT_EQUALS( cal.events_count(), 1);
+    TS_ASSERT_EQUALS(cal.remove_event("ett", 4, 12), true);
+    TS_ASSERT_EQUALS( cal.events_count(), 0);
+  }
 };
