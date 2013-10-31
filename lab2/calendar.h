@@ -24,7 +24,6 @@ namespace lab2 {
 			std::cout << "Calendar() in .h" << std::endl;
 		}
 
-
 		bool set_date(int y, int m, int d) {
 			try {
 				current_date = T(y,m,d);

@@ -50,9 +50,28 @@ public:
     TS_ASSERT_EQUALS(cal.events_count(), 0);    
     TS_ASSERT_THROWS_NOTHING( cal.add_event("event 1", 2013, 1, 0) );
 
-    TS_ASSERT_EQUALS(cal.events_count(), 0); // Nothing shoul dhave been added
+    TS_ASSERT_EQUALS(cal.events_count(), 0); // Nothing should have been added
 
     TS_ASSERT_EQUALS(cal.add_event("event 1", 2013, 1, 0), false);
+  }
 
+
+  void test_add_several_events_to_the_same_day( void )
+  {
+    lab2::Calendar<lab2::Gregorian> cal;
+
+    cal.add_event("event 1", 2013, 1, 1);
+    cal.add_event("event 2", 2013, 1, 1);
+
+    TS_ASSERT_EQUALS(cal.events_count(), 2);
+  }
+
+  void test_add_same_event_twice_should_be_ignored( void )
+  {
+    lab2::Calendar<lab2::Gregorian> cal;
+
+    cal.add_event("event 1", 2013, 1, 1);
+    cal.add_event("event 1", 2013, 1, 1);
+    TS_ASSERT_EQUALS(cal.events_count(), 1);
   }
 };
