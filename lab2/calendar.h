@@ -15,7 +15,7 @@ namespace lab2 {
 	template<class T>
 	class Calendar {
 	private:
-		std::multimap<T, std::string> cal;
+		std::multimap<T, std::string> calendar;
 		T current_date;
 
 	public:
@@ -34,8 +34,18 @@ namespace lab2 {
 			return true;
 		};
 
-		bool add_event(std::string, int, int, int);
+		bool add_event(std::string event, int y, int m, int d) {
+			T date = T( y, m , d);
+			calendar.insert(std::pair<T, std::string>(date, event));
+			return true;
+
+		}
 		bool remove_event(std::string, int, int, int);
+
+		int events_count() {
+			return calendar.size();
+		}
+
 		T get_current_date() { return current_date; }
 	};
 }

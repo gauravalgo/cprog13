@@ -29,8 +29,17 @@ public:
     TS_ASSERT_EQUALS(returnValue, false);
 
     TS_ASSERT_EQUALS(cal.get_current_date().year(), 2013);
-
   }
 
+  void test_add_event( void )
+  {
+    lab2::Calendar<lab2::Gregorian> cal;
 
+
+    TS_ASSERT_EQUALS( cal.events_count(), 0);
+    cal.set_date(2013,1,1);
+    
+    cal.add_event("event1", 2013, 2, 2);
+    TS_ASSERT_EQUALS( cal.events_count(), 1);
+  }
 };
