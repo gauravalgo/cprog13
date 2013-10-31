@@ -45,7 +45,7 @@ namespace lab2 {
 			    for (it=ret.first; it!=ret.second; ++it) {
 
 			    	// std::cout << ' ' << it->second;
-			    	if (event == (*it).second) {
+			    	if (event == (*it).second) { // second är samma som event namn
 			    		// duplicate!
 			    		return false;
 			    	}
