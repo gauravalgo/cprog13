@@ -37,13 +37,20 @@ namespace lab2 {
 			try {
 				T date = T( y, m , d);
 
-				std::multimap<T,std::string>::iterator it;
-				std::pair <std::multimap<T, std::string>::iterator, std::multimap<T,std::string>::iterator> ret;
+				typename std::multimap<T,std::string>::iterator it;
+				std::pair <typename std::multimap<T, std::string>::iterator, typename std::multimap<T,std::string>::iterator> ret;
 				ret = calendar.equal_range(date);
 
-				std::cout << ch << " =>";
-			    for (it=ret.first; it!=ret.second; ++it)
-			      std::cout << ' ' << it->second;
+				std::cout << date << " =>";
+			    for (it=ret.first; it!=ret.second; ++it) {
+
+			    	std::cout << ' ' << it->second;
+			    	if (event == (*it).second) {
+			    		// duplicate!
+			    		return false;
+			    	}
+			    }
+			    
 			    std::cout << '\n';
 
 				calendar.insert(std::pair<T, std::string>(date, event));
