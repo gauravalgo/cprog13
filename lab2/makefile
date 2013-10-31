@@ -23,5 +23,10 @@ tests.cpp:
 test: clean test.out
 	./test.out
 
+cal_test: clean
+	g++ -std=c++0x -o cal_test.o -I calendar.cpp cprog09lab23.cpp
+	cat kurskatalogen/lab23.in |	./cal_test.o > utdata.txt
+	diff utdata.txt kurskatalogen/lab23.out
+
 clean:
 	$(RM) count *.out *~ *.o tests.cpp
