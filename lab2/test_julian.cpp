@@ -60,4 +60,9 @@ public:
     TS_ASSERT_EQUALS(d.leap_year(1903), false);
     TS_ASSERT_EQUALS(d.leap_year(1904), true);
   }
+
+   void test_init_leap_year_date( void ) {
+    lab2::Julian j(1900, 2, 20);
+    TS_ASSERT_EQUALS( j.leap_year(), true);
+  }
 };
