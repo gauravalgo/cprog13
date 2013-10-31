@@ -43,10 +43,6 @@ namespace lab2 {
 			return true;
 		}
 
-		bool add_event(const std::string & s, int & i) {
-			return true;
-		}
-
 		bool add_event(const std::string s, int i) {
 			add_event(s, i, current_date.month(), current_date.year());
 		}
@@ -54,7 +50,7 @@ namespace lab2 {
 		bool add_event(std::string event, int d, int m) {
 			add_event(event, d, m, current_date.year());
 		}
-		
+
 		bool add_event(std::string event, int d, int m, int y) {
 			try {
 				T date = T( y, m , d);
@@ -83,9 +79,31 @@ namespace lab2 {
 			return true;
 		}
 
-		bool remove_event(std::string, int, int, int) {};
+		bool remove_event(std::string s, int d, int m, int y) {
+			T date = T(y, m, d);
+
+			typename std::multimap<T,std::string>::iterator it;
+			std::pair <typename std::multimap<T, std::string>::iterator, typename std::multimap<T,std::string>::iterator> ret;
+			ret = calendar.equal_range(date);
+
+			// std::cout << date << " =>";
+		    for (it=ret.first; it!=ret.second; ++it) {
+
+		    	// std::cout << ' ' << it->second;
+		    	if (s == (*it).second) {
+		    		// remove it
+		    		calendar.erase(it);
+		    		return true;
+		    	}
+		    }
+		};
+
 		bool remove_event(std::string, int, int) {};
-		bool remove_event(std::string, int) {};
+
+		bool remove_event(std::string s, int d) {
+			return remove_event(s, d, current_date.month(), current_date.year());
+		}
+
 		bool remove_event(std::string) {};
 
 		int events_count() {

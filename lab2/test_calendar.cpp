@@ -130,5 +130,24 @@ public:
     std::cout << cal; // OBS! Vårdagjämning och första advent är
     // före nuvarande datum och skrivs inte ut
     std::cout << "slut på version 2"<< std::endl;
+    std::cout << "----------------------------------------" << std::endl;
+    cal.remove_event("Vårdagjämning", 20, 3, 2000);
+    cal.remove_event("Kalle Anka hälsar god jul", 24, 12, 2000);
+    cal.set_date(2000, 11, 2);
+    if (! cal.remove_event("Julafton", 24)) {
+    std::cout << " cal.remove_event(\"Julafton\", 24) tar inte"<< std::endl
+    << " bort något eftersom aktuell månad är november" << std::endl;
+    }
+    std::cout << "----------------------------------------" << std::endl;
+    std::cout << cal;
+  }
+
+  void test_remove_string_int_that_exists( void ) {
+    lab2::Calendar<lab2::Gregorian> cal;
+    cal.set_date(2000,12, 2);
+    cal.add_event("ett", 4, 12, 2000);
+    TS_ASSERT_EQUALS( cal.events_count(), 1);
+    TS_ASSERT_EQUALS( cal.remove_event("ett",4), true);
+    TS_ASSERT_EQUALS( cal.events_count(), 0); 
   }
 };
