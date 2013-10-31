@@ -169,6 +169,10 @@ public:
     TS_ASSERT_EQUALS(g.leap_year(2008), true)
   }
 
+  void test_init_leap_year_date( void ) {
+    TS_ASSERT_THROWS_ANYTHING( lab2::Gregorian g(1900, 2, 29));
+  }
+
   void test_add_year_single( void ) {
     lab2::Gregorian g(1995, 1,1);
 
