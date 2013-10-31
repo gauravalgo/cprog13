@@ -1,6 +1,9 @@
 date: 
 	g++ -std=c++0x -c date.cpp
 
+middle:
+	g++ -std=c++0x -c middle.cpp
+
 julian:
 	g++ -std=c++0x -c julian.cpp
 
@@ -14,11 +17,11 @@ datetest:
 	g++ date.h date.cpp gregorian.h gregorian.cpp julian.h julian.cpp kattistime.h kattistime.cpp datetest.cpp
 	./a.out
 
-test.out: tests.cpp date gregorian julian calendar
-	g++ -std=c++0x -o test.out -I cxxtest tests.cpp date.o gregorian.o kattistime.cpp julian.o calendar.o
+test.out: tests.cpp date middle gregorian julian calendar
+	g++ -std=c++0x -o test.out -I /info/DD2387/kurskatalog/cxxtest/ tests.cpp date.o middle.o gregorian.o kattistime.cpp julian.o calendar.o
 
 tests.cpp:
-	cxxtestgen --error-printer -o tests.cpp test_date.cpp test_gregorian.cpp test_julian.cpp test_calendar.cpp
+	/info/DD2387/kurskatalog/cxxtest/cxxtestgen.py --error-printer -o tests.cpp test_date.cpp test_gregorian.cpp test_julian.cpp test_calendar.cpp
 
 test: clean test.out
 	./test.out

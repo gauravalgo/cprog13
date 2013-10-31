@@ -7,6 +7,9 @@ public:
 
   void test_initializing_and_basic_inheritance( void )
   {
+    time_t tp;
+    time(&tp);
+    set_k_time(tp);
     lab2::Julian j(2013, 11, 3);
     TS_ASSERT_EQUALS(j.year(), 2013);
     TS_ASSERT_EQUALS(j.month(), 11);
@@ -35,7 +38,7 @@ public:
     TS_ASSERT_EQUALS(d.month(), 10);
     TS_ASSERT_EQUALS(d.day(), 2);
 
-    TS_ASSERT_EQUALS(d.week_day(), 3);
+    TS_ASSERT_EQUALS(d.week_day(), 2);
 
     TS_ASSERT_EQUALS(d.days_per_week(), 7);
 

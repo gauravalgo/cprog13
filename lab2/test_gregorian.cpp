@@ -7,6 +7,9 @@ class GregorianTestSuite : public CxxTest::TestSuite
 public:
 
   void test_initializing_day_zero( void ) {
+    time_t tp;
+    time(&tp);
+    set_k_time(tp);
     lab2::Gregorian g(1858, 11, 17);
     TS_ASSERT_EQUALS(g.year(), 1858);
     TS_ASSERT_EQUALS(g.month(), 11);
