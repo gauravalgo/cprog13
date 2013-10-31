@@ -41,10 +41,10 @@ namespace lab2 {
 				std::pair <typename std::multimap<T, std::string>::iterator, typename std::multimap<T,std::string>::iterator> ret;
 				ret = calendar.equal_range(date);
 
-				std::cout << date << " =>";
+				// std::cout << date << " =>";
 			    for (it=ret.first; it!=ret.second; ++it) {
 
-			    	std::cout << ' ' << it->second;
+			    	// std::cout << ' ' << it->second;
 			    	if (event == (*it).second) {
 			    		// duplicate!
 			    		return false;
@@ -68,7 +68,23 @@ namespace lab2 {
 		}
 
 		T get_current_date() { return current_date; }
+
+		void print_events() const {
+			typename std::multimap<T, std::string>::const_iterator it;
+	        
+	        for (it = calendar.begin(); it != calendar.end(); it++) {
+	           if (it->first > current_date) {
+	                std::cout << it->first << " : " << it->second << std::endl;
+	            }
+	        }
+		}
 	};
+
+	template <typename T>
+    std::ostream & operator<<(std::ostream & os, const Calendar<T> & c) {
+    	c.print_events();
+        
+    }
 }
 
 #endif

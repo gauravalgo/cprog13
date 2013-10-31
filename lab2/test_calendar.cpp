@@ -74,4 +74,16 @@ public:
     TS_ASSERT_EQUALS( cal.add_event("event 1", 2013, 1, 1), false );
     TS_ASSERT_EQUALS(cal.events_count(), 1);
   }
+
+  void test_print_events( void ) {
+    lab2::Calendar<lab2::Gregorian> cal;
+
+    cal.set_date(2012,1,1);
+
+    TS_ASSERT_EQUALS( cal.add_event("event 1", 2013, 1, 1), true );
+    TS_ASSERT_EQUALS( cal.add_event("event 2", 2013, 1, 2), true );
+
+    std::cout << "----- Calendar ----- " << std::endl;
+    std::cout << cal;
+  }
 };
