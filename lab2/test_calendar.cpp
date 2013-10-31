@@ -39,7 +39,7 @@ public:
     TS_ASSERT_EQUALS( cal.events_count(), 0);
     cal.set_date(2013,1,1);
     
-    cal.add_event("event1", 2013, 2, 2);
+    cal.add_event("event1", 2, 2, 2013);
     TS_ASSERT_EQUALS( cal.events_count(), 1);
   }
 
@@ -48,11 +48,11 @@ public:
     lab2::Calendar<lab2::Gregorian> cal;
 
     TS_ASSERT_EQUALS(cal.events_count(), 0);    
-    TS_ASSERT_THROWS_NOTHING( cal.add_event("event 1", 2013, 1, 0) );
+    TS_ASSERT_THROWS_NOTHING( cal.add_event("event 1", 0, 1, 2013) );
 
     TS_ASSERT_EQUALS(cal.events_count(), 0); // Nothing should have been added
 
-    TS_ASSERT_EQUALS(cal.add_event("event 1", 2013, 1, 0), false);
+    TS_ASSERT_EQUALS(cal.add_event("event 1", 0, 1, 2013), false);
   }
 
 
@@ -60,8 +60,8 @@ public:
   {
     lab2::Calendar<lab2::Gregorian> cal;
 
-    cal.add_event("event 1", 2013, 1, 1);
-    cal.add_event("event 2", 2013, 1, 1);
+    cal.add_event("event 1", 1, 1, 2013);
+    cal.add_event("event 2", 1, 1, 2013);
 
     TS_ASSERT_EQUALS(cal.events_count(), 2);
   }
@@ -70,8 +70,8 @@ public:
   {
     lab2::Calendar<lab2::Gregorian> cal;
 
-    TS_ASSERT_EQUALS( cal.add_event("event 1", 2013, 1, 1), true );
-    TS_ASSERT_EQUALS( cal.add_event("event 1", 2013, 1, 1), false );
+    TS_ASSERT_EQUALS( cal.add_event("event 1", 1, 1, 2013), true );
+    TS_ASSERT_EQUALS( cal.add_event("event 1", 1, 1, 2013), false );
     TS_ASSERT_EQUALS(cal.events_count(), 1);
   }
 
@@ -80,8 +80,8 @@ public:
 
     cal.set_date(2012,1,1);
 
-    TS_ASSERT_EQUALS( cal.add_event("event 1", 2013, 1, 1), true );
-    TS_ASSERT_EQUALS( cal.add_event("event 2", 2013, 1, 2), true );
+    TS_ASSERT_EQUALS( cal.add_event("event 1", 1, 1, 2013), true );
+    TS_ASSERT_EQUALS( cal.add_event("event 2", 1, 2, 2013), true );
 
     std::cout << "----- Calendar ----- " << std::endl;
     std::cout << cal;
@@ -104,7 +104,7 @@ public:
     lab2::Calendar<lab2::Gregorian> cal;
 
     cal.set_date(2010, 1, 1);
-    cal.add_event("Johanna!!", 2010,1,2);
+    cal.add_event("Johanna!!", 2, 1, 2010);
 
     std::cout << cal;
   }
