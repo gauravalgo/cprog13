@@ -22,12 +22,12 @@ namespace lab2 {
 	public:
 		Calendar() : current_date( T() ) {
 			// http://stackoverflow.com/questions/14843006/error-lnk2019unresolved-external-symbol-c/14843056#14843056
-			std::cout << "Calendar() in .h" << std::endl;
+			//std::cout << "Calendar() in .h" << std::endl;
 		}
 
 		template< class Q>
 		Calendar(const Calendar<Q> & d) : current_date( Q() ) {
-			
+			//std::cout << "Calendar( copy ) in .h" << std::endl;
 		}
 
 		bool set_date(int y, int m, int d) {
@@ -40,7 +40,7 @@ namespace lab2 {
 		};
 
 		bool add_event(std::string s) {
-			return true;
+			add_event(s, current_date.day(), current_date.month(), current_date.year());
 		}
 
 		bool add_event(const std::string s, int i) {
@@ -107,7 +107,9 @@ namespace lab2 {
 			return remove_event(s, d, current_date.month(), current_date.year());
 		}
 
-		bool remove_event(std::string) {};
+		bool remove_event(std::string s) {
+			return remove_event(s, current_date.day(), current_date.month(), current_date.year());
+		}
 
 		int events_count() {
 			return calendar.size();

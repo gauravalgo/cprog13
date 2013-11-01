@@ -9,7 +9,8 @@ public:
 		std::cout << "test calendar" << std::endl;
 
 		lab2::Calendar<lab2::Gregorian> cal;
-
+    TS_ASSERT_EQUALS(cal.get_current_date().year(), 2013);
+    TS_ASSERT_EQUALS(cal.get_current_date().month(), 11);
     bool returnValue = cal.set_date(2013,2,2);
     TS_ASSERT_EQUALS(returnValue, true);
 
@@ -55,6 +56,12 @@ public:
     TS_ASSERT_EQUALS(cal.add_event("event 1", 0, 1, 2013), false);
   }
 
+  void test_add_event_with_one_parameter( void )
+  {
+    lab2::Calendar<lab2::Gregorian> cal;
+    cal.add_event("hejhej");
+    TS_ASSERT_EQUALS(cal.events_count(), 1);
+  }
 
   void test_add_several_events_to_the_same_day( void )
   {
@@ -142,6 +149,13 @@ public:
     std::cout << cal;
   }
 
+  void test_onsdagspub ( void ){
+    lab2::Calendar<lab2::Gregorian> cal;
+    cal.set_date(2013,11, 1);
+    cal.add_event("onsdagspub!!!!!", 6, 11, 2013);
+    std::cout << cal;
+  }
+
   void test_remove_string_int_that_exists( void ) {
     lab2::Calendar<lab2::Gregorian> cal;
     cal.set_date(2000,12, 2);
@@ -166,5 +180,14 @@ public:
     TS_ASSERT_EQUALS( cal.events_count(), 1);
     TS_ASSERT_EQUALS(cal.remove_event("ett", 4, 12), true);
     TS_ASSERT_EQUALS( cal.events_count(), 0);
+  }
+
+  void test_remove_event_without_given_date( void ){
+    lab2::Calendar<lab2::Gregorian> cal;
+    cal.set_date(2000,12,2);
+    cal.add_event("ett");
+    TS_ASSERT_EQUALS(cal.events_count(), 1);
+    TS_ASSERT_EQUALS(cal.remove_event("ett"), true);
+    TS_ASSERT_EQUALS(cal.events_count(), 0);
   }
 };
