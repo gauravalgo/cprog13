@@ -10,32 +10,13 @@ const int month_length[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 const std::string WEEK_DAY_NAMES[8] = { "", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
 const std::string MONTH_NAMES[13] = {"", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
 
-Middle::Middle()
-  : Date()
-{
-  // get kattis time.
-  time_t mytime;
-  k_time(&mytime);
-
-  struct tm *t = gmtime(&mytime);
-  int lyear  = t->tm_year + 1900;
-  int lmonth = t->tm_mon + 1;      // m mytimenaderna och dagarna
-  int lday   = t->tm_mday;         // indexerade fran ETTt k_time(NULL);
-}
-
-Middle::Middle(int y, int m, int d)
-{}
-
-Middle::Middle(const Date & d) : Date(d) {}
-
-Middle::Middle(Date * d) : Date(d) {}
-
-int Middle::year() const { return lyear; }
-
-int Middle::month() const { return lmonth; }
-
-int Middle::day() const { return lday; }
-
+/*Middle & Middle::operator=(Date &d){
+  JDN = convert_to_jdn(d.year(), d.month(), d.day());
+  lyear = d.year();
+  lmonth = d.month();
+  lday = d.day();
+  return *this;
+}*/
 std::string Middle::week_day_name() const {
   return WEEK_DAY_NAMES[week_day()];
 }

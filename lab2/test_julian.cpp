@@ -30,6 +30,16 @@ public:
     lab2::Julian j;
     TS_ASSERT_EQUALS(j.year(), year);
   }
+
+  void test_assignment_constructor( void ){
+    lab2::Julian d(2013, 10, 2);
+    lab2::Julian &a = d;
+    TS_ASSERT_EQUALS(a.year(), d.year());
+    TS_ASSERT_EQUALS(a.month(), d.month());
+    TS_ASSERT_EQUALS(a.day(), d.day());
+    d.add_day(1);
+    TS_ASSERT_EQUALS(a.day(), d.day());
+  }
   
   void test_default_constructor_date_now( void  )
   {

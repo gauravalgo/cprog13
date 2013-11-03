@@ -3,29 +3,35 @@
 using namespace lab2;
 
 Gregorian::Gregorian() {
-	//init(year(), month(), day());
-  time_t mytime;
-  k_time(&mytime);
-
-  struct tm *t = gmtime(&mytime);
-  int lyear  = t->tm_year + 1900;
-  int lmonth = t->tm_mon + 1;      // m mytimenaderna och dagarna
-  int lday   = t->tm_mday;         // indexerade fran ETTt k_time(NULL);
-  
-  JDN = convert_to_jdn(lyear, lmonth, lday);
+	int days_since_unix_time = k_time(0) / (24*60*60);
+  JDN = days_since_unix_time + 40587+2400001;
   convert_from_jdn();
+  std::cout << "hej0" << lyear<< year() <<std::endl;
 }
 
-Gregorian::Gregorian(const Date & d) : Middle(d) {}
+Gregorian::Gregorian(const Date & d) {
+  JDN = convert_to_jdn(d.year(), d.month(), d.day());
+  lyear = d.year();
+  lmonth = d.month();
+  lday = d.day();
+}
+Gregorian & Gregorian::operator=(Date &d){
+  JDN = convert_to_jdn(d.year(), d.month(), d.day());
+  lyear = d.year();
+  lmonth = d.month();
+  lday = d.day();
+  return *this;
+}
 
 Gregorian::Gregorian(int y, int m, int d) {
   if (!isValid(y, m , d)) {
     throw std::out_of_range("Invalid date. Check the range for days and month.");
       
   }
-
   JDN = convert_to_jdn(y, m, d);
-  convert_from_jdn();
+  lyear = y;
+  lmonth = m;
+  lday = d;
 }
 
 bool Gregorian::isValid(int y, int m, int d) const {
@@ -48,6 +54,7 @@ bool Gregorian::leap_year(int year) const {
 long Gregorian::convert_to_jdn() const{
   return convert_to_jdn(year(), month(), day());
 }
+
 long Gregorian::convert_to_jdn(int Y, int M, int D) const {
   long jdn;
   
@@ -88,3 +95,4 @@ void Gregorian::convert_from_jdn() {
   lmonth = (int)m;
   lday = (int)d;
 }
+

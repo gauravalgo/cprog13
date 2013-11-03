@@ -149,13 +149,6 @@ public:
     std::cout << cal;
   }
 
-  void test_onsdagspub ( void ){
-    lab2::Calendar<lab2::Gregorian> cal;
-    cal.set_date(2013,11, 1);
-    cal.add_event("onsdagspub!!!!!", 6, 11, 2013);
-    std::cout << cal;
-  }
-
   void test_remove_string_int_that_exists( void ) {
     lab2::Calendar<lab2::Gregorian> cal;
     cal.set_date(2000,12, 2);

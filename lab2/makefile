@@ -13,8 +13,8 @@ gregorian:
 calendar:
 	g++ -std=c++0x -c calendar.cpp
 
-datetest:
-	g++ date.h date.cpp gregorian.h gregorian.cpp julian.h julian.cpp kattistime.h kattistime.cpp datetest.cpp
+datetest: date middle julian gregorian
+	g++ kattistime.h kattistime.cpp date.o middle.o julian.o gregorian.o datetest.cpp
 	./a.out
 
 test.out: tests.cpp date middle gregorian julian calendar

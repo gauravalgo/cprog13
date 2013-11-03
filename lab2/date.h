@@ -20,14 +20,18 @@ class lab2::Date {
 
     virtual long convert_to_jdn(int, int, int) const = 0;
     
+    int lyear;
+    int lmonth;
+    int lday;
+
   public:
     Date();
     Date(const Date&);
     Date(Date *);
 
-    virtual int year() const = 0;
-    virtual int month() const = 0;
-    virtual int day() const = 0;
+    virtual int year() const;
+    virtual int month() const;
+    virtual int day() const;
 
     virtual int week_day() const; // ska den vara virtual
     virtual std::string week_day_name() const = 0;

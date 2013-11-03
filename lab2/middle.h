@@ -6,38 +6,24 @@
 
 namespace lab2 {
   class Middle : public Date {
-    protected:
-      int lyear;
-      int lmonth;
-      int lday;
-
-      void subtract_month();
-
     public:
-      Middle();
-      Middle(const Date &);
-      Middle(Date *);
-      Middle(int y, int m, int d);
-
-      int year() const;
-      int month() const;
-      int day() const;
-
+      //Middle & operator=(Date &d);
       std::string week_day_name() const;
       std::string month_name() const;
       int days_per_week() const { return 7; };
       int days_this_month() const;
       int months_per_year() const { return 12; };
-      
+
       void add_day();
       void add_day(int);
       void subtract_day();
 
-      int get_month_length(int) const;
+      virtual int get_month_length(int) const;
       int get_month_length(int, int) const;
 
       void add_month();
       void add_month(int);
+      void subtract_month();
 
       void add_year();
       void add_year(int);

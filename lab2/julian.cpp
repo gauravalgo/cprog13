@@ -3,20 +3,22 @@
 using namespace lab2;
 
 Julian::Julian() {
-  time_t mytime;
-  k_time(&mytime);
-
-  struct tm *t = gmtime(&mytime);
-  int lyear  = t->tm_year + 1900;
-  int lmonth = t->tm_mon + 1;      // m mytimenaderna och dagarna
-  int lday   = t->tm_mday;         // indexerade fran ETTt k_time(NULL);
-  
-  JDN = convert_to_jdn(lyear, lmonth, lday);
+  int days_since_unix_time = k_time(0) / (24*60*60);
+  JDN = days_since_unix_time + 40587+2400001;
+  //mod från 1858
   convert_from_jdn();
   
 }
 
-Julian::Julian(const Date & d) : Middle(d) {}
+Julian::Julian(const Date & d){
+  JDN = convert_to_jdn(d.year(), d.month(), d.day());
+  convert_from_jdn();
+}
+
+Julian::Julian(Date * d){
+  JDN = convert_to_jdn(d->year(), d->month(), d->day());
+  convert_from_jdn();
+}
 
 Julian::Julian(int y, int m, int d) {
   if (!isValid(y, m , d)) {
@@ -47,8 +49,6 @@ long Julian::convert_to_jdn() const{
 long Julian::convert_to_jdn(int Y, int M, int D) const {
   long jdn;
   jdn = 367L*Y -7 * (Y+5001L+(M-9)/7)/4+275*M/9+D+1729777L;
-  //jdn = (1461 * (Y + 4800 + (M - 14)/12))/4 +(367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075; // julian day number algorithm
-
   return jdn;
 }
 

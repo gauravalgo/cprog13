@@ -9,15 +9,16 @@ namespace lab2 {
   		virtual void convert_from_jdn();
   		virtual long convert_to_jdn() const;
   		virtual long convert_to_jdn(int, int, int) const;
-		bool isValid(int, int, int) const;
+		  bool isValid(int, int, int) const;
 
     public:
-		Gregorian();
-		Gregorian(const Date &);
-		Gregorian(int y, int m, int d);
+		  Gregorian();
+		  Gregorian(const Date &);
+      Gregorian & operator=(Date &);
+		  Gregorian(int y, int m, int d);
 
-		virtual bool leap_year(int y) const;
-		virtual bool leap_year() const;
+		  virtual bool leap_year(int y) const;
+		  virtual bool leap_year() const;
   };
 }
 #endif

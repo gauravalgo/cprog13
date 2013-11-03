@@ -2,8 +2,7 @@
 
 using namespace lab2;
 
-Date::Date()
-{}
+Date::Date(){}
 
 Date::Date(const Date & d) {
   JDN = d.get_jdn();
@@ -11,6 +10,16 @@ Date::Date(const Date & d) {
 
 Date::Date(Date * d) {
   JDN = d->get_jdn();
+}
+
+int Date::year() const {
+  return lyear;
+}
+int Date::month() const {
+  return lmonth;
+}
+int Date::day() const {
+  return lday;
 }
 
 long Date::get_jdn() const {
@@ -80,7 +89,7 @@ bool Date::operator<(const Date & x) const {
 }
 
 int Date::operator-(const Date & x ) const {
-  return this->mod_julian_day() - x.mod_julian_day();
+  return mod_julian_day() - x.mod_julian_day();
 }
 
 long Date::mod_julian_day() const {
