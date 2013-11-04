@@ -107,7 +107,3 @@ void Middle::add_year(int y) {
 long Middle::mod_julian_day() const {
   return this->get_jdn() - 2400001;
 }
-
-
-
-
