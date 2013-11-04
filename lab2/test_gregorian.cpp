@@ -291,7 +291,7 @@ public:
   void test_copy_gregorian( void ) {
     lab2::Julian j1(1900,2,29);
 
-    lab2::Date * g1 = new lab2::Gregorian(j1);
+    lab2::Gregorian * g1 = new lab2::Gregorian(j1);
 
     TS_ASSERT_EQUALS( j1.year(), 1900);
     TS_ASSERT_EQUALS( j1.month(), 2);
@@ -300,6 +300,5 @@ public:
     TS_ASSERT_EQUALS( g1->year(), 1900);
     TS_ASSERT_EQUALS( g1->month(), 3);
     TS_ASSERT_EQUALS( g1->day(), 13);
-
   }
 };

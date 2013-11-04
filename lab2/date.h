@@ -14,7 +14,6 @@ class lab2::Date {
     // long MODIFIED_JULIAN_DAY_CONSTANT = 2400001;
     long JDN;
     
-    long get_jdn() const;
 
     virtual bool isValid(int, int, int) const = 0;
 
@@ -25,6 +24,8 @@ class lab2::Date {
     int lday;
 
   public:
+    long get_jdn() const;
+
     Date();
     //Date(const Date&);
     Date(Date *);
