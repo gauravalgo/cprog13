@@ -1,5 +1,6 @@
 #include <cxxtest/TestSuite.h>
 #include "gregorian.h"
+#include "julian.h"
 #include "kattistime.h"
 
 class GregorianTestSuite : public CxxTest::TestSuite
@@ -285,5 +286,20 @@ public:
 
     ++g;
     TS_ASSERT_EQUALS(g.day(), 4);
+  }
+
+  void test_copy_gregorian( void ) {
+    lab2::Julian j1(1900,2,29);
+
+    lab2::Date * g1 = new lab2::Gregorian(j1);
+
+    TS_ASSERT_EQUALS( j1.year(), 1900);
+    TS_ASSERT_EQUALS( j1.month(), 2);
+    TS_ASSERT_EQUALS( j1.day(), 29);
+
+    TS_ASSERT_EQUALS( g1->year(), 1900);
+    TS_ASSERT_EQUALS( g1->month(), 3);
+    TS_ASSERT_EQUALS( g1->day(), 13);
+
   }
 };
