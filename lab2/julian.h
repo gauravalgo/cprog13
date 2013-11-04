@@ -16,6 +16,8 @@ namespace lab2 {
       Julian(const Date &);
       Julian(Date * d);
       Julian(int y, int m, int d);
+
+      Julian & operator=(Date & d);
       
       virtual bool leap_year() const;
       virtual bool leap_year(int y) const;

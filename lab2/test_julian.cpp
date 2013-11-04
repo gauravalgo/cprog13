@@ -19,9 +19,9 @@ public:
   void test_default_constructor( void ) {
 
     time_t tp;
-    time(&tp);    
+    time(&tp);
     set_k_time(tp);
-    
+
     struct tm *t = gmtime(&tp);
     int year  = t->tm_year + 1900;
     int month = t->tm_mon + 1;      // m mytimenaderna och dagarna
@@ -40,7 +40,7 @@ public:
     d.add_day(1);
     TS_ASSERT_EQUALS(a.day(), d.day());
   }
-  
+
   void test_default_constructor_date_now( void  )
   {
     lab2::Julian d(2013, 10, 2);
@@ -77,5 +77,34 @@ public:
    void test_init_leap_year_date( void ) {
     lab2::Julian j(1900, 2, 20);
     TS_ASSERT_EQUALS( j.leap_year(), true);
+  }
+
+  void test_copy_julian_to_gregorian( void ) {
+    lab2::Gregorian g1(2000, 2, 29);
+
+    lab2::Julian * j1 = new lab2::Julian(g1);
+
+    TS_ASSERT_EQUALS( j1->year(), 2000);
+    TS_ASSERT_EQUALS( j1->month(), 2);
+    TS_ASSERT_EQUALS( j1->day(), 16);
+  }
+
+  void test_add_year_negative_numbers( void ) {
+    lab2::Gregorian g1(1998,9,19);
+
+    lab2::Julian * j1 = new lab2::Julian( g1 );
+
+    j1->add_year(-3);
+
+    TS_ASSERT_EQUALS( j1->year(), 1995);
+    TS_ASSERT_EQUALS( j1->month(), 9);
+    TS_ASSERT_EQUALS( j1->day(), 6);
+
+    ++(*j1);
+
+    TS_ASSERT_EQUALS( j1->year(), 1995);
+    TS_ASSERT_EQUALS( j1->month(), 9);
+    TS_ASSERT_EQUALS( j1->day(), 7);
+
   }
 };

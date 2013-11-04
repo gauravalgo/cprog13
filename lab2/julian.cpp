@@ -11,12 +11,20 @@ Julian::Julian() {
 }
 
 Julian::Julian(const Date & d){
-  JDN = convert_to_jdn(d.year(), d.month(), d.day());
+  JDN = d.get_jdn();
+  //JDN = convert_to_jdn(d.year(), d.month(), d.day());
   convert_from_jdn();
 }
 
+Julian & Julian::operator=(Date & d) {
+  JDN = d.get_jdn();
+  convert_from_jdn();
+  return *this;
+}
+
 Julian::Julian(Date * d){
-  JDN = convert_to_jdn(d->year(), d->month(), d->day());
+  JDN = d->get_jdn();
+  //JDN = convert_to_jdn(d->year(), d->month(), d->day());
   convert_from_jdn();
 }
 
