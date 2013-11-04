@@ -56,7 +56,7 @@ namespace lab2 {
 
 		bool add_event(std::string event, int d, int m, int y) {
 			try {
-				T date = T( y, m , d);
+				T date(y, m , d);
 
 				typename std::multimap<T,std::string>::iterator it;
 				std::pair <typename std::multimap<T, std::string>::iterator, typename std::multimap<T,std::string>::iterator> ret;

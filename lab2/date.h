@@ -26,7 +26,7 @@ class lab2::Date {
 
   public:
     Date();
-    Date(const Date&);
+    //Date(const Date&);
     Date(Date *);
 
     virtual int year() const;

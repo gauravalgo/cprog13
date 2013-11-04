@@ -4,9 +4,9 @@ using namespace lab2;
 
 Date::Date(){}
 
-Date::Date(const Date & d) {
-  JDN = d.get_jdn();
-}
+//Date::Date(const Date & d) {
+  //JDN = d.get_jdn();
+//}
 
 Date::Date(Date * d) {
   JDN = d->get_jdn();
