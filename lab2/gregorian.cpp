@@ -6,10 +6,11 @@ Gregorian::Gregorian() {
 	int days_since_unix_time = k_time(0) / (24*60*60);
   JDN = days_since_unix_time + 40587+2400001;
   convert_from_jdn();
-  std::cout << "hej0" << lyear<< year() <<std::endl;
+  std::cout << "Gregoirian() Default Constructor: " << lyear<< year() <<std::endl;
 }
 
 Gregorian::Gregorian(const Date & d) {
+  std::cout << "Gregorian(const Date & d):" << std::endl;
   JDN = convert_to_jdn(d.year(), d.month(), d.day());
   lyear = d.year();
   lmonth = d.month();
