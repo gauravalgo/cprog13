@@ -189,4 +189,17 @@ public:
     TS_ASSERT_EQUALS(cal.remove_event("ett"), true);
     TS_ASSERT_EQUALS(cal.events_count(), 0);
   }
+
+  void test_kattis_fuckar_ur_1( void ) {
+    lab2::Calendar<lab2::Gregorian> gcal;
+    lab2::Calendar<lab2::Julian> jcal;
+
+    TS_ASSERT_EQUALS( gcal.set_date(1974,2,1), true);
+    TS_ASSERT_EQUALS( gcal.add_event("ywrXjGV",7), true);
+    TS_ASSERT_EQUALS( gcal.events_count(), 1 );
+
+    TS_ASSERT_EQUALS( jcal.set_date(1974,2,1), true);
+    TS_ASSERT_EQUALS( jcal.add_event("ywrXjGV", 7), true);
+    TS_ASSERT_EQUALS( jcal.events_count(), 1 );
+  }
 };
