@@ -22,7 +22,10 @@ namespace lab2 {
 	public:
 		Calendar() : current_date( T() ) {
 			// http://stackoverflow.com/questions/14843006/error-lnk2019unresolved-external-symbol-c/14843056#14843056
-			//std::cout << "Calendar() in .h" << std::endl;
+			std::cout << "Calendar() in .h" << std::endl;
+
+			std::cout << current_date.year() << std::endl;
+
 		}
 
 		template< class Q>
@@ -115,7 +118,7 @@ namespace lab2 {
 			return calendar.size();
 		}
 
-		T get_current_date() { return current_date; }
+		T &get_current_date() { return current_date; }
 
 		void print_events() const {
 			typename std::multimap<T, std::string>::const_iterator it;
