@@ -9,6 +9,7 @@ Date::Date(){}
 //}
 
 Date::Date(Date * d) {
+  std::cout << "Date(const Date * d):" << std::endl;
   JDN = d->get_jdn();
 }
 
