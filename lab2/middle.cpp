@@ -40,9 +40,12 @@ void Middle::subtract_month() {
 }
 
 void Middle::add_month() {
-  int m = (lmonth + 1) % 12;
+  int m = (lmonth + 1) % 13;
+  int y = year();
 
-  if (get_month_length(m) < lday) {
+  if (m==0) { m++; y++;}
+  
+  if (get_month_length(y, m) < day()) {
     JDN += 30;
     convert_from_jdn();
   } else {

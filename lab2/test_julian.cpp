@@ -107,4 +107,22 @@ public:
     TS_ASSERT_EQUALS( j1->day(), 7);
 
   }
+
+  void test_fix_exception_in_add_month( void ) {
+    lab2::Julian j1(1904,2,29);
+    lab2::Julian j2(1904,2,29);
+
+    TS_ASSERT_EQUALS( j1.leap_year(), true);
+
+    j1.add_month(10);
+    j2.add_month(11);
+
+    TS_ASSERT_EQUALS( j1.month(), 12);
+    TS_ASSERT_EQUALS( j1.year(),  1904);
+    TS_ASSERT_EQUALS( j1.day(),   29);
+
+    TS_ASSERT_EQUALS( j2.month(), 1);
+    TS_ASSERT_EQUALS( j2.year(),  1905);
+    TS_ASSERT_EQUALS( j2.day(),   29);
+  }
 };
