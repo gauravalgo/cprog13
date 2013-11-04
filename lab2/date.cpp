@@ -5,10 +5,12 @@ using namespace lab2;
 Date::Date(){}
 
 Date::Date(const Date & d) {
+  std::cout << "Date(const Date & d):" << std::endl;
   JDN = d.get_jdn();
 }
 
 Date::Date(Date * d) {
+  std::cout << "Date(const Date * d):" << std::endl;
   JDN = d->get_jdn();
 }
 
