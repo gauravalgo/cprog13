@@ -35,6 +35,11 @@ test: clean test.out
 compile_cal_test:
 	g++ -std=c++0x -o cal_test.o calendar.cpp cprog09lab23.cpp kattistime.h kattistime.cpp gregorian.h gregorian.cpp julian.h julian.cpp date.h date.cpp middle.h middle.cpp
 	cat kurskatalogen/lab23.in |	./cal_test.o > utdata.txt
+
+test_kattis_date:
+	g++ -std=c++0x -o kattis_date_test.o cprog09lab22c.cpp kattistime.h kattistime.cpp gregorian.h gregorian.cpp julian.h julian.cpp date.h date.cpp middle.h middle.cpp
+	cat kurskatalogen/lab22c.in | ./kattis_date_test.o > utdata.txt
+
 cal_test: clean compile_cal_test
 	diff utdata.txt kurskatalogen/lab23.out
 
