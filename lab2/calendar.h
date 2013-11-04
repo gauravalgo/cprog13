@@ -83,23 +83,26 @@ namespace lab2 {
 		}
 
 		bool remove_event(std::string s, int d, int m, int y) {
-			T date = T(y, m, d);
+			try{
+				T date = T(y, m, d);
+				typename std::multimap<T,std::string>::iterator it;
+				std::pair <typename std::multimap<T, std::string>::iterator, typename std::multimap<T,std::string>::iterator> ret;
+				ret = calendar.equal_range(date);
 
-			typename std::multimap<T,std::string>::iterator it;
-			std::pair <typename std::multimap<T, std::string>::iterator, typename std::multimap<T,std::string>::iterator> ret;
-			ret = calendar.equal_range(date);
+			    for (it=ret.first; it!=ret.second; ++it) {
 
-			// std::cout << date << " =>";
-		    for (it=ret.first; it!=ret.second; ++it) {
-
-		    	// std::cout << ' ' << it->second;
-		    	if (s == (*it).second) {
-		    		// remove it
-		    		calendar.erase(it);
-		    		return true;
+			    	if (s == (*it).second) {
+			    		// remove it
+			    		calendar.erase(it);
+		    			return true;
+		    		}
 		    	}
-		    }
-		    return false;
+		    	return false;
+			} catch ( std::out_of_range & e){
+				
+			}
+			return false;
+
 		};
 
 		bool remove_event(std::string s, int d, int m) {

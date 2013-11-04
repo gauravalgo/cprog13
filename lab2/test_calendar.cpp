@@ -31,6 +31,12 @@ public:
 
     TS_ASSERT_EQUALS(cal.get_current_date().year(), 2013);
   }
+  void test_strange_date( void ){
+    lab2::Calendar<lab2::Gregorian> cal;
+    TS_ASSERT_EQUALS(cal.set_date(2100,2,29), false);
+     lab2::Calendar<lab2::Julian> cjul;
+    TS_ASSERT_EQUALS(cjul.set_date(2100,2,29), true);
+  }
 
   void test_add_event( void )
   {
