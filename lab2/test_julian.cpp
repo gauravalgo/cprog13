@@ -183,23 +183,40 @@ public:
     set_k_time(906215504);
     lab2::Julian d12;
 
+    int d12_mod = d12.mod_julian_day();
+
     TS_ASSERT_EQUALS( d12.year(), 1998);
     TS_ASSERT_EQUALS( d12.month(), 9);
     TS_ASSERT_EQUALS( d12.day(), 6);
 
+    TS_ASSERT_EQUALS( d12.mod_julian_day(), d12_mod);
+
     set_k_time(169073856);
+
     // L65
     lab2::Julian d33;
+
+    int d33_mod = d33.mod_julian_day();
     TS_ASSERT_EQUALS( d33.year(), 1975);
     TS_ASSERT_EQUALS( d33.month(), 4);
     TS_ASSERT_EQUALS( d33.day(), 28);
 
+    TS_ASSERT_EQUALS( d33.mod_julian_day(), d33_mod);
+
     // L299
-    lab2::Gregorian d194 = d33;
+    lab2::Gregorian d194 = *(new lab2::Gregorian( d33 ) );
 
     TS_ASSERT_EQUALS( d194.year(), 1975);
     TS_ASSERT_EQUALS( d194.month(), 5);
     TS_ASSERT_EQUALS( d194.day(), 11);
+
+    TS_ASSERT_EQUALS( d194.mod_julian_day(), d33_mod);
+
+    TS_ASSERT_EQUALS( d194, d33);
+
+    // L403
+    lab2::Julian d298 = d12;
+
 
     // L585
     lab2::Gregorian d480 = d194;
@@ -208,6 +225,11 @@ public:
     TS_ASSERT_EQUALS( d480.month(), 5);
     TS_ASSERT_EQUALS( d480.day(), 11);
 
+    TS_ASSERT_EQUALS( d480.mod_julian_day(), d33_mod);
+
+    TS_ASSERT_EQUALS( d194, d33);
+    TS_ASSERT_EQUALS( d480, d33);
+
     // copy self L653
     d12 = d12;
 
@@ -215,12 +237,16 @@ public:
     TS_ASSERT_EQUALS( d12.month(), 9);
     TS_ASSERT_EQUALS( d12.day(), 6);
 
+    TS_ASSERT_EQUALS( d12.mod_julian_day(), d12_mod);
+
     // copy to 480 L835
-    d480 = d12;
+    d480 = *(new lab2::Gregorian( d12 ));
 
     TS_ASSERT_EQUALS( d480.year(), 1998);
     TS_ASSERT_EQUALS( d480.month(), 9);
-    TS_ASSERT_EQUALS( d480.day(), 6);
+    TS_ASSERT_EQUALS( d480.day(), 19);
+
+    TS_ASSERT_EQUALS( d480.mod_julian_day(), d12_mod);
 
     // L1005
     d480.add_year(-3);

@@ -301,4 +301,26 @@ public:
     TS_ASSERT_EQUALS( g1->month(), 3);
     TS_ASSERT_EQUALS( g1->day(), 13);
   }
+
+  void test_negative_add_years( void ) {
+    lab2::Gregorian g( 1904,2,29);
+    g.add_year(-2);
+
+    TS_ASSERT_EQUALS( g.year(), 1902);
+    TS_ASSERT_EQUALS( g.month(), 2);
+    TS_ASSERT_EQUALS( g.day(), 28);
+
+    g.add_year(2);
+
+    TS_ASSERT_EQUALS( g.year(), 1904);
+    TS_ASSERT_EQUALS( g.month(), 2);
+    TS_ASSERT_EQUALS( g.day(), 28);
+
+    ++g;
+    g.add_year(4);
+
+    TS_ASSERT_EQUALS( g.year(), 1908);
+    TS_ASSERT_EQUALS( g.month(), 2);
+    TS_ASSERT_EQUALS( g.day(), 29);
+  }
 };
