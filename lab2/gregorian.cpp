@@ -10,6 +10,9 @@ Gregorian::Gregorian() {
 }
 
 Gregorian::Gregorian(const Date & d) {
+  if (this == &d) {
+    return;
+  }
   //std::cout << "Gregorian(const Date & d):" << std::endl;
   JDN = d.get_jdn();
   //JDN = convert_to_jdn(d.year(), d.month(), d.day());
@@ -18,13 +21,19 @@ Gregorian::Gregorian(const Date & d) {
   //lmonth = d.month();
   //lday = d.day();
 }
+
 Gregorian & Gregorian::operator=(Date &d){
+  if (this == &d) {
+    return *this;
+  }
+
   JDN = d.get_jdn();
   //JDN = convert_to_jdn(d.year(), d.month(), d.day());
   //lyear = d.year();
   //lmonth = d.month();
   //lday = d.day();
   convert_from_jdn();
+
   return *this;
 }
 
