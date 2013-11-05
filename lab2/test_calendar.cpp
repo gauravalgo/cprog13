@@ -7,10 +7,11 @@ public:
 	void test_init_of_calendar( void )
 	{
 		std::cout << "test calendar" << std::endl;
-
+    set_k_time(906215504);
 		lab2::Calendar<lab2::Gregorian> cal;
-    TS_ASSERT_EQUALS(cal.get_current_date().year(), 2013);
-    TS_ASSERT_EQUALS(cal.get_current_date().month(), 11);
+
+    TS_ASSERT_EQUALS(cal.get_current_date().year(), 1998);
+    TS_ASSERT_EQUALS(cal.get_current_date().month(), 9);
     bool returnValue = cal.set_date(2013,2,2);
     TS_ASSERT_EQUALS(returnValue, true);
 
@@ -22,6 +23,7 @@ public:
 
   void test_invalid_date( void )
   {
+    set_k_time(906215504);
     lab2::Calendar<lab2::Gregorian> cal;
     
     TS_ASSERT_THROWS_NOTHING( cal.set_date(2000, 1, 0) );
@@ -29,7 +31,7 @@ public:
     bool returnValue = cal.set_date(2000, 1, 0);
     TS_ASSERT_EQUALS(returnValue, false);
 
-    TS_ASSERT_EQUALS(cal.get_current_date().year(), 2013);
+    TS_ASSERT_EQUALS(cal.get_current_date().year(), 1998);
   }
   void test_strange_date( void ){
     lab2::Calendar<lab2::Gregorian> cal;
