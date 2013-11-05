@@ -1,5 +1,7 @@
 #include <cxxtest/TestSuite.h>
+#include "date.h"
 #include "julian.h"
+#include "gregorian.h"
 
 class JulianTestSuite : public CxxTest::TestSuite
 {
@@ -249,9 +251,21 @@ public:
     TS_ASSERT_EQUALS( d480.mod_julian_day(), d12_mod);
 
     // L1005
+    std::cout << "Add year -3" << std::endl;
     d480.add_year(-3);
+    std::cout << "Done adding year -3" << std::endl;
     TS_ASSERT_EQUALS( d480.year(), 1995);
     TS_ASSERT_EQUALS( d480.month(), 9);
     TS_ASSERT_EQUALS( d480.day(), 19);
   }
+
+  void test_kattis_add_month_neg_28(void) {
+    lab2::Julian j1(1992,2,29);
+    j1.add_month(-28);
+
+    TS_ASSERT_EQUALS(j1.year(), 1989);
+    TS_ASSERT_EQUALS(j1.month(), 10);
+    TS_ASSERT_EQUALS(j1.day(), 27);
+  }
+
 };

@@ -30,13 +30,22 @@ int Middle::days_this_month() const {
 }
 
 void Middle::subtract_month() {
-  lmonth--;
+  int m = (lmonth - 1) % 13;
+  int y = year();
 
-  if (lmonth < 1) {
-    lmonth = 12;
-    lyear--;
+  if (m==0) { m = 12; y--;}
+  
+  if (get_month_length(y, m) < day()) {
+    JDN -= 30;
+    convert_from_jdn();
+  } else {
+    lmonth--;
+    if (lmonth < 1) {
+      lmonth = 12;
+      --lyear;
+    }
+    JDN = convert_to_jdn();
   }
-  JDN = convert_to_jdn();
 }
 
 void Middle::add_month() {
