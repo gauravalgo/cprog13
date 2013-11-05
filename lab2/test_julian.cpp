@@ -124,5 +124,108 @@ public:
     TS_ASSERT_EQUALS( j2.month(), 1);
     TS_ASSERT_EQUALS( j2.year(),  1905);
     TS_ASSERT_EQUALS( j2.day(),   29);
+
+    j2.add_month(-2);
+
+    TS_ASSERT_EQUALS( j2.month(), 11);
+    TS_ASSERT_EQUALS( j2.year(),  1904);
+    TS_ASSERT_EQUALS( j2.day(),   29);
+
+  }
+
+  void test_copy_date( void ) {
+    // Test taget från infilen lab2c.in.
+    // L1741.
+    lab2::Julian        d337(2004,1,24);
+    lab2::Gregorian     d324(2302,1,13); // mod julian day: 161859
+
+    TS_ASSERT_EQUALS( d324.mod_julian_day(), 161859);
+
+    ++d337;
+    TS_ASSERT_EQUALS( d337.mod_julian_day(), 53042);
+    TS_ASSERT_EQUALS( d337.week_day_name(), "saturday");
+    TS_ASSERT_EQUALS( d337.day(), 25);
+
+    TS_ASSERT_EQUALS( d337.month(), 1);
+
+    // L1804 - copy
+    // copy from 324 to 337
+
+    d337 = d324;
+    //d337 should have the same date as d324 
+    TS_ASSERT_EQUALS( d337, d324);
+
+    TS_ASSERT_EQUALS( d324.year(), 2302);
+    TS_ASSERT_EQUALS( d324.month(), 1);
+    TS_ASSERT_EQUALS( d324.day(), 13);
+
+    --d324; // should not be same anymore
+
+    TS_ASSERT_EQUALS( d324.year(), 2302);
+    TS_ASSERT_EQUALS( d324.month(), 1);
+    TS_ASSERT_EQUALS( d324.day(), 12);
+
+    d337.add_year();
+
+    TS_ASSERT_EQUALS( d337.year(), 2302);
+    TS_ASSERT_EQUALS( d337.month(), 12);
+    TS_ASSERT_EQUALS( d337.day(), 28);
+
+    d337.add_month();
+
+    TS_ASSERT_EQUALS( d337.year(), 2303);
+    TS_ASSERT_EQUALS( d337.month(), 1);
+    TS_ASSERT_EQUALS( d337.day(), 28);
+
+  }
+
+  void test_L1005( void ) {
+    set_k_time(906215504);
+    lab2::Julian d12;
+
+    TS_ASSERT_EQUALS( d12.year(), 1998);
+    TS_ASSERT_EQUALS( d12.month(), 9);
+    TS_ASSERT_EQUALS( d12.day(), 6);
+
+    set_k_time(169073856);
+    // L65
+    lab2::Julian d33;
+    TS_ASSERT_EQUALS( d33.year(), 1975);
+    TS_ASSERT_EQUALS( d33.month(), 4);
+    TS_ASSERT_EQUALS( d33.day(), 28);
+
+    // L299
+    lab2::Gregorian d194 = d33;
+
+    TS_ASSERT_EQUALS( d194.year(), 1975);
+    TS_ASSERT_EQUALS( d194.month(), 5);
+    TS_ASSERT_EQUALS( d194.day(), 11);
+
+    // L585
+    lab2::Gregorian d480 = d194;
+
+    TS_ASSERT_EQUALS( d480.year(), 1975);
+    TS_ASSERT_EQUALS( d480.month(), 5);
+    TS_ASSERT_EQUALS( d480.day(), 11);
+
+    // copy self L653
+    d12 = d12;
+
+    TS_ASSERT_EQUALS( d12.year(), 1998);
+    TS_ASSERT_EQUALS( d12.month(), 9);
+    TS_ASSERT_EQUALS( d12.day(), 6);
+
+    // copy to 480 L835
+    d480 = d12;
+
+    TS_ASSERT_EQUALS( d480.year(), 1998);
+    TS_ASSERT_EQUALS( d480.month(), 9);
+    TS_ASSERT_EQUALS( d480.day(), 6);
+
+    // L1005
+    d480.add_year(-3);
+    TS_ASSERT_EQUALS( d480.year(), 1995);
+    TS_ASSERT_EQUALS( d480.month(), 9);
+    TS_ASSERT_EQUALS( d480.day(), 19);
   }
 };
