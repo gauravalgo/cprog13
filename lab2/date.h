@@ -11,14 +11,9 @@ namespace lab2 {
 
 class lab2::Date {
   protected:
-    // long MODIFIED_JULIAN_DAY_CONSTANT = 2400001;
-    
-
-
     virtual bool isValid(int, int, int) const = 0;
 
     virtual long convert_to_jdn(int, int, int) const = 0;
-    
   public:
     long JDN;
 

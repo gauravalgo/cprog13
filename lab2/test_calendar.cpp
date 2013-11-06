@@ -204,4 +204,25 @@ public:
     TS_ASSERT_EQUALS( jcal.add_event("ywrXjGV", 7), true);
     TS_ASSERT_EQUALS( jcal.events_count(), 1 );
   }
+
+  void test_assign_one_calendar_to_another( void ) {
+
+    set_k_time(906215504); // 1998 9 6
+    lab2::Calendar<lab2::Gregorian> cal;
+    lab2::Calendar<lab2::Julian>    jcal;
+
+    cal.set_date(1974,1,1);
+
+    for (int i = 2; i < 12; i++) {
+      cal.add_event("johanna", i);
+    }
+
+    TS_ASSERT_EQUALS(cal.events_count(), 10);
+
+    jcal = cal;
+
+    TS_ASSERT_EQUALS( jcal.get_current_date().mod_julian_day(), cal.get_current_date().mod_julian_day());
+
+    TS_ASSERT_EQUALS( jcal.events_count(), 10);
+  }
 };
