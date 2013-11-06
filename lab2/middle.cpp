@@ -17,6 +17,31 @@ const std::string MONTH_NAMES[13] = {"", "january", "february", "march", "april"
   lday = d.day();
   return *this;
 }*/
+
+int Middle::year() const {
+  int y, m, d;
+  long jdn = get_jdn();
+  convert_from_jdn(jdn, y, m, d);
+
+  return y;
+}
+
+int Middle::month() const {
+  int y, m, d;
+  long jdn = get_jdn();
+  convert_from_jdn(jdn, y, m, d);
+
+  return m;
+}
+
+int Middle::day() const {
+  int y, m, d;
+  long jdn = get_jdn();
+  convert_from_jdn(jdn, y, m, d);
+
+  return d;
+}
+
 std::string Middle::week_day_name() const {
   return WEEK_DAY_NAMES[week_day()];
 }
@@ -26,44 +51,36 @@ std::string Middle::month_name() const {
 }
 
 int Middle::days_this_month() const {
-  get_month_length(month());
+  return get_month_length(month());
 }
 
 void Middle::subtract_month() {
-  int m = (lmonth - 1) % 13;
-  int y = year();
-
-  if (m==0) { m = 12; y--;}
+  int year, month, day;
+  convert_from_jdn(get_jdn(), year, month, day);
   
-  if (get_month_length(y, m) < day()) {
+  month = (month - 1) % 13;
+  
+  if (month == 0) { month = 12; year--;}
+  
+  if (get_month_length(year, month) < day ){
     JDN -= 30;
-    convert_from_jdn();
   } else {
-    lmonth--;
-    if (lmonth < 1) {
-      lmonth = 12;
-      --lyear;
-    }
-    JDN = convert_to_jdn();
+    JDN = convert_to_jdn(year, month, day);
   }
 }
 
 void Middle::add_month() {
-  int m = (lmonth + 1) % 13;
-  int y = year();
+  int year, month, day;
+  convert_from_jdn(get_jdn(), year, month, day);
 
-  if (m==0) { m++; y++;}
-  
-  if (get_month_length(y, m) < day()) {
+  month = (month + 1) % 13;
+
+  if (month==0) { month++; year++;}
+
+  if (get_month_length(year, month) < day) {
     JDN += 30;
-    convert_from_jdn();
   } else {
-    lmonth++;
-    if (lmonth > 12) {
-      lmonth = 1;
-      ++lyear;
-    }
-    JDN = convert_to_jdn();
+    JDN = convert_to_jdn(year, month, day);
   }
 }
 
@@ -79,17 +96,19 @@ void Middle::add_month(int times) {
 
 void Middle::add_day() {
   JDN++;
-  convert_from_jdn();
 }
 
 void Middle::add_day(int days) {
   JDN += days;
-  convert_from_jdn();
 }
 
 int Middle::get_month_length(int m) const {
-  assert(year()>0);
-  return get_month_length(year(), m);
+  int year, month, day;
+  convert_from_jdn(get_jdn(), year, month, day);
+  // std::cout << "Middle::get_month_length month " << month << std::endl;
+  assert(year>0);
+
+  return get_month_length(year, m);
 }
 
 int Middle::get_month_length(int y, int m) const {
@@ -107,13 +126,16 @@ void Middle::add_year() {
 }
 
 void Middle::add_year(int y) {
-  lyear += y;
+  int year, month, day;
+  convert_from_jdn(get_jdn(), year, month, day);
+  
+  year += y;
 
-  if (month() == 2 && day() == 29 && !leap_year()) {
-    lday = 28;
+  if (month == 2 && day == 29 && !leap_year(year)) {
+    day = 28;
   }
 
-  JDN = convert_to_jdn();
+  JDN = convert_to_jdn(year, month, day);
 }
 
 long Middle::mod_julian_day() const {

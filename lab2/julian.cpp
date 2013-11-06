@@ -3,36 +3,40 @@
 using namespace lab2;
 
 Julian::Julian() {
+  //std::cout << "Julian::Julian()" << std::endl;
   int days_since_unix_time = k_time(0) / (24*60*60);
   JDN = days_since_unix_time + 40587+2400001;
   //mod från 1858
-  convert_from_jdn();
   
 }
 
-Julian::Julian(const Date & d){
+Julian::Julian(const Date & d) {
+  //std::cout << "Julian::Julian(Date & d)" << std::endl;
   if (this == &d) {
     return;
   }
   JDN = d.get_jdn();
-  //JDN = convert_to_jdn(d.year(), d.month(), d.day());
-  convert_from_jdn();
 }
 
-Julian & Julian::operator=(Date & d) {
+Julian & Julian::operator=(const Date & d) 
+{
+  //std::cout << "Julian::operator=(Date & d)" << std::endl;
   if (this == &d) {
     return *this;
   }
   JDN = d.get_jdn();
-  convert_from_jdn();
   return *this;
 }
 
 Julian::Julian(Date * d){
+  //std::cout << "Julian::Julian(Date * d)" << std::endl;
   JDN = d->get_jdn();
-  //JDN = convert_to_jdn(d->year(), d->month(), d->day());
-  convert_from_jdn();
 }
+
+Julian::Julian( Date && d) {
+  std::cout << "Julian::Julian(Date && d)" << std::endl;
+}
+
 
 Julian::Julian(int y, int m, int d) {
   if (!isValid(y, m , d)) {
@@ -40,7 +44,6 @@ Julian::Julian(int y, int m, int d) {
   }
 
   JDN = convert_to_jdn(y, m, d);
-  convert_from_jdn();
 }
 
 bool Julian::isValid(int y, int m, int d) const {
@@ -57,9 +60,7 @@ bool Julian::leap_year(int y) const {
   if (y%4==0) return true;
   return false;
 }
-long Julian::convert_to_jdn() const{
-  return convert_to_jdn(lyear, lmonth, lday);
-}
+
 long Julian::convert_to_jdn(int Y, int M, int D) const {
   long jdn;
   jdn = 367L*Y -7 * (Y+5001L+(M-9)/7)/4+275*M/9+D+1729777L;
@@ -67,9 +68,8 @@ long Julian::convert_to_jdn(int Y, int M, int D) const {
 }
 
 // http://www8.cs.umu.se/~isak/Snippets/jdn.c
-void Julian::convert_from_jdn() {
+void Julian::convert_from_jdn(long jdn, int & year, int &month, int & day) const {
   
-  long jdn = get_jdn();
   long x, z, m, d, y;
   long daysPer400Years = 146097L;
   long fudgedDaysPer4000Years = 1460970L + 31;
@@ -94,7 +94,7 @@ void Julian::convert_from_jdn() {
   m = m + 2 - 12 * x;
   y = 100 * (z - 49) + y + x;
 
-  lyear = (int)y;
-  lmonth = (int)m;
-  lday = (int)d;
+  year = (int)y;
+  month = (int)m;
+  day = (int)d;
 }

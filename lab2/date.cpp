@@ -8,19 +8,19 @@ Date::Date(){}
   //JDN = d.get_jdn();
 //}
 
+Date::Date(const Date & d) {
+  // std::cout << "Date(const Date & d)" << std::endl;
+  JDN = d.get_jdn();
+}
+
 Date::Date(Date * d) {
-  //std::cout << "Date(const Date * d):" << std::endl;
+  // std::cout << "Date(const Date * d)" << std::endl;
   JDN = d->get_jdn();
 }
 
-int Date::year() const {
-  return lyear;
-}
-int Date::month() const {
-  return lmonth;
-}
-int Date::day() const {
-  return lday;
+Date & Date::operator=(const Date & d) {
+  // std::cout << "Date & Date::operator=()" << std::endl;
+  JDN = d.get_jdn();
 }
 
 long Date::get_jdn() const {

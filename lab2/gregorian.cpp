@@ -3,37 +3,27 @@
 using namespace lab2;
 
 Gregorian::Gregorian() {
-	int days_since_unix_time = k_time(0) / (24*60*60);
+  // std::cout << "Gregorian::Gregorian()" << std::endl;
+  int days_since_unix_time = k_time(0) / (24*60*60);
   JDN = days_since_unix_time + 40587+2400001;
-  convert_from_jdn();
   // std::cout << "Gregoirian() Default Constructor: " << lyear<< year() <<std::endl;
 }
 
 Gregorian::Gregorian(const Date & d) {
+  // std::cout << "Gregorian::Gregorian(Date & d)" << std::endl;
   if (this == &d) {
     return;
   }
-  //std::cout << "Gregorian(const Date & d):" << std::endl;
   JDN = d.get_jdn();
-  //JDN = convert_to_jdn(d.year(), d.month(), d.day());
-  convert_from_jdn();
-  //lyear = d.year();
-  //lmonth = d.month();
-  //lday = d.day();
 }
 
-Gregorian & Gregorian::operator=(Date &d){
+Gregorian & Gregorian::operator=(const Date &d){
+  // std::cout << "Gregorian::operator=(Date & d)" << std::endl;
   if (this == &d) {
     return *this;
   }
 
   JDN = d.get_jdn();
-  //JDN = convert_to_jdn(d.year(), d.month(), d.day());
-  //lyear = d.year();
-  //lmonth = d.month();
-  //lday = d.day();
-  convert_from_jdn();
-
   return *this;
 }
 
@@ -43,9 +33,10 @@ Gregorian::Gregorian(int y, int m, int d) {
       
   }
   JDN = convert_to_jdn(y, m, d);
-  lyear = y;
-  lmonth = m;
-  lday = d;
+}
+
+Gregorian::Gregorian( Date && d) {
+  std::cout << "Gregorian::Gregorian(Date && d)" << std::endl;
 }
 
 bool Gregorian::isValid(int y, int m, int d) const {
@@ -65,10 +56,6 @@ bool Gregorian::leap_year(int year) const {
   return false;
 }
 
-long Gregorian::convert_to_jdn() const{
-  return convert_to_jdn(year(), month(), day());
-}
-
 long Gregorian::convert_to_jdn(int Y, int M, int D) const {
   long jdn;
   
@@ -78,10 +65,10 @@ long Gregorian::convert_to_jdn(int Y, int M, int D) const {
 }
 
 // http://www8.cs.umu.se/~isak/Snippets/jdn.c
-void Gregorian::convert_from_jdn() {
+void Gregorian::convert_from_jdn(long jdn, int & year, int & month, int & day) const 
+{
   
-  long jdn = get_jdn();
-  long x, z, m, d, y;
+  long x, z, y, m ,d;
   long daysPer400Years = 146097L;
   long fudgedDaysPer4000Years = 1460970L + 31;
 
@@ -105,8 +92,7 @@ void Gregorian::convert_from_jdn() {
   m = m + 2 - 12 * x;
   y = 100 * (z - 49) + y + x;
 
-  lyear = (int)y;
-  lmonth = (int)m;
-  lday = (int)d;
+  year = (int)y;
+  month = (int)m;
+  day = (int)d;
 }
-

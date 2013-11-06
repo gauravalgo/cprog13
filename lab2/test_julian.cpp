@@ -241,7 +241,7 @@ public:
 
     TS_ASSERT_EQUALS( d12.mod_julian_day(), d12_mod);
 
-    // copy to 480 L835
+    // copy to 480 L886
     d480 = *(new lab2::Gregorian( d12 ));
 
     TS_ASSERT_EQUALS( d480.year(), 1998);
@@ -267,5 +267,4 @@ public:
     TS_ASSERT_EQUALS(j1.month(), 10);
     TS_ASSERT_EQUALS(j1.day(), 27);
   }
-
 };

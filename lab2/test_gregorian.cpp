@@ -16,6 +16,12 @@ public:
     TS_ASSERT_EQUALS(g.month(), 11);
     TS_ASSERT_EQUALS(g.day(), 17);
     TS_ASSERT_EQUALS(g.mod_julian_day(), 0);
+
+    g.add_day();
+    TS_ASSERT_EQUALS( g.mod_julian_day(), 1 );
+
+    g.add_month();
+    TS_ASSERT_EQUALS( g.mod_julian_day(), 31 );
   }
 
   void test_initializing( void )

@@ -28,12 +28,15 @@ namespace lab2 {
       void add_year();
       void add_year(int);
 
+      int year() const;
+      int month() const;
+      int day() const;
+
       virtual bool leap_year(int) const = 0;
       virtual bool leap_year() const = 0;
 
-      virtual long convert_to_jdn() const = 0;
-      virtual void convert_from_jdn() = 0;
       virtual long convert_to_jdn(int, int, int) const = 0;
+      virtual void convert_from_jdn(long, int &, int &, int &) const = 0;
       long mod_julian_day() const;
   };
 }
