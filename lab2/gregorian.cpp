@@ -18,7 +18,7 @@ Gregorian::Gregorian(const Date & d) {
 }
 
 Gregorian & Gregorian::operator=(const Date &d){
-  // std::cout << "Gregorian::operator=(Date & d)" << std::endl;
+  //std::cout << "Gregorian::operator=(Date & d)" << std::endl;
   if (this == &d) {
     return *this;
   }
@@ -36,7 +36,8 @@ Gregorian::Gregorian(int y, int m, int d) {
 }
 
 Gregorian::Gregorian( Date && d) {
-  std::cout << "Gregorian::Gregorian(Date && d)" << std::endl;
+  JDN = d.get_jdn();
+  d.JDN = 0;
 }
 
 bool Gregorian::isValid(int y, int m, int d) const {

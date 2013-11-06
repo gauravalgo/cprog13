@@ -34,9 +34,9 @@ Julian::Julian(Date * d){
 }
 
 Julian::Julian( Date && d) {
-  std::cout << "Julian::Julian(Date && d)" << std::endl;
+  JDN = d.get_jdn();
+  d.JDN = 0;
 }
-
 
 Julian::Julian(int y, int m, int d) {
   if (!isValid(y, m , d)) {
