@@ -10,14 +10,6 @@ const int month_length[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 const std::string WEEK_DAY_NAMES[8] = { "", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
 const std::string MONTH_NAMES[13] = {"", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
 
-/*Middle & Middle::operator=(Date &d){
-  JDN = convert_to_jdn(d.year(), d.month(), d.day());
-  lyear = d.year();
-  lmonth = d.month();
-  lday = d.day();
-  return *this;
-}*/
-
 int Middle::year() const {
   int y, m, d;
   long jdn = get_jdn();
@@ -136,8 +128,4 @@ void Middle::add_year(int y) {
   }
 
   JDN = convert_to_jdn(year, month, day);
-}
-
-long Middle::mod_julian_day() const {
-  return this->get_jdn() - 2400001;
 }

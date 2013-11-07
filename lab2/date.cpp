@@ -94,7 +94,7 @@ int Date::operator-(const Date & x ) const {
 }
 
 long Date::mod_julian_day() const {
-  return JDN;// - MODIFED_JULIAN_DAY_CONSTANT;
+  return JDN-2400001;// - MODIFED_JULIAN_DAY_CONSTANT;
 }
 
 // ---------

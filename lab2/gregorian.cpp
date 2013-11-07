@@ -73,16 +73,7 @@ void Gregorian::convert_from_jdn(long jdn, int & year, int & month, int & day) c
   long daysPer400Years = 146097L;
   long fudgedDaysPer4000Years = 1460970L + 31;
 
-  // if (julian < 0)                 /* set Julian flag if auto set */
-  //   julian = (jdn <= LASTJULJDN);
-
   x = jdn + 68569L;
-  if (false) {
-    x += 38;
-    daysPer400Years = 146100L;
-    fudgedDaysPer4000Years = 1461000L + 1;
-   }
-
   z = 4 * x / daysPer400Years;
   x = x - (daysPer400Years * z + 3) / 4;
   y = 4000 * (x + 1) / fudgedDaysPer4000Years;

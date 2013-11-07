@@ -8,54 +8,29 @@
 
 #include "kattistime.h"
 
-//#include <vector>
 #include <map>
 // http://www.cplusplus.com/reference/map/multimap/
 
 namespace lab2 {
 	template<class T>
 	class Calendar {
-	private:
-		
-		
-
 	public:
 		std::multimap<T, std::string> calendar;
 		T current_date;
 		Calendar() : current_date( T() ) {
-			// http://stackoverflow.com/questions/14843006/error-lnk2019unresolved-external-symbol-c/14843056#14843056
-			//std::cout << "Calendar() in .h" << std::endl;
-
-			//std::cout << current_date.year() << std::endl;
-
 		}
 
 		template< class Q>
 		Calendar(const Calendar<Q> & d) : current_date( d.current_date ) {
-			//td::cout << "Calendar( copy ) in .h" << std::endl;
 
 			typename std::multimap<Q,std::string>::const_iterator start = d.calendar.begin();
 			typename std::multimap<Q,std::string>::const_iterator end = d.calendar.end(); 
-			//std::pair <typename std::multimap<T, std::string>::iterator, typename std::multimap<T,std::string>::iterator> ret;
-			//ret = calendar.equal_range(date);
-
-			// std::cout << date << " =>";
+			
 		    for (; start!=end; ++start) {
 
 		    	T tmpDate = (*start).first;
-		    	//tmpDate.JDN = (*start).first.JDN;
 		    	add_event( (*start).second, tmpDate );
-		    	// std::cout << ' ' << it->second;
-		    	//if (event == (*start).second) { // second är samma som event namn
-		    		// duplicate!
-		    	//	return false;
-		    	//}
 		    }
-		    
-		    //std::cout << '\n';
-
-			//calendar.insert(std::pair<T, std::string>(date, event));
-
 		}
 
 		bool set_date(int y, int m, int d) {
@@ -96,18 +71,14 @@ namespace lab2 {
 				std::pair <typename std::multimap<T, std::string>::iterator, typename std::multimap<T,std::string>::iterator> ret;
 				ret = calendar.equal_range(date);
 
-				// std::cout << date << " =>";
 			    for (it=ret.first; it!=ret.second; ++it) {
 
-			    	// std::cout << ' ' << it->second;
 			    	if (event == (*it).second) { // second är samma som event namn
 			    		// duplicate!
 			    		return false;
 			    	}
 			    }
 			    
-			    //std::cout << '\n';
-
 				calendar.insert(std::pair<T, std::string>(date, event));
 				return true;
 		}

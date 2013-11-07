@@ -68,7 +68,7 @@ class lab2::Date {
     // Diff operators
     int operator-( const Date & ) const;
 
-    virtual long mod_julian_day() const = 0;
+    virtual long mod_julian_day() const;
 };
 
 #endif
