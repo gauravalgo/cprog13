@@ -3,7 +3,6 @@
 using namespace lab3;
 
 Object::Object() {
-  sym = 'R';
 }
 
 Object::Object(int X, int Y) {

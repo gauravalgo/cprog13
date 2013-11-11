@@ -18,7 +18,7 @@ void lab3::Map::print_map() {
   erase();
   // mvprintw(p.getX(), p.getY(), "X");
   for(std::vector<Object>::iterator it = objects.begin(); it != objects.end(); ++it) {
-    mvprintw(it->getX(), it->getY(), "%C", it->sym);
+    mvprintw(it->getX(), it->getY(), "T");
   }
   
   refresh();

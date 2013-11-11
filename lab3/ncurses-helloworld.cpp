@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <map>
 #include "map.h"
+#include <cstring>
 
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
@@ -60,6 +61,9 @@ void move_self_left( void ) {
 }
 
 void action_quit( void ) {
+  start_color();
+  init_pair(1, COLOR_RED, COLOR_BLACK);
+	attron(COLOR_PAIR(1));
   printw("Shuttin down");
   getch();
 
@@ -84,29 +88,25 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('q', &action_quit));
 
   init_ncurses();
+  // Require colour
+  if(has_colors() == FALSE) {	
+    endwin();
+		printf("Your terminal does not support color\n");
+    RUNNING = false;
+	}
+
   int c;
   m.print_map();
 
   while(RUNNING) {
     
     c = getch();
-    // mvprintw(x, y, " ");
-    // refresh();
-    // if (c == 'w') { x--; }
-    // if (c == 'd') { y++; }
-    // if (c == 's') { x++; }
-    // if (c == 'a') { y--; }
-
-    // mvprintw(x, y, "X");
     action_map::const_iterator start = actions.find(c);
     if (start != actions.end()){
-      // Not found
       ((*start).second) ();
     }
 
     m.print_map();
-    
-
   }
   endwin();
   return 0;

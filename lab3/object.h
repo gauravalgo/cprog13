@@ -14,6 +14,7 @@ namespace lab3 {
 
       int getX();
       int getY();
+
   };
 }
 #endif
