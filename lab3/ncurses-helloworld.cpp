@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <map>
+#include "map.h"
 
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
@@ -60,16 +61,20 @@ void move_self_left( void ) {
 
 void action_quit( void ) {
   printw("Shuttin down");
+  getch();
 
   RUNNING = false;
 }
 
-void print_map() {
-  erase();
-  mvprintw(p.getX(), p.getY(), "X");
+void init_ncurses() {
+  initscr();
+  noecho();
+  curs_set(0);
 }
 
 int main() {
+  lab3::Map m;
+
   action_map actions;
 
   actions.insert(std::make_pair<char, MenuActionPtrType>('w', &move_self_up));
@@ -77,14 +82,13 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('s', &move_self_down));
   actions.insert(std::make_pair<char, MenuActionPtrType>('a', &move_self_left));
   actions.insert(std::make_pair<char, MenuActionPtrType>('q', &action_quit));
-  initscr();
+
+  init_ncurses();
   int c;
-  mvprintw(p.getX(), p.getY(), "X");
-  noecho();
-  curs_set(0);
+  m.print_map();
 
   while(RUNNING) {
-
+    
     c = getch();
     // mvprintw(x, y, " ");
     // refresh();
@@ -100,9 +104,8 @@ int main() {
       ((*start).second) ();
     }
 
-    print_map();
+    m.print_map();
     
-    refresh();
 
   }
   endwin();
