@@ -6,14 +6,16 @@
 namespace lab3 {
   class Object {
     protected:
-      int x, y;
     public:
+      int x, y;
       char sym;
       Object();
       Object(int, int);
 
       int getX();
       int getY();
+
+      virtual std::string symbol();
 
   };
 }

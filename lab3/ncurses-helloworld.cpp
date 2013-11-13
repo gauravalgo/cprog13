@@ -2,62 +2,29 @@
 #include <map>
 #include "map.h"
 #include <cstring>
+#include "player.h"
 
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
 
 int RUNNING = true;
 
-class Player {
-  int x, y;
-  
-  public:
-
-    Player() {
-      x = 10;
-      y = 10;
-    }
-
-    void move_up() {
-      x--;
-    }
-
-    void move_down() {
-      x++;
-    }
-
-    void move_right() {
-      y++;
-    }
-
-    void move_left() {
-      y--;
-    }
-
-    int getX() {
-      return x;
-    }
-
-    int getY() {
-      return y;
-    }
-};
-
-Player p;
+lab3::Map m;
 
 void move_self_up( void ) {
+  lab3::Player & p = m.get_current_player();
   p.move_up();
 }
 void move_self_down( void ) {
-  p.move_down();
+  m.get_current_player().move_down();
 }
 
 void move_self_right( void ) {
-  p.move_right();
+  m.get_current_player().move_right();
 }
 
 void move_self_left( void ) {
-  p.move_left();
+  m.get_current_player().move_left();
 }
 
 void action_quit( void ) {
@@ -77,7 +44,6 @@ void init_ncurses() {
 }
 
 int main() {
-  lab3::Map m;
 
   action_map actions;
 

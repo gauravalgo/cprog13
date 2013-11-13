@@ -1,4 +1,5 @@
 #include "object.h"
+#include <string>
 
 using namespace lab3;
 
@@ -16,5 +17,9 @@ int Object::getX() {
 
 int Object::getY() {
   return y;
+}
+
+std::string Object::symbol() {
+  return "5";
 }
 
