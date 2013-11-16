@@ -17,19 +17,17 @@ lab3::Map m;
 void move_self_up( void ) {
   m.player_move_up();
 }
+
 void move_self_down( void ) {
   m.player_move_down();
-  // m.get_current_player()->move_down();
 }
 
 void move_self_right( void ) {
   m.player_move_right();
-  // m.get_current_player()->move_right();
 }
 
 void move_self_left( void ) {
   m.player_move_left();
-  // m.get_current_player()->move_left();
 }
 
 void action_do_stuff( void ) {
