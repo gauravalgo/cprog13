@@ -16,7 +16,7 @@ namespace lab3 {
       int getY();
 
       virtual std::string symbol();
-
+      
   };
 }
 #endif

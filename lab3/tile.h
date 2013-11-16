@@ -10,6 +10,8 @@ namespace lab3 {
     public:
       Tile();
       Tile(int x, int y);
+
+      virtual std::string symbol();
   };
 }
 #endif

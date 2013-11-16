@@ -3,6 +3,7 @@
 #include "map.h"
 #include <cstring>
 #include "player.h"
+#include <iostream>
 
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
@@ -12,19 +13,18 @@ int RUNNING = true;
 lab3::Map m;
 
 void move_self_up( void ) {
-  lab3::Player & p = m.get_current_player();
-  p.move_up();
+  m.get_current_player()->move_up();
 }
 void move_self_down( void ) {
-  m.get_current_player().move_down();
+  m.get_current_player()->move_down();
 }
 
 void move_self_right( void ) {
-  m.get_current_player().move_right();
+  m.get_current_player()->move_right();
 }
 
 void move_self_left( void ) {
-  m.get_current_player().move_left();
+  m.get_current_player()->move_left();
 }
 
 void action_quit( void ) {
@@ -44,7 +44,6 @@ void init_ncurses() {
 }
 
 int main() {
-
   action_map actions;
 
   actions.insert(std::make_pair<char, MenuActionPtrType>('w', &move_self_up));
@@ -54,6 +53,7 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('q', &action_quit));
 
   init_ncurses();
+
   // Require colour
   if(has_colors() == FALSE) {	
     endwin();
@@ -65,6 +65,8 @@ int main() {
   m.print_map();
 
   while(RUNNING) {
+  
+    mvprintw(35,5, "%d %d", m.get_current_player()->getX(), m.objects.back()->getX() );
     
     c = getch();
     action_map::const_iterator start = actions.find(c);

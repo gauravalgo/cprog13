@@ -10,12 +10,17 @@ namespace lab3 {
       Player();
       Player(int, int);
       
-      virtual std::string symbol();
+      std::string symbol();
     
       void move_up();
       void move_down();
       void move_right();
       void move_left();
+
+      /* Operators */
+      Player& operator *= ( const Player p ) {
+        return *this;
+      }
   };
 }
 #endif

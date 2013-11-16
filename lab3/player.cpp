@@ -15,7 +15,10 @@ std::string Player::symbol() {
   return "X";
 }
 
-void Player::move_up() { x--; }
+void Player::move_up() {
+  x--;
+}
+
 void Player::move_down() { x++; }
 void Player::move_right() { y++; }
 void Player::move_left() { y--; }
