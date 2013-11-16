@@ -13,3 +13,7 @@ Tile::Tile(int x, int y) : Object(x,y) {
 std::string Tile::symbol() {
   return "O";
 }
+
+bool Tile::passable() {
+  return false;
+}

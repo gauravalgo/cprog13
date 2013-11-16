@@ -16,6 +16,8 @@ namespace lab3 {
       int getY();
 
       virtual std::string symbol();
+
+      void set_position(int x, int y);
       
   };
 }

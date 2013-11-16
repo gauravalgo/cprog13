@@ -7,7 +7,6 @@
 #include "rocktile.h"
 #include <iostream>
 #include <assert.h>
-#include <memory.h> //shared ptr
 
 using namespace lab3;
 
@@ -52,3 +51,59 @@ lab3::Player * lab3::Map::get_current_player() {
   return current_player;
 }
 
+void lab3::Map::player_move_up() {
+  Player * player = get_current_player();
+  int x = player->getX();
+  int y = player->getY();
+
+  player_move_to(player, --x, y);
+}
+
+void lab3::Map::player_move_down() {
+  Player * player = get_current_player();
+  int x = player->getX();
+  int y = player->getY();
+
+  player_move_to(player, ++x, y);
+
+}
+
+void lab3::Map::player_move_right() {
+  Player * player = get_current_player();
+  int x = player->getX();
+  int y = player->getY();
+
+  player_move_to(player, x, ++y);
+}
+
+void lab3::Map::player_move_left() {
+  Player * player = get_current_player();
+  int x = player->getX();
+  int y = player->getY();
+
+  player_move_to(player, x, --y);
+}
+
+void lab3::Map::player_move_to(Player * p, int x, int y) {
+  if (is_vacant(x,y)) {
+    p->set_position(x,y);
+  }
+}
+
+bool lab3::Map::is_vacant(int x, int y) {
+  Object * o = get_object_at(x, y);
+
+  if (o == NULL) {
+    return true;
+  }
+  return false;
+}
+
+Object * lab3::Map::get_object_at(int x, int y) {
+  for(std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
+    if ((*it)->getX() == x && (*it)->getY() == y) {
+      return (*it);
+    }
+  }
+  return NULL;
+}

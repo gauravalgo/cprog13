@@ -11,6 +11,8 @@ namespace lab3 {
       Tile();
       Tile(int x, int y);
 
+      bool passable();
+
       virtual std::string symbol();
   };
 }

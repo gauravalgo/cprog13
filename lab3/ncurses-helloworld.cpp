@@ -13,18 +13,21 @@ int RUNNING = true;
 lab3::Map m;
 
 void move_self_up( void ) {
-  m.get_current_player()->move_up();
+  m.player_move_up();
 }
 void move_self_down( void ) {
-  m.get_current_player()->move_down();
+  m.player_move_down();
+  // m.get_current_player()->move_down();
 }
 
 void move_self_right( void ) {
-  m.get_current_player()->move_right();
+  m.player_move_right();
+  // m.get_current_player()->move_right();
 }
 
 void move_self_left( void ) {
-  m.get_current_player()->move_left();
+  m.player_move_left();
+  // m.get_current_player()->move_left();
 }
 
 void action_quit( void ) {

@@ -23,3 +23,7 @@ std::string Object::symbol() {
   return "5";
 }
 
+void Object::set_position(int x, int y) {
+  this->x = x;
+  this->y = y;
+}

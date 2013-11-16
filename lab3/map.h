@@ -6,7 +6,6 @@
 #include <vector>
 #include "tile.h"
 #include "player.h"
-#include <memory.h> //shared_ptr
 
 namespace lab3 {
   class Map {
@@ -22,6 +21,19 @@ namespace lab3 {
       lab3::Player add_player();
       void move_player_up();
       lab3::Player * get_current_player();
+
+      // Player interactions
+    private:
+      void player_move_to(Player *, int, int);
+    public:
+      void player_move_up();
+      void player_move_down();
+      void player_move_right();
+      void player_move_left();
+
+      bool is_vacant(int, int);
+
+      Object * get_object_at(int, int);
 
   };
 }
