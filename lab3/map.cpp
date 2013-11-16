@@ -1,4 +1,3 @@
-#include <ncurses.h>
 #include <vector>
 #include "map.h"
 #include "tile.h"
@@ -27,24 +26,6 @@ Player lab3::Map::add_player() {
   return *current_player;
 }
 
-void lab3::Map::print_object(Object * o) {
-
-    const char * sym = o->symbol().c_str();
-    short id = o->type_id();
-    attron(COLOR_PAIR(id));
-    mvprintw( o->getX(), o->getY(), sym);
-}
-
-void lab3::Map::print_map() {
-  erase();
-  
-  for(std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
-    print_object( (*it) );
-
-  }
-
-  refresh();
-}
 
 void lab3::Map::load_terrain() {
   for (int i = 1; i < 10; i++) {

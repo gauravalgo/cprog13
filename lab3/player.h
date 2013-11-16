@@ -9,7 +9,8 @@ namespace lab3 {
     public:
       Player();
       Player(int, int);
-      
+  
+      void get_player_stats(int&, int&);
       short type_id() {
         return 4;
       }

@@ -18,3 +18,8 @@ std::string Player::symbol() {
 void Player::move_down() { x++; }
 void Player::move_right() { y++; }
 void Player::move_left() { y--; }
+
+void Player::get_player_stats(int & hp, int & hunger) {
+  hp = 100;
+  hunger = 6;
+}

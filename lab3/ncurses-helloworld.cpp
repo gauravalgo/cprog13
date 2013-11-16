@@ -4,6 +4,8 @@
 #include <cstring>
 #include "player.h"
 #include <iostream>
+#include "object.h"
+#include <vector>
 
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
@@ -31,8 +33,7 @@ void move_self_left( void ) {
 }
 
 void action_quit( void ) {
-  init_pair(1, COLOR_RED, COLOR_BLACK);
-	attron(COLOR_PAIR(1));
+	attron(COLOR_PAIR(666));
   printw("Shuttin down");
   getch();
 
@@ -44,9 +45,42 @@ void init_ncurses() {
   noecho();
   curs_set(0);
   start_color();
+  refresh();
+}
+
+void print_object(WINDOW * win, lab3::Object * o) {
+
+    const char * sym = o->symbol().c_str();
+    short id = o->type_id();
+    wattron(win, COLOR_PAIR(id));
+    mvwprintw( win, o->getX(), o->getY(), sym);
+    wattroff(win, COLOR_PAIR(id));
+}
+
+void print_map(WINDOW * win) {
+  werase(win);
+  box(win, 0,0); 
+  for(std::vector<lab3::Object *>::iterator it = m.objects.begin(); it != m.objects.end(); ++it) {
+    print_object( win, (*it) );
+  }
+
+  wrefresh(win);
+}
+
+void print_info(WINDOW * win) {
+  werase(win);
+  box(win, 0,0);
+
+  int a, b;
+  m.get_current_player()->get_player_stats(a,b);
+  mvwprintw(win, 2,2, "Player HP %d: Hunger: %d", a, b);
+  // mvwprintw(win, 2,10, "%d", m.get_current_player()->get_name());
+  wrefresh(win);
 }
 
 int main() {
+
+  // Actions
   action_map actions;
 
   actions.insert(std::make_pair<char, MenuActionPtrType>('w', &move_self_up));
@@ -55,7 +89,27 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('a', &move_self_left));
   actions.insert(std::make_pair<char, MenuActionPtrType>('q', &action_quit));
 
+  WINDOW* game_window;
+  WINDOW* info_window;
+  
   init_ncurses();
+  
+  // Set all color paris, uses type_id from objects
+  // init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
+  init_pair(1, COLOR_YELLOW, COLOR_BLACK);  // Tile
+  init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
+  init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
+  init_pair(4, COLOR_BLUE, COLOR_WHITE);    // The dude
+  init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
+  
+  game_window = newwin(40,70,0,0);
+  box(game_window, 0,0);
+  mvwprintw(game_window, 0, 1, "GameWindow");
+  
+  info_window = newwin(10,70,40,0);
+  box(info_window, 0,0);
+  mvwprintw(info_window, 0, 1, "Stats");
+  wrefresh(info_window);
 
   // Require colour
   if(has_colors() == FALSE) {	
@@ -65,27 +119,20 @@ int main() {
     RUNNING = false;
 	}
 
-  // Set all color paris, uses type_id from objects
-  init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
-  init_pair(1, COLOR_YELLOW, COLOR_BLACK);  // Tile
-  init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
-  init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
-  init_pair(4, COLOR_BLUE, COLOR_WHITE);    // The dude
-
   int c;
-  m.print_map();
+  print_map(game_window);
+  print_info(info_window);
 
   while(RUNNING) {
   
-    mvprintw(35,5, "%d %d", m.get_current_player()->getX(), m.objects.back()->getX() );
-    
     c = getch();
     action_map::const_iterator start = actions.find(c);
     if (start != actions.end()){
       ((*start).second) ();
     }
 
-    m.print_map();
+    print_info(info_window);
+    print_map(game_window);
   }
   endwin();
   return 0;
