@@ -19,6 +19,7 @@ namespace lab3 {
       virtual short type_id();
 
       void set_position(int x, int y);
+      virtual bool passable() { return true; };
       
   };
 }

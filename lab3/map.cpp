@@ -6,6 +6,8 @@
 #include "rocktile.h"
 #include <iostream>
 #include <assert.h>
+#include "food.h"
+#include <ncurses.h>
 
 using namespace lab3;
 
@@ -34,6 +36,10 @@ void lab3::Map::load_terrain() {
     objects.push_back( new Tile(i+1,30) );
     objects.push_back( new RockTile(20,i) );
   }
+
+  objects.push_back( new Food(2,7) );
+  objects.push_back( new Food(2,2) );
+  objects.push_back( new Food(2,7) );
 }
 
 lab3::Player * lab3::Map::get_current_player() {
@@ -80,13 +86,24 @@ void lab3::Map::player_move_to(Player * p, int x, int y) {
   }
 }
 
+void lab3::Map::player_do_stuff_to_tile() {
+  Player * p = get_current_player();
+
+  for (std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
+    if ( (*it)->getX() == p->getX() && (*it)->getY() == p->getY() && (*it)->type_id() != p->type_id()) {
+      p->add_to_inventory( (*it) );
+      objects.erase( it );
+    }
+  }
+}
+
 bool lab3::Map::is_vacant(int x, int y) {
   Object * o = get_object_at(x, y);
 
   if (o == NULL) {
     return true;
   }
-  return false;
+  return o->passable();
 }
 
 Object * lab3::Map::get_object_at(int x, int y) {

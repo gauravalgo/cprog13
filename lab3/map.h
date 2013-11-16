@@ -31,6 +31,8 @@ namespace lab3 {
       void player_move_right();
       void player_move_left();
 
+      void player_do_stuff_to_tile();
+
       bool is_vacant(int, int);
 
       Object * get_object_at(int, int);

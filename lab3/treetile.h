@@ -14,6 +14,7 @@ namespace lab3 {
       }
       
       short type_id() { return 3; }
+      virtual bool passable() { return false; }
   };
 }
 #endif

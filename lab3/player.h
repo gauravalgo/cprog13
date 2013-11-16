@@ -3,14 +3,17 @@
 
 #include "object.h"
 #include <string>
+#include <vector>
 
 namespace lab3 {
   class Player : public Object {
+    private:
+      std::vector<Object *> inventory;
     public:
       Player();
       Player(int, int);
   
-      void get_player_stats(int&, int&);
+      void get_player_stats(int&, int&, int&);
       short type_id() {
         return 4;
       }
@@ -24,6 +27,10 @@ namespace lab3 {
       Player& operator *= ( const Player p ) {
         return *this;
       }
+
+      bool add_to_inventory( Object * o );
+      int get_weight();
   };
 }
+  
 #endif

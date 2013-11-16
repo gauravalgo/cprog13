@@ -32,6 +32,10 @@ void move_self_left( void ) {
   // m.get_current_player()->move_left();
 }
 
+void action_do_stuff( void ) {
+  m.player_do_stuff_to_tile();
+}
+
 void action_quit( void ) {
 	attron(COLOR_PAIR(666));
   printw("Shuttin down");
@@ -71,10 +75,9 @@ void print_info(WINDOW * win) {
   werase(win);
   box(win, 0,0);
 
-  int a, b;
-  m.get_current_player()->get_player_stats(a,b);
-  mvwprintw(win, 2,2, "Player HP %d: Hunger: %d", a, b);
-  // mvwprintw(win, 2,10, "%d", m.get_current_player()->get_name());
+  int a, b, c;
+  m.get_current_player()->get_player_stats(a,b,c);
+  mvwprintw(win, 2,2, "Player HP %d: Hunger: %d, Total weight: %dkg", a, b,c);
   wrefresh(win);
 }
 
@@ -88,6 +91,7 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('s', &move_self_down));
   actions.insert(std::make_pair<char, MenuActionPtrType>('a', &move_self_left));
   actions.insert(std::make_pair<char, MenuActionPtrType>('q', &action_quit));
+  actions.insert(std::make_pair<char, MenuActionPtrType>(' ', &action_do_stuff));
 
   WINDOW* game_window;
   WINDOW* info_window;
@@ -100,6 +104,7 @@ int main() {
   init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
   init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
   init_pair(4, COLOR_BLUE, COLOR_WHITE);    // The dude
+  init_pair(5, COLOR_GREEN, COLOR_YELLOW);     // Food
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
   game_window = newwin(40,70,0,0);
