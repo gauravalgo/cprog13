@@ -22,6 +22,7 @@ namespace lab3 {
       lab3::Player add_player();
       void move_player_up();
       lab3::Player * get_current_player();
+
   };
 }
 
