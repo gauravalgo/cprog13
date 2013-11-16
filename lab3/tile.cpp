@@ -14,6 +14,10 @@ std::string Tile::symbol() {
   return "O";
 }
 
+short Tile::type_id() {
+  return 1;
+}
+
 bool Tile::passable() {
   return false;
 }

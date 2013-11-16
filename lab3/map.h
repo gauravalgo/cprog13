@@ -18,6 +18,8 @@ namespace lab3 {
       
       void load_terrain();
       void print_map();
+      void print_object(Object *);
+
       lab3::Player add_player();
       void move_player_up();
       lab3::Player * get_current_player();

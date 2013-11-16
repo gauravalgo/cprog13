@@ -31,7 +31,6 @@ void move_self_left( void ) {
 }
 
 void action_quit( void ) {
-  start_color();
   init_pair(1, COLOR_RED, COLOR_BLACK);
 	attron(COLOR_PAIR(1));
   printw("Shuttin down");
@@ -44,6 +43,7 @@ void init_ncurses() {
   initscr();
   noecho();
   curs_set(0);
+  start_color();
 }
 
 int main() {
@@ -60,9 +60,16 @@ int main() {
   // Require colour
   if(has_colors() == FALSE) {	
     endwin();
-		printf("Your terminal does not support color\n");
+
+    printf("Your terminal does not support color\n");
     RUNNING = false;
 	}
+
+  init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
+  init_pair(1, COLOR_YELLOW, COLOR_BLACK);  // Tile
+  init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
+  init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
+  init_pair(4, COLOR_BLUE, COLOR_WHITE);    // The dude
 
   int c;
   m.print_map();

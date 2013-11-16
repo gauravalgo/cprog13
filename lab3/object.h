@@ -16,6 +16,7 @@ namespace lab3 {
       int getY();
 
       virtual std::string symbol();
+      virtual short type_id();
 
       void set_position(int x, int y);
       

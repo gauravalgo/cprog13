@@ -27,12 +27,20 @@ Player lab3::Map::add_player() {
   return *current_player;
 }
 
+void lab3::Map::print_object(Object * o) {
+
+    const char * sym = o->symbol().c_str();
+    short id = o->type_id();
+    attron(COLOR_PAIR(id));
+    mvprintw( o->getX(), o->getY(), sym);
+}
+
 void lab3::Map::print_map() {
   erase();
   
   for(std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
-    const char * sym = (*it)->symbol().c_str();
-    mvprintw((*it)->getX(), (*it)->getY(), sym);
+    print_object( (*it) );
+
   }
 
   refresh();
@@ -51,6 +59,7 @@ lab3::Player * lab3::Map::get_current_player() {
   return current_player;
 }
 
+// Player interactions
 void lab3::Map::player_move_up() {
   Player * player = get_current_player();
   int x = player->getX();

@@ -12,6 +12,8 @@ namespace lab3 {
       std::string symbol() {
         return "T";
       }
+      
+      short type_id() { return 3; }
   };
 }
 #endif

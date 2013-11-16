@@ -12,7 +12,7 @@ namespace lab3 {
       Tile(int x, int y);
 
       bool passable();
-
+      virtual short type_id();
       virtual std::string symbol();
   };
 }

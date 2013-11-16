@@ -9,9 +9,10 @@ namespace lab3 {
     public:
       RockTile();
       RockTile(int, int);
+      short type_id() { return 2; };
       std::string symbol() {
         return "R";
-      }
+      };
   };
 }
 #endif
