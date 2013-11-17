@@ -1,13 +1,13 @@
 #include "food.h"
-#include "object.h"
+#include "inventorable.h"
 #include <string>
 
 using namespace lab3;
 
-Food::Food() : Object() {
+Food::Food() : Inventorable() {
 }
 
-Food::Food(int x, int y) : Object(x,y) {
+Food::Food(int x, int y) : Inventorable(x,y) {
 }
 
 std::string Food::symbol() {

@@ -20,7 +20,8 @@ namespace lab3 {
       virtual std::string description();
 
       void set_position(int x, int y);
-      virtual bool passable() { return true; };
+      virtual bool passable() { return false; };
+      virtual bool inventorable() { return false; };
   };
 }
 #endif
