@@ -105,8 +105,8 @@ void print_info(WINDOW * win) {
   m.get_current_player()->get_player_stats(a,b,c);
   mvwprintw(win, 2,2, "Player HP %d: Hunger: %d, Total weight: %dkg", a, b,c);
   
-  int i;
-  for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end(); it++, i++) {
+  int i = 0;
+  for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end() && i < 4; it++, i++) {
     mvwprintw(win, 4+i, 2, (*it).c_str() ) ;
   }
   wrefresh(win);
@@ -139,8 +139,8 @@ int main() {
   init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
   init_pair(4, COLOR_BLUE, COLOR_WHITE);    // The dude
   init_pair(5, COLOR_GREEN, COLOR_YELLOW);  // Food
-  init_pair(6, COLOR_WHITE, COLOR_GREEN);  // Food
-  init_pair(7, COLOR_BLACK, COLOR_WHITE);  // Food
+  init_pair(6, COLOR_WHITE, COLOR_GREEN);   // Grass
+  init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
   game_window = newwin(40,70,0,0);
