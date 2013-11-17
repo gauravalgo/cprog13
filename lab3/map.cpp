@@ -97,6 +97,7 @@ void lab3::Map::player_do_stuff_to_tile() {
   }
 }
 
+/* Can the player stand here? */
 bool lab3::Map::is_vacant(int x, int y) {
   Object * o = get_object_at(x, y);
 
