@@ -4,6 +4,7 @@
 #include "object.h"
 #include "character.h"
 #include <vector>
+#include <string>
 #include "tile.h"
 #include "player.h"
 
@@ -31,7 +32,7 @@ namespace lab3 {
       void player_move_right();
       void player_move_left();
 
-      void player_do_stuff_to_tile();
+      std::string player_do_stuff_to_tile();
 
       bool is_vacant(int, int);
 

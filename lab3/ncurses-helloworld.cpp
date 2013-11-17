@@ -13,6 +13,15 @@ typedef std::map<char, MenuActionPtrType> action_map;
 int RUNNING = true;
 
 lab3::Map m;
+std::vector<std::string> messages;
+
+
+void add_message(std::string text) {
+  if (text.empty()) {
+    return;
+  }
+  messages.insert(messages.begin(), text);
+}
 
 void move_self_up( void ) {
   m.player_move_up();
@@ -31,7 +40,8 @@ void move_self_left( void ) {
 }
 
 void action_do_stuff( void ) {
-  m.player_do_stuff_to_tile();
+  std::string text = m.player_do_stuff_to_tile();
+  add_message(text);
 }
 
 void action_display_help( void  ) {
@@ -95,6 +105,11 @@ void print_info(WINDOW * win) {
   int a, b, c;
   m.get_current_player()->get_player_stats(a,b,c);
   mvwprintw(win, 2,2, "Player HP %d: Hunger: %d, Total weight: %dkg", a, b,c);
+  
+  int i;
+  for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end(); it++, i++) {
+    mvwprintw(win, 4+i, 2, (*it).c_str() ) ;
+  }
   wrefresh(win);
 }
 
@@ -113,6 +128,8 @@ int main() {
 
   WINDOW* game_window;
   WINDOW* info_window;
+  
+  add_message("Welcome!");
   
   init_ncurses();
   

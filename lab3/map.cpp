@@ -22,8 +22,8 @@ lab3::Map::Map(Player * in) {
 }
 
 Player lab3::Map::add_player() {
-  objects.push_back(new Player(10,10));
-  current_player = (Player * ) objects.back();
+  current_player = (Player * ) new Player(10,10);
+  objects.push_back(current_player);
 
   return *current_player;
 }
@@ -86,15 +86,21 @@ void lab3::Map::player_move_to(Player * p, int x, int y) {
   }
 }
 
-void lab3::Map::player_do_stuff_to_tile() {
+std::string lab3::Map::player_do_stuff_to_tile() {
   Player * p = get_current_player();
+  std::string out = "Found stuff: ";
+  bool found_stuff = false;
 
   for (std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
     if ( (*it)->getX() == p->getX() && (*it)->getY() == p->getY() && (*it)->type_id() != p->type_id()) {
+      found_stuff = true;
+      out += "food";
       p->add_to_inventory( (*it) );
       objects.erase( it );
     }
   }
+  if (found_stuff) { return out; }
+  return "";
 }
 
 /* Can the player stand here? */
