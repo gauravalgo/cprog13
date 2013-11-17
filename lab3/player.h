@@ -8,8 +8,8 @@
 namespace lab3 {
   class Player : public Object {
     private:
-      std::vector<Object *> inventory;
     public:
+      std::vector<Object *> inventory;
       Player();
       Player(int, int);
   

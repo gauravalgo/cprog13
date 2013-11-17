@@ -14,7 +14,7 @@ int RUNNING = true;
 
 lab3::Map m;
 std::vector<std::string> messages;
-
+WINDOW* inventory_window;
 
 void add_message(std::string text) {
   if (text.empty()) {
@@ -42,6 +42,25 @@ void move_self_left( void ) {
 void action_do_stuff( void ) {
   std::string text = m.player_do_stuff_to_tile();
   add_message(text);
+}
+
+void action_display_inventory( void ) {
+  werase(inventory_window);
+  box(inventory_window,0,0);
+  
+  std::vector<lab3::Object *> inventory = m.get_current_player()->inventory;
+  mvwprintw(inventory_window, 0, 1, "Inventory: %d items.", inventory.size());
+  int i = 0;
+  for (std::vector<lab3::Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it, ++i) {
+    wattron(inventory_window, COLOR_PAIR( (*it)->type_id()) );
+    mvwprintw(inventory_window, 2+i,2,(*it)->symbol().c_str());
+    wattroff(inventory_window, COLOR_PAIR( (*it)->type_id() ));
+    mvwprintw(inventory_window, 2+i, 4, (*it)->description().c_str());
+  }
+
+  wrefresh(inventory_window);
+
+  getch();
 }
 
 void action_display_help( void  ) {
@@ -130,6 +149,7 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('a', &move_self_left));
   actions.insert(std::make_pair<char, MenuActionPtrType>('q', &action_quit));
   actions.insert(std::make_pair<char, MenuActionPtrType>(' ', &action_do_stuff));
+  actions.insert(std::make_pair<char, MenuActionPtrType>('i', &action_display_inventory));
   actions.insert(std::make_pair<char, MenuActionPtrType>('?', &action_display_help));
 
   WINDOW* game_window;
@@ -155,9 +175,9 @@ int main() {
   mvwprintw(game_window, 0, 1, "GameWindow");
   
   info_window = newwin(10,70,40,0);
-  box(info_window, 0,0);
-  mvwprintw(info_window, 0, 1, "Stats");
+
   // wrefresh(info_window);
+  inventory_window = newwin(20,30,10,20);
 
   // Require colour
   if(has_colors() == FALSE) {	
