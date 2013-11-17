@@ -139,6 +139,7 @@ int main() {
   init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
   init_pair(4, COLOR_BLUE, COLOR_WHITE);    // The dude
   init_pair(5, COLOR_GREEN, COLOR_YELLOW);  // Food
+  init_pair(6, COLOR_WHITE, COLOR_GREEN);  // Food
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
   game_window = newwin(40,70,0,0);

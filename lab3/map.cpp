@@ -7,6 +7,7 @@
 #include <iostream>
 #include <assert.h>
 #include "food.h"
+#include "grass_tile.h"
 #include <ncurses.h>
 
 using namespace lab3;
@@ -40,6 +41,8 @@ void lab3::Map::load_terrain() {
   objects.push_back( new Food(2,7) );
   objects.push_back( new Food(2,2) );
   objects.push_back( new Food(2,7) );
+  objects.push_back( new GrassTile(3,7) );
+  objects.push_back( new GrassTile(6,11) );
 }
 
 lab3::Player * lab3::Map::get_current_player() {
@@ -93,10 +96,12 @@ std::string lab3::Map::player_do_stuff_to_tile() {
 
   for (std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
     if ( (*it)->getX() == p->getX() && (*it)->getY() == p->getY() && (*it)->type_id() != p->type_id()) {
-      found_stuff = true;
-      out += (*it)->description();
-      p->add_to_inventory( (*it) );
-      objects.erase( it );
+      if ((*it)->inventorable()) {
+        found_stuff = true;
+        out += (*it)->description();
+        p->add_to_inventory( (*it) );
+        objects.erase( it );
+      }
     }
   }
   if (found_stuff) { return out; }
