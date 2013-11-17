@@ -54,7 +54,6 @@ void action_display_help( void  ) {
   mvwprintw(help_window, 4,2, "Pick up objects: space-key");
   mvwprintw(help_window, 6,2, "View help: ?");
 
-
   mvwprintw(help_window, 20,2, "Press anykey to close this box");
 
   wrefresh(help_window);
@@ -62,10 +61,18 @@ void action_display_help( void  ) {
 
 }
 
-void action_quit( void ) {
-	attron(COLOR_PAIR(666));
-  printw("Shuttin down");
+void show_notification_box(std::string text) {
+  WINDOW * win;
+  win = newwin(7,30,10,10);
+  box(win, 0,0);
+	wattron(win,COLOR_PAIR(666));
+  mvwprintw(win, 2,2, text.c_str());
+  mvwprintw(win, 4,2, "Press anychar to continue");
+  wrefresh(win);
   getch();
+}
+void action_quit( void ) {
+  show_notification_box("Shutting down");
 
   RUNNING = false;
 }
