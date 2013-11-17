@@ -18,6 +18,7 @@ namespace lab3 {
       Map(lab3::Player *);
       
       void load_terrain();
+      bool add_object_to_map(Object *);
 
       lab3::Player add_player();
       void move_player_up();

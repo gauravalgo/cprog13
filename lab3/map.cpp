@@ -30,21 +30,23 @@ Player lab3::Map::add_player() {
   return *current_player;
 }
 
-
+bool lab3::Map::add_object_to_map(Object * o) {
+  objects.push_back(o);
+}
 void lab3::Map::load_terrain() {
   for (int i = 1; i < 10; i++) {
-    objects.push_back( new TreeTile(1,i) );
-    objects.push_back( new TreeTile(i,1) );
-    objects.push_back( new Tile(i+1,30) );
-    objects.push_back( new RockTile(20,i) );
+    add_object_to_map(new TreeTile(1,i));
+    add_object_to_map( new TreeTile(i,1) );
+    add_object_to_map( new Tile(i+1,30) );
+    add_object_to_map( new RockTile(20,i) );
   }
 
-  objects.push_back( new Food(2,7) );
-  objects.push_back( new Food(2,2) );
-  objects.push_back( new Food(2,7) );
-  objects.push_back( new GrassTile(3,7) );
-  objects.push_back( new GrassTile(6,11) );
-  objects.push_back( new Button(19,8) );
+  add_object_to_map( new Food(2,7) );
+  add_object_to_map( new Food(2,2) );
+  add_object_to_map( new Food(2,7) );
+  add_object_to_map( new GrassTile(3,7) );
+  add_object_to_map( new GrassTile(6,11) );
+  add_object_to_map( new Button(19,8) );
 }
 
 lab3::Player * lab3::Map::get_current_player() {
@@ -66,7 +68,6 @@ void lab3::Map::player_move_down() {
   int y = player->getY();
 
   player_move_to(player, ++x, y);
-
 }
 
 void lab3::Map::player_move_right() {
@@ -106,7 +107,11 @@ std::string lab3::Map::player_do_stuff_to_tile() {
         p->add_to_inventory( (*it) );
         objects.erase( it );
       } else if ((*it)->actionable()) {
-        out += "You " + (*it)->action() + " the " + (*it)->description();
+        if ( (*it)->can_do_action() ){
+          Object * o = (*it)->perform_action();
+          add_object_to_map(o);
+        }
+        out += "You " + (*it)->action_description() + " the " + (*it)->description();
       }
     }
   }

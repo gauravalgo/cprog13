@@ -3,6 +3,7 @@
 
 #include "object.h"
 #include <string>
+#include "grass_tile.h"
 
 namespace lab3 {
   class Button : public Object {
@@ -25,14 +26,17 @@ namespace lab3 {
       };
       virtual short type_id()           { return 7; };
       virtual std::string description() { return "button"; };
-
-      virtual std::string action() {
+      
+      virtual bool can_do_action()      { return !pressed; }
+      virtual std::string action_description() {
         if (pressed) {
           return "have already pressed";
         }
+
         pressed = true;
         return "pressed";
       };
+      virtual Object * perform_action() { return new GrassTile(25,25);};
 
       virtual bool actionable() { return true; };
       virtual bool passable()   { return true; };
