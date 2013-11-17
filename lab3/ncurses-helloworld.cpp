@@ -132,7 +132,7 @@ int main() {
   info_window = newwin(10,70,40,0);
   box(info_window, 0,0);
   mvwprintw(info_window, 0, 1, "Stats");
-  wrefresh(info_window);
+  // wrefresh(info_window);
 
   // Require colour
   if(has_colors() == FALSE) {	
@@ -143,6 +143,7 @@ int main() {
 	}
 
   int c;
+  action_display_help();
   print_map(game_window);
   print_info(info_window);
 
