@@ -17,10 +17,10 @@ namespace lab3 {
 
       virtual std::string symbol();
       virtual short type_id();
+      virtual std::string description();
 
       void set_position(int x, int y);
       virtual bool passable() { return true; };
-      
   };
 }
 #endif

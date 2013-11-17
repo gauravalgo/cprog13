@@ -17,3 +17,7 @@ std::string Food::symbol() {
 short Food::type_id() {
   return 5;
 }
+
+std::string Food::description() {
+  return "Foods ";
+}

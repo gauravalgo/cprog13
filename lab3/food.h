@@ -15,6 +15,8 @@ namespace lab3 {
       virtual bool passable() { return true; };
       virtual short type_id();
       virtual std::string symbol();
-  };
+      virtual std::string description();
+
+    };
 }
 #endif

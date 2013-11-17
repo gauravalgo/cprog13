@@ -79,7 +79,6 @@ void init_ncurses() {
 }
 
 void print_object(WINDOW * win, lab3::Object * o) {
-
     const char * sym = o->symbol().c_str();
     short id = o->type_id();
     wattron(win, COLOR_PAIR(id));

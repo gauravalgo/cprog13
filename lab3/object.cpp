@@ -23,6 +23,10 @@ std::string Object::symbol() {
   return "5";
 }
 
+std::string Object::description() {
+  return "an object ";
+}
+
 short Object::type_id() {
   return 0;
 }
