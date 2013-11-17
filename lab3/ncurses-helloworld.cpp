@@ -47,20 +47,43 @@ void action_do_stuff( void ) {
 void action_display_inventory( void ) {
   werase(inventory_window);
   box(inventory_window,0,0);
-  
-  std::vector<lab3::Object *> inventory = m.get_current_player()->inventory;
-  mvwprintw(inventory_window, 0, 1, "Inventory: %d items.", inventory.size());
-  int i = 0;
-  for (std::vector<lab3::Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it, ++i) {
-    wattron(inventory_window, COLOR_PAIR( (*it)->type_id()) );
-    mvwprintw(inventory_window, 2+i,2,(*it)->symbol().c_str());
-    wattroff(inventory_window, COLOR_PAIR( (*it)->type_id() ));
-    mvwprintw(inventory_window, 2+i, 4, (*it)->description().c_str());
+  bool DISPLAY_INVENTORY = true;
+  int selected = 0;
+  while (DISPLAY_INVENTORY) {
+
+    std::vector<lab3::Object *> inventory = m.get_current_player()->inventory;
+    mvwprintw(inventory_window, 0, 1, "Inventory: %d items.", inventory.size());
+    int i = 0;
+    for (std::vector<lab3::Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it, ++i) {
+      if ( i == selected ) {
+        mvwprintw(inventory_window, 2+i,2,"[X]");
+      } else {
+        mvwprintw(inventory_window, 2+i,2,"[ ]");
+      }
+      wattron(inventory_window, COLOR_PAIR( (*it)->type_id()) );
+      mvwprintw(inventory_window, 2+i,6,(*it)->symbol().c_str());
+      wattroff(inventory_window, COLOR_PAIR( (*it)->type_id() ));
+      mvwprintw(inventory_window, 2+i, 8, (*it)->description().c_str());
+    }
+    
+    mvwprintw(inventory_window, 18, 2, "Press q to close");
+    wrefresh(inventory_window);
+
+    char c = getch();
+    if (c == 'w') {
+      if (selected > 0) {
+        selected--;
+      }
+    }
+    if (c == 's' ) {
+      if (selected < inventory.size()-1) {
+        selected++;
+      }
+    }
+    if (c == 'q') {
+      DISPLAY_INVENTORY = false;
+    }
   }
-
-  wrefresh(inventory_window);
-
-  getch();
 }
 
 void action_display_help( void  ) {
