@@ -34,6 +34,24 @@ void action_do_stuff( void ) {
   m.player_do_stuff_to_tile();
 }
 
+void action_display_help( void  ) {
+  WINDOW * help_window;
+  help_window = newwin(24,40,10,10);
+  box(help_window, 0,0);
+  mvwprintw(help_window, 0, 1, "Help");
+
+  mvwprintw(help_window, 2,2, "Move-keys: w,a,s,d");
+  mvwprintw(help_window, 4,2, "Pick up objects: space-key");
+  mvwprintw(help_window, 6,2, "View help: ?");
+
+
+  mvwprintw(help_window, 20,2, "Press anykey to close this box");
+
+  wrefresh(help_window);
+  getch();
+
+}
+
 void action_quit( void ) {
 	attron(COLOR_PAIR(666));
   printw("Shuttin down");
@@ -60,6 +78,7 @@ void print_object(WINDOW * win, lab3::Object * o) {
 }
 
 void print_map(WINDOW * win) {
+  int top_left_corner;
   werase(win);
   box(win, 0,0); 
   for(std::vector<lab3::Object *>::iterator it = m.objects.begin(); it != m.objects.end(); ++it) {
@@ -90,6 +109,7 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('a', &move_self_left));
   actions.insert(std::make_pair<char, MenuActionPtrType>('q', &action_quit));
   actions.insert(std::make_pair<char, MenuActionPtrType>(' ', &action_do_stuff));
+  actions.insert(std::make_pair<char, MenuActionPtrType>('?', &action_display_help));
 
   WINDOW* game_window;
   WINDOW* info_window;
