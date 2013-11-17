@@ -10,10 +10,12 @@ namespace lab3 {
       GrassTile() : Tile() {};
       GrassTile(int x, int y) : Tile(x,y) {};
 
-      virtual bool passable() { return true; };
+      virtual bool passable()   { return true; };
+      virtual bool actionable() { return true;};
 
-      virtual short type_id() { return 6; };
-      virtual std::string symbol() { return "."; };
+      virtual short type_id()           { return 6; };
+      virtual std::string symbol()      { return "."; };
+      virtual std::string description() { return "grass"; };
   };
 }
 #endif

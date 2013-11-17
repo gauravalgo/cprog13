@@ -19,5 +19,5 @@ short Food::type_id() {
 }
 
 std::string Food::description() {
-  return "Foods ";
+  return "Food";
 }

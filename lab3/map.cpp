@@ -8,6 +8,7 @@
 #include <assert.h>
 #include "food.h"
 #include "grass_tile.h"
+#include "button.h"
 #include <ncurses.h>
 
 using namespace lab3;
@@ -43,6 +44,7 @@ void lab3::Map::load_terrain() {
   objects.push_back( new Food(2,7) );
   objects.push_back( new GrassTile(3,7) );
   objects.push_back( new GrassTile(6,11) );
+  objects.push_back( new Button(19,8) );
 }
 
 lab3::Player * lab3::Map::get_current_player() {
@@ -91,21 +93,25 @@ void lab3::Map::player_move_to(Player * p, int x, int y) {
 
 std::string lab3::Map::player_do_stuff_to_tile() {
   Player * p = get_current_player();
-  std::string out = "Found stuff: ";
+  std::string out;
   bool found_stuff = false;
 
   for (std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
     if ( (*it)->getX() == p->getX() && (*it)->getY() == p->getY() && (*it)->type_id() != p->type_id()) {
       if ((*it)->inventorable()) {
         found_stuff = true;
-        out += (*it)->description();
+        out += "Found: ";
+        out += ((*it)->description().c_str() );
+        out += ". ";
         p->add_to_inventory( (*it) );
         objects.erase( it );
+      } else if ((*it)->actionable()) {
+        out += "You " + (*it)->action() + " the " + (*it)->description();
       }
     }
   }
   if (found_stuff) { return out; }
-  return "";
+  return out;
 }
 
 /* Can the player stand here? */
