@@ -23,6 +23,13 @@ lab3::Map::Map(Player * in) {
   add_player();
 }
 
+lab3::Map::~Map() {
+  for (std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
+    delete (*it);
+  }
+  std::cout << "Destructor of map" << std::endl;
+}
+
 Player lab3::Map::add_player() {
   current_player = (Player * ) new Player(10,10);
   objects.push_back(current_player);

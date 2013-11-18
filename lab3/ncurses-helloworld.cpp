@@ -10,9 +10,9 @@
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
 
-int RUNNING = true;
+int RUNNING = false;
 
-lab3::Map m;
+lab3::Map & m = *(new lab3::Map());
 std::vector<std::string> messages;
 WINDOW* inventory_window;
 WINDOW* info_window;
@@ -213,7 +213,7 @@ int main() {
   init_ncurses();
   
   // Set all color paris, uses type_id from objects
-  // init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
+  // The pair 0 is reserved. // init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
   init_pair(1, COLOR_YELLOW, COLOR_BLACK);  // Tile
   init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
   init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
@@ -229,7 +229,7 @@ int main() {
   
   info_window = newwin(10,70,40,0);
 
-  // wrefresh(info_window);
+  wrefresh(info_window);
   inventory_window = newwin(20,30,10,20);
 
   // Require colour
@@ -253,9 +253,10 @@ int main() {
       ((*start).second) ();
     }
 
-    print_info();
-    print_map(game_window);
+    // print_info();
+    // print_map(game_window);
   }
   endwin();
+  delete &m;
   return 0;
 }

@@ -16,6 +16,7 @@ namespace lab3 {
       std::vector<Object *> objects;
       Map();
       Map(lab3::Player *);
+      ~Map();
       
       void load_terrain();
       bool add_object_to_map(Object *);
