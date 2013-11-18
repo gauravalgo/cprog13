@@ -12,7 +12,7 @@ Player::Player() : Object() {
 }
 
 Player::Player(int x, int y) : Object(x, y) {
-  hp = 100;
+  hp = 85;
   hunger = 6;
 }
 

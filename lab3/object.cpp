@@ -44,6 +44,9 @@ void Object::get_stats(int & hp, int & hunger, int & weight) {
 
 void Object::apply_object_to_object(Object * o) {
   hp      += o->get_hp();
+  if (hp > 100) {
+    hp = 100;
+  }
   hunger  += o->get_hunger();
   weight  += o->get_weight();
 }

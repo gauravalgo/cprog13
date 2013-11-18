@@ -18,7 +18,7 @@ namespace lab3 {
 
       virtual Object * perform_action();
 
-      virtual int get_hp()      { return 0; };
+      virtual int get_hp()      { return 10; };
       virtual int get_hunger()  { return 3; };
       virtual int get_weight()  { return 1; };
     };
