@@ -8,6 +8,7 @@ Food::Food() : Inventorable() {
 }
 
 Food::Food(int x, int y) : Inventorable(x,y) {
+  hunger = -3;
 }
 
 std::string Food::symbol() {
@@ -23,5 +24,5 @@ std::string Food::description() {
 }
 
 Object * Food::perform_action() {
-  return NULL;
+  return this;
 };

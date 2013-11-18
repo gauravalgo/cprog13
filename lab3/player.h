@@ -31,7 +31,7 @@ namespace lab3 {
       bool add_to_inventory( Object * o );
       int get_weight();
 
-      Object * drop_object(int);
+      bool drop_object( Object * );
   };
 }
   

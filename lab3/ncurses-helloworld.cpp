@@ -54,13 +54,17 @@ void action_display_inventory( void ) {
   while (DISPLAY_INVENTORY) {
     werase(inventory_window);
     box(inventory_window,0,0);
-    
+
     std::vector<lab3::Object *> inventory = m.get_current_player()->inventory;
+
     mvwprintw(inventory_window, 0, 1, "Inventory: %d items.", inventory.size());
+    lab3::Object * selected_object;
+
     int i = 0;
     for (std::vector<lab3::Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it, ++i) {
       if ( i == selected ) {
         mvwprintw(inventory_window, 2+i,2,"[X]");
+        selected_object = (*it);
       } else {
         mvwprintw(inventory_window, 2+i,2,"[ ]");
       }
@@ -70,7 +74,8 @@ void action_display_inventory( void ) {
       mvwprintw(inventory_window, 2+i, 8, (*it)->description().c_str());
     }
     
-    mvwprintw(inventory_window, 16, 2, "Press space-char to use");
+    mvwprintw(inventory_window, 14, 2, "Press space-char to use");
+    mvwprintw(inventory_window, 16, 2, "press d to drop the object");
     mvwprintw(inventory_window, 18, 2, "Press q to close");
     wrefresh(inventory_window);
 
@@ -90,12 +95,15 @@ void action_display_inventory( void ) {
       if (inventory.size() == 0) {
         add_message("Cannot drop non-existing object");
       } else {
-        m.drop_object_from_inventory(selected);
+        m.drop_object_from_inventory(selected_object);
         add_message("Drop object");
       }
     }
     if (c == ' ') {
-      add_message("Use the object!");
+      m.get_current_player()->drop_object(selected_object);
+      lab3::Object * result_object = selected_object->perform_action();
+      m.get_current_player()->apply_object_to_object(result_object);
+      add_message("Used the object!");
     }
     if (c == 'q') {
       DISPLAY_INVENTORY = false;
@@ -121,20 +129,23 @@ void action_display_help( void  ) {
 
 }
 
-void show_notification_box(std::string text) {
+bool show_notification_box(std::string text) {
   WINDOW * win;
   win = newwin(7,30,10,10);
   box(win, 0,0);
 	wattron(win,COLOR_PAIR(666));
   mvwprintw(win, 2,2, text.c_str());
-  mvwprintw(win, 4,2, "Press anychar to continue");
+  mvwprintw(win, 4,2, "Press 'n' to stay");
   wrefresh(win);
-  getch();
+  char c = getch();
+
+  if (c == 'n') {
+    return true;
+  }
+  return false;
 }
 void action_quit( void ) {
-  show_notification_box("Shutting down");
-
-  RUNNING = false;
+  RUNNING = show_notification_box("Shutting down");
 }
 
 void init_ncurses() {

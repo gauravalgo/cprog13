@@ -36,7 +36,7 @@ bool lab3::Map::add_object_to_map(Object * o) {
 
 void lab3::Map::load_terrain() {
   for (int i = 1; i < 10; i++) {
-    add_object_to_map(new TreeTile(1,i));
+    add_object_to_map( new TreeTile(1,i));
     add_object_to_map( new TreeTile(i,1) );
     add_object_to_map( new Tile(i+1,30) );
     add_object_to_map( new RockTile(20,i) );
@@ -107,6 +107,8 @@ std::string lab3::Map::player_do_stuff_to_tile() {
         out += ". ";
         p->add_to_inventory( (*it) );
         objects.erase( it );
+        return out; // fix for segfault
+
       } else if ((*it)->actionable()) {
         if ( (*it)->can_do_action() ){
           Object * o = (*it)->perform_action();
@@ -116,6 +118,7 @@ std::string lab3::Map::player_do_stuff_to_tile() {
       }
     }
   }
+
   if (found_stuff) { return out; }
   return out;
 }
@@ -139,12 +142,11 @@ Object * lab3::Map::get_object_at(int x, int y) {
   return NULL;
 }
 
-void lab3::Map::drop_object_from_inventory(int i) {
- 
-  Object * droped_object = get_current_player()->drop_object(i);
-  std::cout << "X: " << get_current_player()->getX() << std::endl; 
-  droped_object->set_position(get_current_player()->getX(), get_current_player()->getY());
-  std::cout << droped_object->type_id() << std::endl;
-  // std::cout << "!" << &droped_object << std::endl;
-  add_object_to_map(droped_object);
+bool lab3::Map::drop_object_from_inventory(Object * o) {
+  o->set_position(get_current_player()->getX(), get_current_player()->getY());
+  add_object_to_map(o);
+
+  get_current_player()->drop_object(o); 
+
+  return true;
 }

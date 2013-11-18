@@ -7,6 +7,10 @@ namespace lab3 {
   class Object {
     protected:
     public:
+      int hp;
+      int hunger;
+      int weight;
+
       int x, y;
       char sym;
       Object();
@@ -28,6 +32,15 @@ namespace lab3 {
       virtual bool can_do_action()  { return false; }; // can we perform the action? Or have we already pressed the buttin for example.
 
       virtual Object * perform_action() { new Object(30,30); };
+
+      virtual int get_hunger()  { return 0; };
+      virtual int get_hp()      { return 0; };
+      virtual int get_weight()  { return 0; };
+
+      void get_stats(int &, int &, int &);
+      
+      void apply_object_to_object(Object * o);
+
   };
 }
 #endif
