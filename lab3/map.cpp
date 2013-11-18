@@ -140,8 +140,11 @@ Object * lab3::Map::get_object_at(int x, int y) {
 }
 
 void lab3::Map::drop_object_from_inventory(int i) {
+ 
   Object * droped_object = get_current_player()->drop_object(i);
-  // droped_object->set_position(get_current_player()->getX(), get_current_player()->getY());
+  std::cout << "X: " << get_current_player()->getX() << std::endl; 
+  droped_object->set_position(get_current_player()->getX(), get_current_player()->getY());
+  std::cout << droped_object->type_id() << std::endl;
   // std::cout << "!" << &droped_object << std::endl;
-  // add_object_to_map(droped_object);
+  add_object_to_map(droped_object);
 }

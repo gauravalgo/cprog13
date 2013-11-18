@@ -37,9 +37,15 @@ int Player::get_weight() {
 }
 
 Object * Player::drop_object(int i) {
-  // this should probably put it back
-  // on the map. But that was difficult.  
-  inventory.pop_back();
+  int j = 0;
+  for (std::vector<Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it) {
+    if (i == j) {
+      Object * o = (*it);
+      inventory.erase(it);
+      return o;
+    }
+    j++;
+  }  
   return NULL;
 }
 // Object * Player::use_object_from_inventory(int i){

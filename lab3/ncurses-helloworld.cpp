@@ -111,7 +111,8 @@ void action_display_help( void  ) {
 
   mvwprintw(help_window, 2,2, "Move-keys: w,a,s,d");
   mvwprintw(help_window, 4,2, "Pick up objects: space-key");
-  mvwprintw(help_window, 6,2, "View help: ?");
+  mvwprintw(help_window, 6,2, "See your inventory: i");
+  mvwprintw(help_window, 8,2, "View help: ?");
 
   mvwprintw(help_window, 20,2, "Press anykey to close this box");
 
