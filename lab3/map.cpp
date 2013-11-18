@@ -33,6 +33,7 @@ Player lab3::Map::add_player() {
 bool lab3::Map::add_object_to_map(Object * o) {
   objects.push_back(o);
 }
+
 void lab3::Map::load_terrain() {
   for (int i = 1; i < 10; i++) {
     add_object_to_map(new TreeTile(1,i));
@@ -136,4 +137,11 @@ Object * lab3::Map::get_object_at(int x, int y) {
     }
   }
   return NULL;
+}
+
+void lab3::Map::drop_object_from_inventory(int i) {
+  Object * droped_object = get_current_player()->drop_object(i);
+  // droped_object->set_position(get_current_player()->getX(), get_current_player()->getY());
+  // std::cout << "!" << &droped_object << std::endl;
+  // add_object_to_map(droped_object);
 }

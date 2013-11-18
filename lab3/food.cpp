@@ -21,3 +21,7 @@ short Food::type_id() {
 std::string Food::description() {
   return "Food";
 }
+
+Object * Food::perform_action() {
+  return NULL;
+};

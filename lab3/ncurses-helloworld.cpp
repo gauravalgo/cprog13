@@ -15,12 +15,16 @@ int RUNNING = true;
 lab3::Map m;
 std::vector<std::string> messages;
 WINDOW* inventory_window;
+WINDOW* info_window;
 
+void print_info();
 void add_message(std::string text) {
   if (text.empty()) {
     return;
   }
   messages.insert(messages.begin(), text);
+  print_info();
+  
 }
 
 void move_self_up( void ) {
@@ -45,12 +49,12 @@ void action_do_stuff( void ) {
 }
 
 void action_display_inventory( void ) {
-  werase(inventory_window);
-  box(inventory_window,0,0);
   bool DISPLAY_INVENTORY = true;
   int selected = 0;
   while (DISPLAY_INVENTORY) {
-
+    werase(inventory_window);
+    box(inventory_window,0,0);
+    
     std::vector<lab3::Object *> inventory = m.get_current_player()->inventory;
     mvwprintw(inventory_window, 0, 1, "Inventory: %d items.", inventory.size());
     int i = 0;
@@ -66,6 +70,7 @@ void action_display_inventory( void ) {
       mvwprintw(inventory_window, 2+i, 8, (*it)->description().c_str());
     }
     
+    mvwprintw(inventory_window, 16, 2, "Press space-char to use");
     mvwprintw(inventory_window, 18, 2, "Press q to close");
     wrefresh(inventory_window);
 
@@ -79,6 +84,18 @@ void action_display_inventory( void ) {
       if (selected < inventory.size()-1) {
         selected++;
       }
+    }
+
+    if (c == 'd') {
+      if (inventory.size() == 0) {
+        add_message("Cannot drop non-existing object");
+      } else {
+        m.drop_object_from_inventory(selected);
+        add_message("Drop object");
+      }
+    }
+    if (c == ' ') {
+      add_message("Use the object!");
     }
     if (c == 'q') {
       DISPLAY_INVENTORY = false;
@@ -146,19 +163,20 @@ void print_map(WINDOW * win) {
   wrefresh(win);
 }
 
-void print_info(WINDOW * win) {
-  werase(win);
-  box(win, 0,0);
+void print_info() {
+  werase(info_window);
+  box(info_window, 0,0);
+  mvwprintw(info_window, 0,1, "Logg");
 
   int a, b, c;
   m.get_current_player()->get_player_stats(a,b,c);
-  mvwprintw(win, 2,2, "Player HP %d: Hunger: %d, Total weight: %dkg", a, b,c);
+  mvwprintw(info_window, 2,2, "Player HP %d: Hunger: %d, Total weight: %dkg", a, b,c);
   
   int i = 0;
   for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end() && i < 4; it++, i++) {
-    mvwprintw(win, 4+i, 2, (*it).c_str() ) ;
+    mvwprintw(info_window, 4+i, 2, (*it).c_str() ) ;
   }
-  wrefresh(win);
+  wrefresh(info_window);
 }
 
 int main() {
@@ -176,7 +194,6 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('?', &action_display_help));
 
   WINDOW* game_window;
-  WINDOW* info_window;
   
   add_message("Welcome!");
   
@@ -213,7 +230,7 @@ int main() {
   int c;
   action_display_help();
   print_map(game_window);
-  print_info(info_window);
+  print_info();
 
   while(RUNNING) {
   
@@ -223,7 +240,7 @@ int main() {
       ((*start).second) ();
     }
 
-    print_info(info_window);
+    print_info();
     print_map(game_window);
   }
   endwin();

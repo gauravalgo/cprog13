@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <utility>
 
 using namespace lab3;
 
@@ -33,3 +35,21 @@ bool Player::add_to_inventory(Object * o) {
 int Player::get_weight() {
   return inventory.size();
 }
+
+Object * Player::drop_object(int i) {
+  // this should probably put it back
+  // on the map. But that was difficult.  
+  inventory.pop_back();
+  return NULL;
+}
+// Object * Player::use_object_from_inventory(int i){
+//   std::vector<Object *>::iterator it = inventory.begin();
+//   std::advance(it, i);
+//   if ( (*it)->can_do_action()) {
+//     Object * outputObject = (*it)->perform_action();
+//     inventory.erase(it);
+//     return outputObject;
+//   }
+//   return NULL;
+// }
+

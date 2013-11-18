@@ -38,6 +38,7 @@ namespace lab3 {
       bool is_vacant(int, int);
 
       Object * get_object_at(int, int);
+      void drop_object_from_inventory(int);
 
   };
 }
