@@ -47,14 +47,3 @@ bool Player::drop_object(Object * o) {
   }  
   return false;
 }
-// Object * Player::use_object_from_inventory(int i){
-//   std::vector<Object *>::iterator it = inventory.begin();
-//   std::advance(it, i);
-//   if ( (*it)->can_do_action()) {
-//     Object * outputObject = (*it)->perform_action();
-//     inventory.erase(it);
-//     return outputObject;
-//   }
-//   return NULL;
-// }
-
