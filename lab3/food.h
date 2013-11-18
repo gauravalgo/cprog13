@@ -13,7 +13,8 @@ namespace lab3 {
 
       virtual short type_id();
       virtual std::string symbol();
-      virtual std::string description();
+      virtual std::string description() { return "Food"; }
+      virtual std::string action_description() { return "ate"; }
       virtual bool can_do_action() { return true; };
 
       virtual Object * perform_action();

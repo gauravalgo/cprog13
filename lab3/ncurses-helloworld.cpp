@@ -103,7 +103,8 @@ void action_display_inventory( void ) {
       m.get_current_player()->drop_object(selected_object);
       lab3::Object * result_object = selected_object->perform_action();
       m.get_current_player()->apply_object_to_object(result_object);
-      add_message("Used the object!");
+      std::string message =  "You " + selected_object->action_description() + " the " + selected_object->description();
+      add_message(message);
     }
     if (c == 'q') {
       DISPLAY_INVENTORY = false;

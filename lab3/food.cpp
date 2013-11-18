@@ -19,10 +19,6 @@ short Food::type_id() {
   return 5;
 }
 
-std::string Food::description() {
-  return "Food";
-}
-
 Object * Food::perform_action() {
   return this;
 };
