@@ -16,6 +16,7 @@ namespace lab3 {
       virtual short type_id()           { return 6; };
       virtual std::string symbol()      { return "."; };
       virtual std::string description() { return "grass"; };
+      virtual std::string action_description() { return "poked at"; };
   };
 }
 #endif
