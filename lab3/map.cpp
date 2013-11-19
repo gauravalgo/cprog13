@@ -98,9 +98,12 @@ std::string lab3::Map::player_move_to(Player * p, int x, int y) {
   if (is_vacant(x,y)) {
     std::string out = get_message_from_position(x,y);
     p->set_position(x,y);
-    return out;
+    if (out.empty()) {
+      return "";
+    }
+    return "You see: " + out;
   }
-  return "";
+  return "You can't go there!";
 }
 
 std::string lab3::Map::get_message_from_position(int x, int y) {

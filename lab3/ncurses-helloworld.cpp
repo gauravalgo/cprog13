@@ -16,6 +16,7 @@ lab3::Map & m = *(new lab3::Map());
 std::vector<std::string> messages;
 WINDOW* inventory_window;
 WINDOW* info_window;
+WINDOW* tile_info_window;
 
 void print_info();
 void add_message(std::string text) {
@@ -27,20 +28,29 @@ void add_message(std::string text) {
   
 }
 
+void add_tile_info( std::string text ) {
+  werase(tile_info_window);
+  box(tile_info_window,0,0);
+  mvwprintw(tile_info_window, 0, 1, "TileInfoWindow");
+  mvwprintw(tile_info_window, 1,1, text.c_str());
+  wrefresh(tile_info_window);
+  wrefresh(tile_info_window);
+}
+
 void move_self_up( void ) {
-  add_message(m.player_move_up());
+  add_tile_info(m.player_move_up());
 }
 
 void move_self_down( void ) {
-  add_message(m.player_move_down());
+  add_tile_info(m.player_move_down());
 }
 
 void move_self_right( void ) {
-  add_message(m.player_move_right());
+  add_tile_info(m.player_move_right());
 }
 
 void move_self_left( void ) {
-  add_message(m.player_move_left());
+  add_tile_info(m.player_move_left());
 }
 
 void action_do_stuff( void ) {
@@ -225,9 +235,10 @@ int main() {
   game_window = newwin(40,70,0,0);
   box(game_window, 0,0);
   mvwprintw(game_window, 0, 1, "GameWindow");
-  
-  info_window = newwin(10,70,40,0);
 
+  tile_info_window = newwin(3,70,40,0);
+
+  info_window = newwin(10,70,43,0);
   wrefresh(info_window);
   inventory_window = newwin(20,30,10,20);
 

@@ -25,7 +25,7 @@ namespace lab3 {
         return "B";
       };
       virtual short type_id()           { return 7; };
-      virtual std::string description() { return "button"; };
+      virtual std::string description();
       
       virtual bool can_do_action()      { return !pressed; }
       virtual std::string action_description() {
