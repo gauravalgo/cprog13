@@ -23,6 +23,13 @@ lab3::Map::Map(Player * in) {
   add_player();
 }
 
+lab3::Map::~Map() {
+  for (std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
+    delete (*it);
+  }
+  std::cout << "Destructor of map" << std::endl;
+}
+
 Player lab3::Map::add_player() {
   current_player = (Player * ) new Player(10,10);
   objects.push_back(current_player);
@@ -55,42 +62,52 @@ lab3::Player * lab3::Map::get_current_player() {
 }
 
 // Player interactions
-void lab3::Map::player_move_up() {
+std::string lab3::Map::player_move_up() {
   Player * player = get_current_player();
   int x = player->getX();
   int y = player->getY();
 
-  player_move_to(player, --x, y);
+  return player_move_to(player, --x, y);
 }
 
-void lab3::Map::player_move_down() {
+std::string lab3::Map::player_move_down() {
   Player * player = get_current_player();
   int x = player->getX();
   int y = player->getY();
 
-  player_move_to(player, ++x, y);
+  return player_move_to(player, ++x, y);
 }
 
-void lab3::Map::player_move_right() {
+std::string lab3::Map::player_move_right() {
   Player * player = get_current_player();
   int x = player->getX();
   int y = player->getY();
 
-  player_move_to(player, x, ++y);
+  return player_move_to(player, x, ++y);
 }
 
-void lab3::Map::player_move_left() {
+std::string lab3::Map::player_move_left() {
   Player * player = get_current_player();
   int x = player->getX();
   int y = player->getY();
 
-  player_move_to(player, x, --y);
+  return player_move_to(player, x, --y);
 }
 
-void lab3::Map::player_move_to(Player * p, int x, int y) {
+std::string lab3::Map::player_move_to(Player * p, int x, int y) {
   if (is_vacant(x,y)) {
+    std::string out = get_message_from_position(x,y);
     p->set_position(x,y);
+    return out;
   }
+  return "";
+}
+
+std::string lab3::Map::get_message_from_position(int x, int y) {
+  Object * o = get_object_at(x,y);
+  if (o != NULL)
+    return o->description();
+  return "";
 }
 
 std::string lab3::Map::player_do_stuff_to_tile() {

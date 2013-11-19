@@ -12,7 +12,7 @@ typedef std::map<char, MenuActionPtrType> action_map;
 
 int RUNNING = true;
 
-lab3::Map m;
+lab3::Map & m = *(new lab3::Map());
 std::vector<std::string> messages;
 WINDOW* inventory_window;
 WINDOW* info_window;
@@ -28,24 +28,23 @@ void add_message(std::string text) {
 }
 
 void move_self_up( void ) {
-  m.player_move_up();
+  add_message(m.player_move_up());
 }
 
 void move_self_down( void ) {
-  m.player_move_down();
+  add_message(m.player_move_down());
 }
 
 void move_self_right( void ) {
-  m.player_move_right();
+  add_message(m.player_move_right());
 }
 
 void move_self_left( void ) {
-  m.player_move_left();
+  add_message(m.player_move_left());
 }
 
 void action_do_stuff( void ) {
-  std::string text = m.player_do_stuff_to_tile();
-  add_message(text);
+  add_message(m.player_do_stuff_to_tile());
 }
 
 void action_display_inventory( void ) {
@@ -213,7 +212,7 @@ int main() {
   init_ncurses();
   
   // Set all color paris, uses type_id from objects
-  // init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
+  // The pair 0 is reserved. // init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
   init_pair(1, COLOR_YELLOW, COLOR_BLACK);  // Tile
   init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
   init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
@@ -229,7 +228,7 @@ int main() {
   
   info_window = newwin(10,70,40,0);
 
-  // wrefresh(info_window);
+  wrefresh(info_window);
   inventory_window = newwin(20,30,10,20);
 
   // Require colour
@@ -257,5 +256,6 @@ int main() {
     print_map(game_window);
   }
   endwin();
+  delete &m;
   return 0;
 }

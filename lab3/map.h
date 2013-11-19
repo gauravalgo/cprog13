@@ -16,6 +16,7 @@ namespace lab3 {
       std::vector<Object *> objects;
       Map();
       Map(lab3::Player *);
+      ~Map();
       
       void load_terrain();
       bool add_object_to_map(Object *);
@@ -26,14 +27,15 @@ namespace lab3 {
 
       // Player interactions
     private:
-      void player_move_to(Player *, int, int);
+      std::string player_move_to(Player *, int, int);
     public:
-      void player_move_up();
-      void player_move_down();
-      void player_move_right();
-      void player_move_left();
+      std::string player_move_up();
+      std::string player_move_down();
+      std::string player_move_right();
+      std::string player_move_left();
 
       std::string player_do_stuff_to_tile();
+      std::string get_message_from_position(int, int);
 
       bool is_vacant(int, int);
 
