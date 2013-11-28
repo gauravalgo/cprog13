@@ -123,14 +123,15 @@ void action_display_inventory( void ) {
 
 void action_display_help( void  ) {
   WINDOW * help_window;
-  help_window = newwin(24,40,10,10);
+  help_window = newwin(24,50,10,10);
   box(help_window, 0,0);
   mvwprintw(help_window, 0, 1, "Help");
+  mvwprintw(help_window, 2, 2, "Jag get detta spel 4 av 5 toasters. /Anna");
 
-  mvwprintw(help_window, 2,2, "Move-keys: w,a,s,d");
-  mvwprintw(help_window, 4,2, "Pick up objects: space-key");
+  mvwprintw(help_window, 4,2, "Move-keys: w,a,s,d");
+  mvwprintw(help_window, 5,2, "Pick up objects: space-key");
   mvwprintw(help_window, 6,2, "See your inventory: i");
-  mvwprintw(help_window, 8,2, "View help: ?");
+  mvwprintw(help_window, 7,2, "View help: ?");
 
   mvwprintw(help_window, 20,2, "Press anykey to close this box");
 
