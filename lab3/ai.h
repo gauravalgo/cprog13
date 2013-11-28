@@ -7,14 +7,15 @@
 #include "actor.h"
 
 namespace lab3 {
-  class Player : public Actor {
+  class AI : public Actor {
     private:
     public:
-      Player();
-      Player(int, int);
+      AI();
+      AI(int, int);
   
-      virtual short type_id() { return 4; }
+      virtual short type_id() { return 6; }
       virtual std::string symbol() { return "X"; };
+      virtual std::string description() { return "cute crit"; }
   };
 }
   

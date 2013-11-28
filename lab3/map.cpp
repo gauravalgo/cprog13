@@ -10,6 +10,7 @@
 #include "grass_tile.h"
 #include "button.h"
 #include <ncurses.h>
+#include "ai.h"
 
 using namespace lab3;
 
@@ -55,6 +56,10 @@ void lab3::Map::load_terrain() {
   add_object_to_map( new GrassTile(3,7) );
   add_object_to_map( new GrassTile(6,11) );
   add_object_to_map( new Button(19,8) );
+}
+
+void lab3::Map::load_ais() {
+  add_object_to_map( new AI(,8,8) );
 }
 
 lab3::Player * lab3::Map::get_current_player() {

@@ -20,6 +20,7 @@ namespace lab3 {
       
       void load_terrain();
       bool add_object_to_map(Object *);
+      void load_ais();
 
       lab3::Player add_player();
       void move_player_up();

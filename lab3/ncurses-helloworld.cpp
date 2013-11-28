@@ -191,8 +191,8 @@ void print_info() {
   mvwprintw(info_window, 0,1, "Logg");
 
   int a, b, c;
-  m.get_current_player()->get_player_stats(a,b,c);
-  mvwprintw(info_window, 2,2, "Player HP %d: Hunger: %d, Total weight: %dkg", a, b,c);
+  m.get_current_player()->get_actor_stats(a,b,c);
+  mvwprintw(info_window, 1,1, "Player HP %d: Hunger: %d, Total weight: %dkg", a, b,c);
   
   int i = 0;
   for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end() && i < 4; it++, i++) {
@@ -230,6 +230,7 @@ int main() {
   init_pair(5, COLOR_GREEN, COLOR_YELLOW);  // Food
   init_pair(6, COLOR_WHITE, COLOR_GREEN);   // Grass
   init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
+  init_pair(8, COLOR_YELLOW, COLOR_YELLOW);     // AIs
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
   game_window = newwin(40,70,0,0);
