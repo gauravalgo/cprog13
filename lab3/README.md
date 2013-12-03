@@ -7,24 +7,12 @@ Actor
 
 Actor we = new demon();
 
-Föremal
-+ print()
-- Immovable
-- movable
-  + pickup()
-  + drop()
-  + use()
-  - Consumable
-    + use() 
+olika slags miljöer.
+- hal is. tex.
 
+- gubbar att interagera med. Typ ai, som gar omrking.
 
-Rum
-  + print()
-  - Utdoors
-  - Indoorsa
-
-
-
+- fixa minnesläckor
 --------------------
 TTTTTTTTTTTTTTTTT
           TTTT
