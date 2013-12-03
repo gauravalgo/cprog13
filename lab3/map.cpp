@@ -33,7 +33,6 @@ lab3::Map::~Map() {
 
 Player lab3::Map::add_player() {
   current_player = (Player * ) new Player(10,10);
-  objects.push_back(current_player);
 
   return *current_player;
 }
@@ -59,7 +58,8 @@ void lab3::Map::load_terrain() {
 }
 
 void lab3::Map::load_ais() {
-  add_object_to_map( new AI(,8,8) );
+  
+  // add_object_to_map( new AI(8,8) );
 }
 
 lab3::Player * lab3::Map::get_current_player() {

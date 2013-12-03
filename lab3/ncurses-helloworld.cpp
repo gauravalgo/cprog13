@@ -182,6 +182,8 @@ void print_map(WINDOW * win) {
     print_object( win, (*it) );
   }
 
+  print_object( win, m.get_current_player() );
+
   wrefresh(win);
 }
 
