@@ -6,6 +6,7 @@
 #include <iostream>
 #include "object.h"
 #include <vector>
+#include "gui.h"
 
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
@@ -16,7 +17,8 @@ lab3::Map & m = *(new lab3::Map());
 std::vector<std::string> messages;
 WINDOW* inventory_window;
 WINDOW* info_window;
-WINDOW* tile_info_window;
+lab3::Gui gui;
+
 std::string tile_info_text;
 
 void print_info();
@@ -29,29 +31,20 @@ void add_message(std::string text) {
   
 }
 
-void add_tile_info( std::string text ) {
-  tile_info_text = text;
-  werase(tile_info_window);
-  box(tile_info_window,0,0);
-  mvwprintw(tile_info_window, 0, 1, "TileInfoWindow");
-  mvwprintw(tile_info_window, 1,1, text.c_str());
-  wrefresh(tile_info_window);
-}
-
 void move_self_up( void ) {
-  add_tile_info(m.player_move_up());
+  gui.print_tile_info(m.player_move_up());
 }
 
 void move_self_down( void ) {
-  add_tile_info(m.player_move_down());
+  gui.print_tile_info(m.player_move_down());
 }
 
 void move_self_right( void ) {
-  add_tile_info(m.player_move_right());
+  gui.print_tile_info(m.player_move_right());
 }
 
 void move_self_left( void ) {
-  add_tile_info(m.player_move_left());
+  gui.print_tile_info(m.player_move_left());
 }
 
 void action_do_stuff( void ) {
@@ -176,14 +169,7 @@ void print_object(WINDOW * win, lab3::Object * o) {
     wattroff(win, COLOR_PAIR(id));
 }
 
-void print_tile_info(){
-  werase(tile_info_window);
-  box(tile_info_window,0,0);
-  mvwprintw(tile_info_window, 0, 1, "TileInfoWindow");
-  mvwprintw(tile_info_window, 1,1, tile_info_text.c_str());
-  wrefresh(tile_info_window);
 
-}
 
 void print_map(WINDOW * win) {
   int top_left_corner;
@@ -227,7 +213,6 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('?', &action_display_help));
 
   WINDOW* game_window;
-  
   add_message("Welcome!");
   
   init_ncurses();
@@ -247,10 +232,8 @@ int main() {
   box(game_window, 0,0);
   mvwprintw(game_window, 0, 1, "GameWindow");
 
-  tile_info_window = newwin(3,70,22,0);
-
+  
   info_window = newwin(10,70,25,0);
-  wrefresh(info_window);
   inventory_window = newwin(20,30,10,20);
 
   // Require colour
@@ -263,7 +246,7 @@ int main() {
 
   int c;
   action_display_help();
-  print_tile_info();
+  gui.print_tile_info(tile_info_text);
   print_map(game_window);
   print_info();
 
@@ -274,7 +257,7 @@ int main() {
     if (start != actions.end()){
       ((*start).second) ();
     }
-    print_tile_info();
+    gui.print_tile_info(tile_info_text);
     print_info();
     print_map(game_window);
   }
