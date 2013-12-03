@@ -233,13 +233,13 @@ int main() {
   init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
-  game_window = newwin(40,70,0,0);
+  game_window = newwin(22,70,0,0);
   box(game_window, 0,0);
   mvwprintw(game_window, 0, 1, "GameWindow");
 
-  tile_info_window = newwin(3,70,40,0);
+  tile_info_window = newwin(3,70,22,0);
 
-  info_window = newwin(10,70,43,0);
+  info_window = newwin(10,70,25,0);
   wrefresh(info_window);
   inventory_window = newwin(20,30,10,20);
 
