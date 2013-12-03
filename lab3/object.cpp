@@ -47,6 +47,9 @@ void Object::apply_object_to_object(Object * o) {
   if (hp > 100) {
     hp = 100;
   }
-  hunger  += o->get_hunger();
+  hunger  -= o->get_hunger();
+  if (hunger < 0){
+    hunger = 0;
+  }
   weight  += o->get_weight();
 }

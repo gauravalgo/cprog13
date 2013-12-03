@@ -8,7 +8,7 @@ Food::Food() : Inventorable() {
 }
 
 Food::Food(int x, int y) : Inventorable(x,y) {
-  hunger = -3;
+  hunger = 3;
 }
 
 std::string Food::symbol() {

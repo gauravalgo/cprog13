@@ -17,6 +17,7 @@ std::vector<std::string> messages;
 WINDOW* inventory_window;
 WINDOW* info_window;
 WINDOW* tile_info_window;
+std::string tile_info_text;
 
 void print_info();
 void add_message(std::string text) {
@@ -29,11 +30,11 @@ void add_message(std::string text) {
 }
 
 void add_tile_info( std::string text ) {
+  tile_info_text = text;
   werase(tile_info_window);
   box(tile_info_window,0,0);
   mvwprintw(tile_info_window, 0, 1, "TileInfoWindow");
   mvwprintw(tile_info_window, 1,1, text.c_str());
-  wrefresh(tile_info_window);
   wrefresh(tile_info_window);
 }
 
@@ -175,6 +176,15 @@ void print_object(WINDOW * win, lab3::Object * o) {
     wattroff(win, COLOR_PAIR(id));
 }
 
+void print_tile_info(){
+  werase(tile_info_window);
+  box(tile_info_window,0,0);
+  mvwprintw(tile_info_window, 0, 1, "TileInfoWindow");
+  mvwprintw(tile_info_window, 1,1, tile_info_text.c_str());
+  wrefresh(tile_info_window);
+
+}
+
 void print_map(WINDOW * win) {
   int top_left_corner;
   werase(win);
@@ -253,6 +263,7 @@ int main() {
 
   int c;
   action_display_help();
+  print_tile_info();
   print_map(game_window);
   print_info();
 
@@ -263,7 +274,7 @@ int main() {
     if (start != actions.end()){
       ((*start).second) ();
     }
-
+    print_tile_info();
     print_info();
     print_map(game_window);
   }
