@@ -18,7 +18,6 @@ std::vector<std::string> messages;
 WINDOW* inventory_window;
 WINDOW* info_window;
 lab3::Gui gui;
-
 std::string tile_info_text;
 
 void print_info();
@@ -32,19 +31,19 @@ void add_message(std::string text) {
 }
 
 void move_self_up( void ) {
-  gui.print_tile_info(m.player_move_up());
+  tile_info_text = m.player_move_up();
 }
 
 void move_self_down( void ) {
-  gui.print_tile_info(m.player_move_down());
+  tile_info_text = m.player_move_down();
 }
 
 void move_self_right( void ) {
-  gui.print_tile_info(m.player_move_right());
+  tile_info_text = m.player_move_right();
 }
 
 void move_self_left( void ) {
-  gui.print_tile_info(m.player_move_left());
+  tile_info_text = m.player_move_left();
 }
 
 void action_do_stuff( void ) {
@@ -172,7 +171,6 @@ void print_object(WINDOW * win, lab3::Object * o) {
 
 
 void print_map(WINDOW * win) {
-  int top_left_corner;
   werase(win);
   box(win, 0,0); 
   for(std::vector<lab3::Object *>::iterator it = m.objects.begin(); it != m.objects.end(); ++it) {
@@ -183,19 +181,9 @@ void print_map(WINDOW * win) {
 }
 
 void print_info() {
-  werase(info_window);
-  box(info_window, 0,0);
-  mvwprintw(info_window, 0,1, "Logg");
-
   int a, b, c;
   m.get_current_player()->get_player_stats(a,b,c);
-  mvwprintw(info_window, 2,2, "Player HP %d: Hunger: %d, Total weight: %dkg", a, b,c);
-  
-  int i = 0;
-  for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end() && i < 4; it++, i++) {
-    mvwprintw(info_window, 4+i, 2, (*it).c_str() ) ;
-  }
-  wrefresh(info_window);
+  gui.print_info(messages, a, b, c);
 }
 
 int main() {
@@ -233,7 +221,7 @@ int main() {
   mvwprintw(game_window, 0, 1, "GameWindow");
 
   
-  info_window = newwin(10,70,25,0);
+  //info_window = newwin(10,70,25,0);
   inventory_window = newwin(20,30,10,20);
 
   // Require colour
@@ -243,13 +231,14 @@ int main() {
     printf("Your terminal does not support color\n");
     RUNNING = false;
 	}
-
+  tile_info_text = "Here you will see information about what you encounter.";
   int c;
   action_display_help();
-  gui.print_tile_info(tile_info_text);
   print_map(game_window);
+  
+  gui.create_windows();
   print_info();
-
+  gui.print_tile_info(tile_info_text);
   while(RUNNING) {
   
     c = getch();
