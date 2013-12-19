@@ -27,7 +27,6 @@ void add_message(std::string text) {
   }
   messages.insert(messages.begin(), text);
   print_info();
-  
 }
 
 void move_self_up( void ) {

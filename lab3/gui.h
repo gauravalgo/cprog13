@@ -16,5 +16,4 @@ namespace lab3 {
 			void print_info(std::vector<std::string>& messages, int & hp, int & hunger, int & weight);
 	};
 }
-
 #endif

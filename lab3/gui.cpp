@@ -28,7 +28,6 @@ void Gui::print_info(std::vector<std::string>& messages, int & hp, int & hunger,
   box(info_window, 0,0);
   mvwprintw(info_window, 0,1, "Logg");
   mvwprintw(info_window, 2,2, "Player HP %d: Hunger: %d, Total weight: %dkg", hp, hunger, weight);
-  
   int i = 0;
   for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end() && i < 4; it++, i++) {
     mvwprintw(info_window, 4+i, 2, (*it).c_str() ) ;
