@@ -220,8 +220,6 @@ int main() {
   box(game_window, 0,0);
   mvwprintw(game_window, 0, 1, "GameWindow");
 
-  
-  //info_window = newwin(10,70,25,0);
   inventory_window = newwin(20,30,10,20);
 
   // Require colour
