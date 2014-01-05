@@ -16,11 +16,11 @@ int RUNNING = true;
 lab3::Map & m = *(new lab3::Map());
 std::vector<std::string> messages;
 WINDOW* inventory_window;
-WINDOW* info_window;
 lab3::Gui gui;
 std::string tile_info_text;
 
 void print_info();
+
 void add_message(std::string text) {
   if (text.empty()) {
     return;
@@ -114,22 +114,21 @@ void action_display_inventory( void ) {
 }
 
 void action_display_help( void  ) {
-  WINDOW * help_window;
-  help_window = newwin(24,50,10,10);
-  box(help_window, 0,0);
-  mvwprintw(help_window, 0, 1, "Help");
-  mvwprintw(help_window, 2, 2, "Jag get detta spel 4 av 5 toasters. /Anna");
+  gui.display_help();
+}
 
-  mvwprintw(help_window, 4,2, "Move-keys: w,a,s,d");
-  mvwprintw(help_window, 5,2, "Pick up objects: space-key");
-  mvwprintw(help_window, 6,2, "See your inventory: i");
-  mvwprintw(help_window, 7,2, "View help: ?");
+void print_info() {
+  int a, b, c;
+  m.get_current_player()->get_player_stats(a,b,c);
+  gui.print_info(messages, a, b, c);
+}
 
-  mvwprintw(help_window, 20,2, "Press anykey to close this box");
+void print_map( void ){
+  gui.print_map(m.objects);
+}
 
-  wrefresh(help_window);
-  getch();
-
+void print_tile_info( void ){
+   gui.print_tile_info(tile_info_text);
 }
 
 bool show_notification_box(std::string text) {
@@ -159,32 +158,6 @@ void init_ncurses() {
   refresh();
 }
 
-void print_object(WINDOW * win, lab3::Object * o) {
-    const char * sym = o->symbol().c_str();
-    short id = o->type_id();
-    wattron(win, COLOR_PAIR(id));
-    mvwprintw( win, o->getX(), o->getY(), sym);
-    wattroff(win, COLOR_PAIR(id));
-}
-
-
-
-void print_map(WINDOW * win) {
-  werase(win);
-  box(win, 0,0); 
-  for(std::vector<lab3::Object *>::iterator it = m.objects.begin(); it != m.objects.end(); ++it) {
-    print_object( win, (*it) );
-  }
-
-  wrefresh(win);
-}
-
-void print_info() {
-  int a, b, c;
-  m.get_current_player()->get_player_stats(a,b,c);
-  gui.print_info(messages, a, b, c);
-}
-
 int main() {
 
   // Actions
@@ -199,12 +172,11 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>('i', &action_display_inventory));
   actions.insert(std::make_pair<char, MenuActionPtrType>('?', &action_display_help));
 
-  WINDOW* game_window;
   add_message("Welcome!");
   
   init_ncurses();
   
-  // Set all color paris, uses type_id from objects
+  // Set all color pairs, uses type_id from objects
   // The pair 0 is reserved. // init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
   init_pair(1, COLOR_YELLOW, COLOR_BLACK);  // Tile
   init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
@@ -215,9 +187,6 @@ int main() {
   init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
-  game_window = newwin(22,70,0,0);
-  box(game_window, 0,0);
-  mvwprintw(game_window, 0, 1, "GameWindow");
 
   inventory_window = newwin(20,30,10,20);
 
@@ -231,11 +200,10 @@ int main() {
   tile_info_text = "Here you will see information about what you encounter.";
   int c;
   action_display_help();
-  print_map(game_window);
-  
   gui.create_windows();
   print_info();
-  gui.print_tile_info(tile_info_text);
+  print_tile_info();
+  print_map();
   while(RUNNING) {
   
     c = getch();
@@ -243,9 +211,9 @@ int main() {
     if (start != actions.end()){
       ((*start).second) ();
     }
-    gui.print_tile_info(tile_info_text);
+    print_tile_info();
     print_info();
-    print_map(game_window);
+    print_map();
   }
   endwin();
   delete &m;
