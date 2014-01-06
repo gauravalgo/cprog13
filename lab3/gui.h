@@ -12,6 +12,7 @@ namespace lab3 {
 			WINDOW* tile_info_window;
 			WINDOW* info_window;
 			WINDOW* map_window;
+			WINDOW* inventory_window;
 		public:
 			Gui();
 			void create_windows();
@@ -20,6 +21,7 @@ namespace lab3 {
 			void print_map(std::vector<Object *>& objects);
 			void print_object(WINDOW * win, Object * o);
 			void display_help(void);
+			Object * display_inventory( int & selected, std::vector<Object *> & inventory);
 	};
 }
 #endif

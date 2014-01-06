@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "object.h"
+#include "map.h"
 
 using namespace lab3;
 
@@ -15,6 +16,7 @@ void Gui::create_windows(){
 	tile_info_window = newwin(3,70,22,0);
 	info_window = newwin(10,70,25,0);
 	map_window = newwin(22,70,0,0);
+	inventory_window = newwin(20,30,10,20);
 }
 
 void Gui::print_tile_info(std::string& text){
@@ -71,4 +73,32 @@ void Gui::display_help( void ){
 
   wrefresh(help_window);
   getch();
+}
+
+Object * Gui::display_inventory( int & selected, std::vector<Object *> & inventory) {
+
+    werase(inventory_window);
+    box(inventory_window,0,0);
+		mvwprintw(inventory_window, 0, 1, "Inventory: %d items.", inventory.size());
+    Object * selected_object;
+
+    int i = 0;
+    for (std::vector<Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it, ++i) {
+      if ( i == selected ) {
+        mvwprintw(inventory_window, 2+i,2,"[X]");
+        selected_object = (*it);
+      } else {
+        mvwprintw(inventory_window, 2+i,2,"[ ]");
+      }
+      wattron(inventory_window, COLOR_PAIR( (*it)->type_id()) );
+      mvwprintw(inventory_window, 2+i,6,(*it)->symbol().c_str());
+      wattroff(inventory_window, COLOR_PAIR( (*it)->type_id() ));
+      mvwprintw(inventory_window, 2+i, 8, (*it)->description().c_str());
+    }
+    
+    mvwprintw(inventory_window, 14, 2, "Press space-char to use");
+    mvwprintw(inventory_window, 16, 2, "press d to drop the object");
+    mvwprintw(inventory_window, 18, 2, "Press q to close");
+    wrefresh(inventory_window);
+    return selected_object;
 }

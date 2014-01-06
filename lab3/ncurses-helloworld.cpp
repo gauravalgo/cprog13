@@ -53,32 +53,8 @@ void action_display_inventory( void ) {
   bool DISPLAY_INVENTORY = true;
   int selected = 0;
   while (DISPLAY_INVENTORY) {
-    werase(inventory_window);
-    box(inventory_window,0,0);
-
     std::vector<lab3::Object *> inventory = m.get_current_player()->inventory;
-
-    mvwprintw(inventory_window, 0, 1, "Inventory: %d items.", inventory.size());
-    lab3::Object * selected_object;
-
-    int i = 0;
-    for (std::vector<lab3::Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it, ++i) {
-      if ( i == selected ) {
-        mvwprintw(inventory_window, 2+i,2,"[X]");
-        selected_object = (*it);
-      } else {
-        mvwprintw(inventory_window, 2+i,2,"[ ]");
-      }
-      wattron(inventory_window, COLOR_PAIR( (*it)->type_id()) );
-      mvwprintw(inventory_window, 2+i,6,(*it)->symbol().c_str());
-      wattroff(inventory_window, COLOR_PAIR( (*it)->type_id() ));
-      mvwprintw(inventory_window, 2+i, 8, (*it)->description().c_str());
-    }
-    
-    mvwprintw(inventory_window, 14, 2, "Press space-char to use");
-    mvwprintw(inventory_window, 16, 2, "press d to drop the object");
-    mvwprintw(inventory_window, 18, 2, "Press q to close");
-    wrefresh(inventory_window);
+    lab3::Object * selected_object = gui.display_inventory(selected, inventory);
 
     char c = getch();
     if (c == 'w') {
