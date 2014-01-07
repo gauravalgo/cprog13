@@ -12,6 +12,8 @@ namespace lab3 {
   class Map {
     protected:
       lab3::Player * current_player;
+      int height = 20;
+      int length = 68;
     public:
       std::vector<Object *> objects;
       Map();

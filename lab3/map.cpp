@@ -42,11 +42,14 @@ bool lab3::Map::add_object_to_map(Object * o) {
 }
 
 void lab3::Map::load_terrain() {
-  for (int i = 1; i < 10; i++) {
-    add_object_to_map( new TreeTile(1,i));
-    add_object_to_map( new TreeTile(i,1) );
-    add_object_to_map( new Tile(i+1,30) );
-    add_object_to_map( new RockTile(20,i) );
+  int counter = height;
+  for (int i = 1; i <= height; i++) {
+    add_object_to_map( new TreeTile(i,1));
+    add_object_to_map( new TreeTile(i, length) );
+  }
+  for (int i = 1; i <= length; i++) {
+  add_object_to_map( new TreeTile(1, i));
+  add_object_to_map( new TreeTile(height, i) );
   }
 
   add_object_to_map( new Food(2,7) );

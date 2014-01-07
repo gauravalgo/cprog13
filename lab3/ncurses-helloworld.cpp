@@ -12,10 +12,9 @@ typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
 
 int RUNNING = true;
-
 lab3::Map & m = *(new lab3::Map());
+std::vector<lab3::Map* > maps;
 std::vector<std::string> messages;
-WINDOW* inventory_window;
 lab3::Gui gui;
 std::string tile_info_text;
 
@@ -79,6 +78,7 @@ void action_display_inventory( void ) {
     if (c == ' ') {
       m.get_current_player()->drop_object(selected_object);
       lab3::Object * result_object = selected_object->perform_action();
+      selected = 0;
       m.get_current_player()->apply_object_to_object(result_object);
       std::string message =  "You " + selected_object->action_description() + " the " + selected_object->description();
       add_message(message);
@@ -163,9 +163,6 @@ int main() {
   init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
-
-  inventory_window = newwin(20,30,10,20);
-
   // Require colour
   if(has_colors() == FALSE) {	
     endwin();
