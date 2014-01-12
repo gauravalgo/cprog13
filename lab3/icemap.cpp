@@ -37,3 +37,39 @@ void Icemap::load_terrain(){
   	}
   }
 }
+// Player interactions
+std::string Icemap::player_move_up() {
+  Player * player = get_current_player();
+  int x = player->getX();
+  int y = player->getY();
+  x--;
+
+  return player_move_to(player, --x, y);
+}
+
+std::string Icemap::player_move_down() {
+  Player * player = get_current_player();
+  int x = player->getX();
+  int y = player->getY();
+  x++;
+
+  return player_move_to(player, ++x, y);
+}
+
+std::string Icemap::player_move_right() {
+  Player * player = get_current_player();
+  int x = player->getX();
+  int y = player->getY();
+  y++;
+
+  return player_move_to(player, x, ++y);
+}
+
+std::string Icemap::player_move_left() {
+  Player * player = get_current_player();
+  int x = player->getX();
+  int y = player->getY();
+  y--;
+
+  return player_move_to(player, x, --y);
+}

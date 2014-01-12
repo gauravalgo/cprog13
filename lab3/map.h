@@ -27,9 +27,9 @@ namespace lab3 {
       lab3::Player * get_current_player();
 
       // Player interactions
-    private:
-      std::string player_move_to(Player *, int, int);
+
     public:
+      std::string player_move_to(Player *, int, int);
       virtual std::string player_move_up();
       virtual std::string player_move_down();
       virtual std::string player_move_right();

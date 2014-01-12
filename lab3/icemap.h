@@ -11,10 +11,15 @@
 
 namespace lab3{
 	class Icemap : public Map{
+	private:
+		virtual void load_terrain();
 	public: 
 		Icemap();
 		~Icemap();
-		virtual void load_terrain();
+		virtual std::string player_move_up();
+      	virtual std::string player_move_down();
+      	virtual std::string player_move_right();
+      	virtual std::string player_move_left();
 	};
 }
 #endif
