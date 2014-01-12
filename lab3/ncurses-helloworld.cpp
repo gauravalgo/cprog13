@@ -7,12 +7,14 @@
 #include "object.h"
 #include <vector>
 #include "gui.h"
+#include "icemap.h"
+#include "treemap.h"
 
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
 
 int RUNNING = true;
-lab3::Map & m = *(new lab3::Map());
+lab3::Map & m = *(new lab3::Icemap());
 std::vector<lab3::Map* > maps;
 std::vector<std::string> messages;
 lab3::Gui gui;
@@ -161,6 +163,7 @@ int main() {
   init_pair(5, COLOR_GREEN, COLOR_YELLOW);  // Food
   init_pair(6, COLOR_WHITE, COLOR_GREEN);   // Grass
   init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
+  init_pair(8, COLOR_WHITE, COLOR_WHITE);   // Ice
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
   // Require colour

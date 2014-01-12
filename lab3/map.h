@@ -20,21 +20,20 @@ namespace lab3 {
       Map(lab3::Player *);
       ~Map();
       
-      void load_terrain();
+      virtual void load_terrain();
       bool add_object_to_map(Object *);
 
       lab3::Player add_player();
-      void move_player_up();
       lab3::Player * get_current_player();
 
       // Player interactions
     private:
       std::string player_move_to(Player *, int, int);
     public:
-      std::string player_move_up();
-      std::string player_move_down();
-      std::string player_move_right();
-      std::string player_move_left();
+      virtual std::string player_move_up();
+      virtual std::string player_move_down();
+      virtual std::string player_move_right();
+      virtual std::string player_move_left();
 
       std::string player_do_stuff_to_tile();
       std::string get_message_from_position(int, int);

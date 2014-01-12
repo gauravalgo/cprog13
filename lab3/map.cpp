@@ -2,6 +2,7 @@
 #include "map.h"
 #include "tile.h"
 #include "treetile.h"
+#include "icetile.h"
 #include "player.h"
 #include "rocktile.h"
 #include <iostream>
@@ -14,13 +15,12 @@
 using namespace lab3;
 
 lab3::Map::Map() {
-  load_terrain();
-  add_player();
 }
 
 lab3::Map::Map(Player * in) {
   load_terrain();
   add_player();
+  std::cout << "second" << std::endl;
 }
 
 lab3::Map::~Map() {
@@ -42,16 +42,15 @@ bool lab3::Map::add_object_to_map(Object * o) {
 }
 
 void lab3::Map::load_terrain() {
-  int counter = height;
   for (int i = 1; i <= height; i++) {
     add_object_to_map( new TreeTile(i,1));
     add_object_to_map( new TreeTile(i, length) );
   }
   for (int i = 1; i <= length; i++) {
-  add_object_to_map( new TreeTile(1, i));
-  add_object_to_map( new TreeTile(height, i) );
+    add_object_to_map( new TreeTile(1, i));
+    add_object_to_map( new TreeTile(height, i) );
   }
-
+  add_object_to_map( new IceTile(4,7) );
   add_object_to_map( new Food(2,7) );
   add_object_to_map( new Food(2,2) );
   add_object_to_map( new Food(2,7) );

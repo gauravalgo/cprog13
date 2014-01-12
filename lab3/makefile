@@ -1,5 +1,5 @@
-hello: clean gui
-	g++ -std=c++11 -o curhello.o ncurses-helloworld.cpp character.h character.cpp map.h map.cpp tile.h tile.cpp treetile.h treetile.cpp object.h object.cpp player.h player.cpp rocktile.h rocktile.cpp food.h food.cpp inventorable.h inventorable.cpp grass_tile.h grass_tile.cpp button.h button.cpp gui.o -lncurses
+hello: clean gui map icemap treemap
+	g++ -std=c++11 -o curhello.o ncurses-helloworld.cpp character.h character.cpp map.o icemap.o treemap.o tile.h tile.cpp icetile.h icetile.cpp treetile.h treetile.cpp object.h object.cpp player.h player.cpp rocktile.h rocktile.cpp food.h food.cpp inventorable.h inventorable.cpp grass_tile.h grass_tile.cpp button.h button.cpp gui.o -lncurses
 
 run: hello
 	./curhello.o
@@ -7,8 +7,17 @@ run: hello
 gui:
 	g++ -std=c++11 -c gui.cpp gui.h -lncurses
 
+map:
+	g++ -std=c++11 -c map.cpp map.h -lncurses
+
+icemap:
+	g++ -std=c++11 -c icemap.cpp icemap.h -lncurses
+
+treemap:
+	g++ -std=c++11 -c treemap.cpp treemap.h -lncurses
+
 mem: hello
 	valgrind --tool=memcheck --leak-check=yes ./curhello.o
 
 clean:
-	$(RM) count *.out *~ *.o tests.cpp utdata.txt
+	$(RM) count *.out *~ *.o *.h.gch tests.cpp utdata.txt
