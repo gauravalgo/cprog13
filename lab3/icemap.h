@@ -20,6 +20,7 @@ namespace lab3{
       	virtual std::string player_move_down();
       	virtual std::string player_move_right();
       	virtual std::string player_move_left();
+      	std::string possible_move(int, int, int, int);
 	};
 }
 #endif
