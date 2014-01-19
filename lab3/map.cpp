@@ -15,12 +15,8 @@
 using namespace lab3;
 
 lab3::Map::Map() {
-}
-
-lab3::Map::Map(Player * in) {
   load_terrain();
   add_player();
-  std::cout << "second" << std::endl;
 }
 
 lab3::Map::~Map() {
@@ -134,7 +130,11 @@ std::string lab3::Map::player_do_stuff_to_tile() {
       } else if ((*it)->actionable()) {
         if ( (*it)->can_do_action() ){
           Object * o = (*it)->perform_action();
-          add_object_to_map(o);
+          if (o->change_level > 0) {
+            set_level = o->change_level;
+          } else {
+            add_object_to_map(o);
+          }
         }
         out += "You " + (*it)->action_description() + " the " + (*it)->description();
       }

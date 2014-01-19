@@ -174,6 +174,8 @@ int main() {
     printf("Your terminal does not support color\n");
     RUNNING = false;
 	}
+
+  int level = 0;
   tile_info_text = "Here you will see information about what you encounter.";
   int c;
   action_display_help();
@@ -188,6 +190,13 @@ int main() {
     if (start != actions.end()){
       ((*start).second) ();
     }
+
+    // Move player to other world, if needed
+    if (m.set_level > 0) {
+      //level = m.set_level;
+      add_message("change level");
+    }
+
     print_tile_info();
     print_info();
     print_map();
