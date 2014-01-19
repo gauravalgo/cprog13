@@ -14,7 +14,7 @@ typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
 
 int RUNNING = true;
-lab3::Map & m = *(new lab3::Icemap());
+lab3::Map & m = *(new lab3::Map());
 std::vector<lab3::Map* > maps;
 std::vector<std::string> messages;
 lab3::Gui gui;
@@ -164,6 +164,7 @@ int main() {
   init_pair(6, COLOR_WHITE, COLOR_GREEN);   // Grass
   init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
   init_pair(8, COLOR_WHITE, COLOR_WHITE);   // Ice
+  init_pair(9, COLOR_WHITE, COLOR_RED);     // Teleporter
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
   // Require colour
