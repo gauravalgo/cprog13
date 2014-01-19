@@ -15,8 +15,8 @@
 using namespace lab3;
 
 lab3::Map::Map() {
-  load_terrain();
-  add_player();
+  //load_terrain();
+  //add_player();
 }
 
 lab3::Map::~Map() {

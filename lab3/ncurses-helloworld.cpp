@@ -20,8 +20,6 @@ std::vector<lab3::Map* > maps;
 lab3::Gui gui(m);
 std::string tile_info_text;
 
-void print_info();
-
 void move_self_up( void ) {
   tile_info_text = m.player_move_up();
 }
@@ -87,12 +85,6 @@ void action_display_help( void  ) {
   gui.display_help();
 }
 
-void print_info() {
-  int a, b, c;
-  m.get_current_player()->get_player_stats(a,b,c);
-  gui.print_info(a, b, c);
-}
-
 void print_tile_info( void ){
    gui.print_tile_info(tile_info_text);
 }
@@ -130,7 +122,7 @@ int main() {
   int c;
   action_display_help();
   gui.create_windows();
-  print_info();
+  gui.print_info();
   print_tile_info();
   gui.print_map();
   while(RUNNING) {
@@ -144,11 +136,11 @@ int main() {
     // Move player to other world, if needed
     if (m.set_level > 0) {
       //level = m.set_level;
-      add_message("change level");
+      gui.add_message("change level");
     }
 
     print_tile_info();
-    print_info();
+    gui.print_info();
     gui.print_map();
   }
   endwin();

@@ -49,7 +49,9 @@ void Gui::print_tile_info(std::string& text){
   wrefresh(tile_info_window);
 }
 
-void Gui::print_info(int & hp, int & hunger, int & weight){
+void Gui::print_info(){
+  int hp, hunger, weight;
+  map.get_current_player()->get_player_stats(hp, hunger, weight);
 	werase(info_window);
   box(info_window, 0,0);
   mvwprintw(info_window, 0,1, "Logg");
@@ -146,12 +148,6 @@ void Gui::add_message(std::string text) {
     return;
   }
   messages.insert(messages.begin(), text);
-  print_messages();
-  wrefresh(info_window);}
-
-void Gui::print_messages(){
-  int i = 0;
-  for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end() && i < 4; it++, i++) {
-    mvwprintw(info_window, 4+i, 2, (*it).c_str() ) ;
-  }
+  print_info();
+  wrefresh(info_window);
 }
