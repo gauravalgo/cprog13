@@ -4,7 +4,8 @@
 - Miljö
 -- Beskrivande text (popup) om världen t ex is.
 -- Intro text
--- Knapp visar en dörr eller teleort
+-- Knapp visar en dörr eller teleort (KLAR)
+-- Teleport ska ändra värld.
 
 
 - Skriva ut gubben sist så att obj in hamnar över honom.
