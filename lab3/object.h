@@ -10,6 +10,7 @@ namespace lab3 {
       int hp;
       int hunger;
       int weight;
+      int change_level;
 
       int x, y;
       char sym;

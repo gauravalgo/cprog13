@@ -3,7 +3,7 @@
 
 #include "object.h"
 #include <string>
-#include "grass_tile.h"
+#include "teleporter.h"
 
 namespace lab3 {
   class Button : public Object {
@@ -36,7 +36,7 @@ namespace lab3 {
         pressed = true;
         return "pressed";
       };
-      virtual Object * perform_action() { return new GrassTile(25,25);};
+      virtual Object * perform_action() { return new Teleporter(10,10);};
 
       virtual bool actionable() { return true; };
       virtual bool passable()   { return true; };
