@@ -6,12 +6,33 @@
 #include <vector>
 #include "object.h"
 #include "map.h"
+#include "treemap.h"
 
 using namespace lab3;
 
-	Gui::Gui() {
+  Gui::Gui(lab3::Map & m):map(m) {
+    init_ncurses();
 }
 
+void Gui::init_ncurses() {
+  initscr();
+  noecho();
+  curs_set(0);
+  start_color();
+  refresh();
+    // Set all color pairs, uses type_id from objects
+  // The pair 0 is reserved. // init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
+  init_pair(1, COLOR_YELLOW, COLOR_BLACK);  // Tile
+  init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
+  init_pair(3, COLOR_WHITE, COLOR_GREEN);   // TreeTile
+  init_pair(4, COLOR_BLUE, COLOR_WHITE);    // The dude
+  init_pair(5, COLOR_GREEN, COLOR_YELLOW);  // Food
+  init_pair(6, COLOR_WHITE, COLOR_GREEN);   // Grass
+  init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
+  init_pair(8, COLOR_WHITE, COLOR_WHITE);   // Ice
+  init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
+  
+}
 void Gui::create_windows(){
 	tile_info_window = newwin(3,70,22,0);
 	info_window = newwin(10,70,25,0);
@@ -27,7 +48,7 @@ void Gui::print_tile_info(std::string& text){
   wrefresh(tile_info_window);
 }
 
-void Gui::print_info(std::vector<std::string>& messages, int & hp, int & hunger, int & weight){
+void Gui::print_info(int & hp, int & hunger, int & weight){
 	werase(info_window);
   box(info_window, 0,0);
   mvwprintw(info_window, 0,1, "Logg");
@@ -39,7 +60,8 @@ void Gui::print_info(std::vector<std::string>& messages, int & hp, int & hunger,
   wrefresh(info_window);
 }
 
-void Gui::print_map(std::vector<Object *>& objects){
+void Gui::print_map(){
+  std::vector<Object *>& objects = map.objects;
 	werase(map_window);
   box(map_window, 0,0); 
   for(std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
@@ -101,4 +123,34 @@ Object * Gui::display_inventory( int & selected, std::vector<Object *> & invento
     mvwprintw(inventory_window, 18, 2, "Press q to close");
     wrefresh(inventory_window);
     return selected_object;
+}
+
+bool Gui::show_notification_box(std::string text) {
+  WINDOW * win;
+  win = newwin(7,30,10,10);
+  box(win, 0,0);
+  wattron(win,COLOR_PAIR(666));
+  mvwprintw(win, 2,2, text.c_str());
+  mvwprintw(win, 4,2, "Press 'n' to stay");
+  wrefresh(win);
+  char c = getch();
+
+  if (c == 'n') {
+    return true;
+  }
+  return false;
+}
+void Gui::add_message(std::string text) {
+  if (text.empty()) {
+    return;
+  }
+  messages.insert(messages.begin(), text);
+  print_messages();
+  wrefresh(info_window);}
+
+void Gui::print_messages(){
+  int i = 0;
+  for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end() && i < 4; it++, i++) {
+    mvwprintw(info_window, 4+i, 2, (*it).c_str() ) ;
+  }
 }
