@@ -42,34 +42,34 @@ std::string Icemap::player_move_up() {
   Player * player = get_current_player();
   int x = player->getX();
   int y = player->getY();
-  x--;
-
-  return player_move_to(player, --x, y);
+  return possible_move(x-1,y,x-2,y);
 }
 
 std::string Icemap::player_move_down() {
   Player * player = get_current_player();
   int x = player->getX();
   int y = player->getY();
-  x++;
-
-  return player_move_to(player, ++x, y);
+  return possible_move(x+1,y,x+2,y);
 }
 
 std::string Icemap::player_move_right() {
   Player * player = get_current_player();
   int x = player->getX();
   int y = player->getY();
-  y++;
-
-  return player_move_to(player, x, ++y);
+  return possible_move(x,y+1,x,y+2);
 }
 
 std::string Icemap::player_move_left() {
   Player * player = get_current_player();
   int x = player->getX();
   int y = player->getY();
-  y--;
+  return possible_move(x,y-1,x,y-2);
+}
 
-  return player_move_to(player, x, --y);
+std::string Icemap::possible_move(int x, int y, int nextX, int nextY){
+  Player * player = get_current_player();
+  if (is_vacant(x,y) && !(is_vacant(nextX,nextY)) || !(is_vacant(x,y))){
+    return player_move_to(player, x, y);
+  }
+  return player_move_to(player, nextX, nextY);
 }
