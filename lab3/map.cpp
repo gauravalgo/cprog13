@@ -37,6 +37,10 @@ bool lab3::Map::add_object_to_map(Object * o) {
   objects.push_back(o);
 }
 
+void Map::set_map_info(std::string text){
+  map_info = text;
+}
+
 void lab3::Map::load_terrain() {
   for (int i = 1; i <= height; i++) {
     add_object_to_map( new TreeTile(i,1));
@@ -53,6 +57,10 @@ void lab3::Map::load_terrain() {
   add_object_to_map( new GrassTile(3,7) );
   add_object_to_map( new GrassTile(6,11) );
   add_object_to_map( new Button(19,8) );
+}
+
+std::string Map::get_map_info(){
+  return map_info;
 }
 
 lab3::Player * lab3::Map::get_current_player() {

@@ -14,6 +14,7 @@ namespace lab3 {
       lab3::Player * current_player;
       int height = 20;
       int length = 68;
+      std::string map_info;
     public:
       short set_level = 0;
       std::vector<Object *> objects;
@@ -23,6 +24,8 @@ namespace lab3 {
       
       virtual void load_terrain();
       bool add_object_to_map(Object *);
+      void set_map_info(std::string);
+      virtual std::string get_map_info();
 
       lab3::Player add_player();
       lab3::Player * get_current_player();

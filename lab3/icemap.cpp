@@ -18,6 +18,7 @@ using namespace lab3;
 Icemap::Icemap(){
 	load_terrain();
 	add_player();
+  set_map_info("Welcome to the green fields of france. Some say a mysterious button can be found here.");
 }
 
 void Icemap::load_terrain(){

@@ -53,13 +53,13 @@ void action_display_inventory( void ) {
         selected--;
       }
     }
-    if (c == 's' ) {
+    else if (c == 's' ) {
       if (selected < inventory.size()-1) {
         selected++;
       }
     }
 
-    if (c == 'd') {
+    else if (c == 'd') {
       if (inventory.size() == 0) {
         gui.add_message("Cannot drop non-existing object");
       } else {
@@ -67,15 +67,19 @@ void action_display_inventory( void ) {
         gui.add_message("Drop object");
       }
     }
-    if (c == ' ') {
-      m.get_current_player()->drop_object(selected_object);
-      lab3::Object * result_object = selected_object->perform_action();
-      selected = 0;
-      m.get_current_player()->apply_object_to_object(result_object);
-      std::string message =  "You " + selected_object->action_description() + " the " + selected_object->description();
-      gui.add_message(message);
+    else if (c == ' ') {
+      if (inventory.size() == 0) {
+        gui.add_message("Cannot use non-existing object");
+      } else {
+        m.get_current_player()->drop_object(selected_object);
+        lab3::Object * result_object = selected_object->perform_action();
+        selected = 0;
+        m.get_current_player()->apply_object_to_object(result_object);
+        std::string message =  "You " + selected_object->action_description() + " the " + selected_object->description();
+        gui.add_message(message);
     }
-    if (c == 'q') {
+    }
+    else if (c == 'q') {
       DISPLAY_INVENTORY = false;
     }
   }
@@ -91,6 +95,10 @@ void print_tile_info( void ){
 
 void action_quit( void ) {
   RUNNING = gui.show_notification_box("Shutting down");
+}
+
+void change_level( int ){
+
 }
 
 int main() {
