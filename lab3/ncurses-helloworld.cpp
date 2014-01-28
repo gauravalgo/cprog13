@@ -9,42 +9,41 @@
 #include "gui.h"
 #include "icemap.h"
 #include "treemap.h"
+#include "maphandler.h"
 
 typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
 
 int RUNNING = true;
-lab3::Map & m = *(new lab3::Treemap());
-std::vector<lab3::Map* > maps;
-//std::vector<std::string> messages;
-lab3::Gui gui(m);
+lab3::Maphandler maphandler = *(new lab3::Maphandler()); 
+lab3::Gui gui(maphandler.get_map());
 std::string tile_info_text;
 
 void move_self_up( void ) {
-  tile_info_text = m.player_move_up();
+  tile_info_text = maphandler.get_map().player_move_up();
 }
 
 void move_self_down( void ) {
-  tile_info_text = m.player_move_down();
+  tile_info_text = maphandler.get_map().player_move_down();
 }
 
 void move_self_right( void ) {
-  tile_info_text = m.player_move_right();
+  tile_info_text = maphandler.get_map().player_move_right();
 }
 
 void move_self_left( void ) {
-  tile_info_text = m.player_move_left();
+  tile_info_text = maphandler.get_map().player_move_left();
 }
 
 void action_do_stuff( void ) {
-  gui.add_message(m.player_do_stuff_to_tile());
+  gui.add_message(maphandler.get_map().player_do_stuff_to_tile());
 }
 
 void action_display_inventory( void ) {
   bool DISPLAY_INVENTORY = true;
   int selected = 0;
   while (DISPLAY_INVENTORY) {
-    std::vector<lab3::Object *> inventory = m.get_current_player()->inventory;
+    std::vector<lab3::Object *> inventory = maphandler.get_map().get_current_player()->inventory;
     lab3::Object * selected_object = gui.display_inventory(selected, inventory);
 
     char c = getch();
@@ -63,7 +62,7 @@ void action_display_inventory( void ) {
       if (inventory.size() == 0) {
         gui.add_message("Cannot drop non-existing object");
       } else {
-        m.drop_object_from_inventory(selected_object);
+        maphandler.get_map().drop_object_from_inventory(selected_object);
         gui.add_message("Drop object");
       }
     }
@@ -71,10 +70,10 @@ void action_display_inventory( void ) {
       if (inventory.size() == 0) {
         gui.add_message("Cannot use non-existing object");
       } else {
-        m.get_current_player()->drop_object(selected_object);
+        maphandler.get_map().get_current_player()->drop_object(selected_object);
         lab3::Object * result_object = selected_object->perform_action();
         selected = 0;
-        m.get_current_player()->apply_object_to_object(result_object);
+        maphandler.get_map().get_current_player()->apply_object_to_object(result_object);
         std::string message =  "You " + selected_object->action_description() + " the " + selected_object->description();
         gui.add_message(message);
     }
@@ -114,7 +113,6 @@ int main() {
   actions.insert(std::make_pair<char, MenuActionPtrType>(' ', &action_do_stuff));
   actions.insert(std::make_pair<char, MenuActionPtrType>('i', &action_display_inventory));
   actions.insert(std::make_pair<char, MenuActionPtrType>('?', &action_display_help));
-
   gui.add_message("Welcome!");
 
   // Require colour
@@ -142,8 +140,8 @@ int main() {
     }
 
     // Move player to other world, if needed
-    if (m.set_level > 0) {
-      //level = m.set_level;
+    if (maphandler.changed_level()) {
+      gui.show_notification_box(maphandler.get_map().get_map_info());
       gui.add_message("change level");
     }
 
@@ -152,6 +150,5 @@ int main() {
     gui.print_map();
   }
   endwin();
-  delete &m;
   return 0;
 }

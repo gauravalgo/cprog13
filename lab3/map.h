@@ -16,7 +16,6 @@ namespace lab3 {
       int length = 68;
       std::string map_info;
     public:
-      short set_level = 0;
       std::vector<Object *> objects;
       Map();
       Map(lab3::Player *);
