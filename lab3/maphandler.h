@@ -2,8 +2,6 @@
 #define MAPH_H
 
 #include "map.h"
-#include "icemap.h"
-#include "treemap.h"
 #include <vector>
 
 namespace lab3{

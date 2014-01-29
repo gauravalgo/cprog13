@@ -1,16 +1,10 @@
-#include <vector>
-#include "map.h"
 #include "tile.h"
 #include "treetile.h"
 #include "icetile.h"
-#include "player.h"
 #include "rocktile.h"
-#include <iostream>
-#include <assert.h>
 #include "food.h"
 #include "grass_tile.h"
 #include "button.h"
-#include <ncurses.h>
 #include "treemap.h"
 
 using namespace lab3;

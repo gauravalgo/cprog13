@@ -1,11 +1,6 @@
 #ifndef ICEMAP_H
 #define ICEMAP_H
 
-#include "object.h"
-#include "character.h"
-#include <vector>
-#include <string>
-#include "tile.h"
 #include "player.h"
 #include "map.h"
 

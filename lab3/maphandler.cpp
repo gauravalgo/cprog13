@@ -1,6 +1,7 @@
 #include "map.h"
 #include "icemap.h"
 #include "treemap.h"
+#include "desertmap.h"
 #include "maphandler.h"
 #include <vector>
 #include "player.h"
@@ -22,6 +23,7 @@ Maphandler::~Maphandler(){
 void Maphandler::add_maps(){
 	maps.push_back(new Treemap());
 	maps.push_back(new Icemap());
+	maps.push_back(new Desertmap());
 }
 
 Map & Maphandler::get_map(){

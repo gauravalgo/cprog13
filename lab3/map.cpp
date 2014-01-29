@@ -33,7 +33,6 @@ bool lab3::Map::add_object_to_map(Object * o) {
   objects.push_back(o);
 }
 
-
 void Map::set_map_info(std::string text){
   map_info = text;
 }

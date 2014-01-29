@@ -7,8 +7,6 @@
 #include "object.h"
 #include <vector>
 #include "gui.h"
-#include "icemap.h"
-#include "treemap.h"
 #include "maphandler.h"
 
 typedef void (*MenuActionPtrType) ( void );
@@ -131,6 +129,8 @@ int main() {
   gui.print_info();
   print_tile_info();
   gui.print_map();
+  gui.show_notification_box(maphandler.get_map().get_map_info());
+
   while(RUNNING) {
   
     c = getch();

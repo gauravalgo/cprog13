@@ -134,11 +134,10 @@ Object * Gui::display_inventory( int & selected, std::vector<Object *> & invento
 
 bool Gui::show_notification_box(std::string text) {
   WINDOW * win;
-  win = newwin(7,30,10,10);
+  win = newwin(7,45,10,10);
   box(win, 0,0);
-  wattron(win,COLOR_PAIR(666));
-  mvwprintw(win, 2,2, text.c_str());
-  mvwprintw(win, 4,2, "Press 'n' to stay");
+  mvwprintw(win, 1,1, text.c_str());
+  mvwprintw(win, 5,1, "Press 'n' to stay");
   wrefresh(win);
   char c = getch();
 
