@@ -3,6 +3,7 @@
 #include <string>
 #include "food.h"
 #include <iostream>
+#include "teleporter.h"
 
 using namespace lab3;
 
@@ -11,7 +12,10 @@ Terry::Terry(int x, int y) : Character(x, y) {
 }
 
 Object * Terry::perform_action() {
-  return new Food(13,14);
+  if (unused) {
+    unused = false;
+    return new Teleporter(13,14);
+  }
 }
 
 Object * Terry::tick() {
