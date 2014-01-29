@@ -30,12 +30,6 @@ Map & Maphandler::get_map(){
 }
 
 void Maphandler::change_map(int mapnumber){
-	get_map().remove_player();
 	current_map = mapnumber;
 	get_map().add_player(p);
-	changed = false;
-}
-		
-bool Maphandler::changed_level(){
-	return changed;
 }
