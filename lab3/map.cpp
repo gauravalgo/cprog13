@@ -15,8 +15,6 @@
 using namespace lab3;
 
 Map::Map() {
-  //load_terrain();
-  //add_player();
 }
 
 lab3::Map::~Map() {
@@ -26,15 +24,18 @@ lab3::Map::~Map() {
   std::cout << "Destructor of map" << std::endl;
 }
 
-Player lab3::Map::add_player() {
-  current_player = (Player * ) new Player(10,10);
+void lab3::Map::add_player(Player * p) {
+  current_player = p;
+  //current_player = (Player * ) new Player(10,10);
   objects.push_back(current_player);
-
-  return *current_player;
 }
 
 bool lab3::Map::add_object_to_map(Object * o) {
   objects.push_back(o);
+}
+
+void Map::remove_player(){
+    objects.erase(objects.begin());
 }
 
 void Map::set_map_info(std::string text){

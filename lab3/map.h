@@ -24,10 +24,11 @@ namespace lab3 {
       int set_level = 0;
       virtual void load_terrain();
       bool add_object_to_map(Object *);
+      void remove_player();
       void set_map_info(std::string);
       virtual std::string get_map_info();
 
-      lab3::Player add_player();
+      void add_player(Player *);
       lab3::Player * get_current_player();
 
       // Player interactions

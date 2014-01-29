@@ -10,10 +10,12 @@ namespace lab3{
 	class Maphandler{
 		private:
 			std::vector<Map *> maps;
+			Player * p;
 			int current_map = 0;
 			bool changed = false;
 		public:
 			Maphandler();
+			~Maphandler();
 			void add_maps();
 			Map & get_map();
 			void change_map(int);

@@ -17,7 +17,7 @@ using namespace lab3;
 
 Icemap::Icemap(){
 	load_terrain();
-	add_player();
+	//add_player();
   set_map_info("Watch out for the icy ground! Wooosh!");
 }
 
