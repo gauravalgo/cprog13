@@ -1,5 +1,5 @@
 hello: clean gui map icemap treemap desertmap maphandler
-	g++ -std=c++11 -o curhello.o ncurses-helloworld.cpp character.h character.cpp map.o desertmap.o maphandler.o icemap.o treemap.o tile.h tile.cpp icetile.h icetile.cpp treetile.h treetile.cpp object.h object.cpp player.h player.cpp rocktile.h rocktile.cpp food.h food.cpp inventorable.h inventorable.cpp grass_tile.h grass_tile.cpp button.h button.cpp teleporter.cpp teleporter.h terry.h terry.cpp gui.o -lncurses
+	g++ -std=c++11 -o curhello.o ncurses-helloworld.cpp character.h character.cpp map.o desertmap.o maphandler.o icemap.o treemap.o tile.h tile.cpp icetile.h icetile.cpp treetile.h treetile.cpp object.h object.cpp player.h player.cpp rocktile.h rocktile.cpp food.h food.cpp inventorable.h inventorable.cpp grass_tile.h grass_tile.cpp button.h button.cpp teleporter.cpp teleporter.h terry.h terry.cpp victory.h victory.cpp gui.o -lncurses
 
 run: hello
 	./curhello.o

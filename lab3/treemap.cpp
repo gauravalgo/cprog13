@@ -7,6 +7,7 @@
 #include "button.h"
 #include "treemap.h"
 #include "terry.h"
+#include "victory.h"
 
 using namespace lab3;
 
@@ -34,4 +35,5 @@ void Treemap::load_terrain(){
   add_object_to_map( new GrassTile(6,11) );
   add_object_to_map( new Button(19,8) );
   add_object_to_map( new Terry(13,10) );
+  add_object_to_map( new Victory(16,16) );
 }
