@@ -20,7 +20,7 @@ void Gui::init_ncurses() {
   curs_set(0);
   start_color();
   refresh();
-    // Set all color pairs, uses type_id from objects
+  // Set all color pairs, uses type_id from objects
   // The pair 0 is reserved. // init_pair(0, COLOR_WHITE, COLOR_BLACK);   // Object, should be standrad out color
   init_pair(1, COLOR_YELLOW, COLOR_BLACK);  // Tile
   init_pair(2, COLOR_BLACK, COLOR_RED);     // RockTile
