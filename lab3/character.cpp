@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <utility>
 #include <vector>
+#include <string>
 #include "object.h"
 
 using namespace lab3;
@@ -30,3 +31,5 @@ bool Character::drop_object(Object * o) {
   }  
   return false;
 }
+
+std::string Character::symbol() { return "c"; };

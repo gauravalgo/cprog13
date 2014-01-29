@@ -31,6 +31,7 @@ void Gui::init_ncurses() {
   init_pair(7, COLOR_RED, COLOR_WHITE);     // Button
   init_pair(8, COLOR_WHITE, COLOR_WHITE);   // Ice
   init_pair(9, COLOR_WHITE, COLOR_RED);     // Teleporter
+  init_pair(12, COLOR_YELLOW, COLOR_RED);   // Characters
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
 }

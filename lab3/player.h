@@ -12,8 +12,8 @@ namespace lab3 {
       Player();
       Player(int, int);
   
-      short type_id() { return 4; }
       std::string symbol();
+      short type_id()                           { return 4; }
   };
 }
 #endif
