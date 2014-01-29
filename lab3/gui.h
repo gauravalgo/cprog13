@@ -19,6 +19,7 @@ namespace lab3 {
 		public:
 			Gui(Map & m);
 			void init_ncurses();
+			void update_map(Map & new_map);
 			void create_windows();
 			void print_tile_info(std::string& text);
 			void print_info();

@@ -15,12 +15,13 @@ namespace lab3 {
       int height = 20;
       int length = 68;
       std::string map_info;
+
     public:
       std::vector<Object *> objects;
       Map();
       Map(lab3::Player *);
       ~Map();
-      
+      int set_level = 0;
       virtual void load_terrain();
       bool add_object_to_map(Object *);
       void set_map_info(std::string);

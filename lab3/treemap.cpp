@@ -18,6 +18,8 @@ using namespace lab3;
 Treemap::Treemap(){
 	load_terrain();
 	add_player();
+  set_map_info("Welcome to the green fields of france. Some say a mysterious button can be found here.");
+
 }
 
 void Treemap::load_terrain(){

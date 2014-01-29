@@ -140,9 +140,12 @@ int main() {
     }
 
     // Move player to other world, if needed
-    if (maphandler.changed_level()) {
+    int level = maphandler.get_map().set_level;
+    if (level > 0) {
+      maphandler.change_map(level);
+      gui.update_map(maphandler.get_map());
       gui.show_notification_box(maphandler.get_map().get_map_info());
-      gui.add_message("change level");
+      gui.add_message("A whole new world, exciting!");
     }
 
     print_tile_info();

@@ -34,6 +34,10 @@ void Gui::init_ncurses() {
   init_pair(666, COLOR_RED, COLOR_BLACK);   // Warnings etc
   
 }
+
+void Gui::update_map(Map & new_map){
+  map = new_map;
+}
 void Gui::create_windows(){
 	tile_info_window = newwin(3,70,22,0);
 	info_window = newwin(10,70,25,0);

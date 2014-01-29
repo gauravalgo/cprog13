@@ -21,7 +21,7 @@ namespace lab3 {
       virtual short type_id()           { return 9; };
       virtual std::string symbol()      { return "O"; };
       virtual std::string description() { return "teleporter"; };
-      virtual std::string action_description() { return "jumped on the"; };
+      virtual std::string action_description() { return "jumped on "; };
       virtual bool can_do_action()      { return true; }
 
       virtual Object * perform_action();
