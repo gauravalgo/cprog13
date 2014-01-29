@@ -138,6 +138,9 @@ int main() {
     if (start != actions.end()){
       ((*start).second) ();
     }
+    
+    // Tick for all objects
+    maphandler.get_map().ticks();
 
     // Move player to other world, if needed
     int level = maphandler.get_map().set_level;

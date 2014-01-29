@@ -48,6 +48,8 @@ namespace lab3 {
       Object * get_object_at(int, int);
       bool drop_object_from_inventory(Object *);
 
+      void ticks();
+
   };
 }
 

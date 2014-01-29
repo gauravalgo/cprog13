@@ -180,3 +180,11 @@ bool lab3::Map::drop_object_from_inventory(Object * o) {
 
   return true;
 }
+
+void lab3::Map::ticks() {
+  // Do the ticks for all objects
+  for(std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
+    (*it)->tick();
+  }
+  return;
+}
