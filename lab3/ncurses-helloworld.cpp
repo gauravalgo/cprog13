@@ -76,7 +76,7 @@ void action_display_inventory( void ) {
         maphandler.get_map().get_current_player()->apply_object_to_object(result_object);
         std::string message =  "You " + selected_object->action_description() + " the " + selected_object->description();
         gui.add_message(message);
-    }
+      }
     }
     else if (c == 'q') {
       DISPLAY_INVENTORY = false;

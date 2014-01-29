@@ -123,6 +123,7 @@ std::string lab3::Map::player_do_stuff_to_tile() {
   Player * p = get_current_player();
   std::string out;
   bool found_stuff = false;
+  int set_level = 0;
 
   for (std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
     if ( (*it)->getX() == p->getX() && (*it)->getY() == p->getY() && (*it)->type_id() != p->type_id()) {
