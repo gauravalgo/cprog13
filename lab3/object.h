@@ -16,6 +16,7 @@ namespace lab3 {
       char sym;
       Object();
       Object(int, int);
+      virtual ~Object();
 
       int getX();
       int getY();

@@ -11,6 +11,10 @@ Object::Object(int X, int Y) {
   y = Y;
 }
 
+Object::~Object() {
+  // clean up
+}
+
 int Object::getX() {
   return x;
 }

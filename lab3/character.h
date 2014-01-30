@@ -13,6 +13,7 @@ namespace lab3 {
       std::vector<Object *> inventory;
       Character() : Object() {};
       Character(int x, int y) : Object(x, y) {};
+      virtual ~Character();
       
       virtual bool add_to_inventory( Object * o );
       virtual bool drop_object( Object * );

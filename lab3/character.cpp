@@ -16,6 +16,12 @@ int Character::get_weight() {
   return inventory.size();
 }
 
+Character::~Character() {
+  for (std::vector<Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it) {
+    delete (*it);
+  }
+}
+
 void Character::get_player_stats(int & hp, int & hunger, int & weight) {
   hp = this->hp;
   hunger = this->hunger;
