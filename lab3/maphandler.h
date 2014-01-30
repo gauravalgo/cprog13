@@ -16,6 +16,7 @@ namespace lab3{
 			void add_maps();
 			Map & get_map();
 			void change_map(int);
+			void remove_player(Map & m);
 	};
 }
 #endif

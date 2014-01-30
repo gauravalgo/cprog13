@@ -7,12 +7,13 @@
 #include "grass_tile.h"
 #include "button.h"
 #include "icemap.h"
+#include "terry.h"
+#include "desertmap.h"
 
 using namespace lab3;
 
 Icemap::Icemap(){
 	load_terrain();
-	//add_player();
   set_map_info("Watch out for the icy ground! Wooosh!");
 }
 
@@ -32,6 +33,7 @@ void Icemap::load_terrain(){
   		add_object_to_map( new IceTile(i, k) );
   	}
   }
+  add_object_to_map( new Terry(13,10) );
 }
 // Player interactions
 std::string Icemap::player_move_up() {

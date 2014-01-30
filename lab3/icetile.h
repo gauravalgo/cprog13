@@ -16,6 +16,7 @@ namespace lab3 {
       short type_id() { return 8; }
       virtual bool passable() { return true; }
       virtual std::string description() { return "ice"; }
+      virtual std::string action_description() { return "slide on"; };
   };
 }
 #endif

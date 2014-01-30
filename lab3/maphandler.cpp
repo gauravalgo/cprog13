@@ -5,9 +5,9 @@
 #include "maphandler.h"
 #include <vector>
 #include "player.h"
+#include "object.h"
 
 using namespace lab3;
-
 Maphandler::Maphandler(){
 	add_maps();
 	p = (Player * ) new Player(10,10);
@@ -32,6 +32,17 @@ Map & Maphandler::get_map(){
 }
 
 void Maphandler::change_map(int mapnumber){
+	remove_player(get_map());
 	current_map = mapnumber;
 	get_map().add_player(p);
+}
+
+void Maphandler::remove_player(Map & m){
+  for (std::vector<Object *>::iterator it = m.objects.begin(); it != m.objects.end(); ++it) {
+   	short id = (*it)->type_id();
+   	if (id == 4){
+   		m.objects.erase(it);
+   		break;
+   }
+  }
 }

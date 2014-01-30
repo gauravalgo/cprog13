@@ -5,6 +5,8 @@
 #include "grass_tile.h"
 #include "button.h"
 #include "treemap.h"
+#include "victory.h"
+#include "terry.h"
 #include "desertmap.h"
 
 using namespace lab3;
@@ -28,4 +30,5 @@ void Desertmap::load_terrain(){
   add_object_to_map( new RockTile(6, 19) );
   add_object_to_map( new GrassTile(10,45) );
   add_object_to_map( new GrassTile(10,47) );
+  add_object_to_map( new Victory(16,16) );
 }

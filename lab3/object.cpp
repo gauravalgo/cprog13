@@ -27,9 +27,9 @@ std::string Object::description() {
   return "an object ";
 }
 
-short Object::type_id() {
-  return 0;
-}
+//short Object::type_id() {
+//  return 0;
+//}
 
 void Object::set_position(int x, int y) {
   this->x = x;

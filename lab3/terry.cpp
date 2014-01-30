@@ -14,7 +14,7 @@ Terry::Terry(int x, int y) : Character(x, y) {
 Object * Terry::perform_action() {
   if (unused) {
     unused = false;
-    return new Teleporter(13,14);
+    return new Teleporter(2,2);
   }
 }
 

@@ -21,7 +21,7 @@ namespace lab3 {
       int getY();
 
       virtual std::string symbol();
-      virtual short type_id();
+      virtual short type_id(){return 0;};
       virtual std::string description();
       virtual std::string action_description() { return "looked at"; };
 
