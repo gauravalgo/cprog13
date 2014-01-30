@@ -13,7 +13,7 @@ typedef void (*MenuActionPtrType) ( void );
 typedef std::map<char, MenuActionPtrType> action_map;
 
 int RUNNING = true;
-lab3::Maphandler maphandler = *(new lab3::Maphandler()); 
+lab3::Maphandler maphandler;
 lab3::Gui gui(maphandler);
 std::string tile_info_text;
 
@@ -121,6 +121,7 @@ int main() {
     printf("Your terminal does not support color\n");
     RUNNING = false;
 	}
+
 
   int level = 0;
   tile_info_text = "Here you will see information about what you encounter.";
