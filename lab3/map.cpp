@@ -21,6 +21,8 @@ lab3::Map::~Map() {
   for (std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {
     delete (*it);
   }
+
+  delete current_player;
   std::cout << "Destructor of map" << std::endl;
 }
 

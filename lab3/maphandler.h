@@ -17,6 +17,10 @@ namespace lab3{
 			Map & get_map();
 			void change_map(int);
 			void remove_player(Map & m);
+      
+      Maphandler& operator *= ( const Maphandler m ) {
+        return *this;
+      }
 	};
 }
 #endif

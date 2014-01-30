@@ -11,7 +11,7 @@
 
 using namespace lab3;
 
-  Gui::Gui(lab3::Maphandler & m):map(m) {
+Gui::Gui(lab3::Maphandler & m):map(m) {
     init_ncurses();
 }
 

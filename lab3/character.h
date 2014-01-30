@@ -11,7 +11,7 @@ namespace lab3 {
     protected:
     public:
       std::vector<Object *> inventory;
-      Character() : Object() {};
+      Character();
       Character(int x, int y) : Object(x, y) {};
       virtual ~Character();
       

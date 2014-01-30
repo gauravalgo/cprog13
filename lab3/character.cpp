@@ -5,8 +5,11 @@
 #include <vector>
 #include <string>
 #include "object.h"
+#include <iostream>
 
 using namespace lab3;
+
+Character::Character() : Object() {}
 
 bool Character::add_to_inventory(Object * o) {
   inventory.push_back(o);
@@ -17,6 +20,7 @@ int Character::get_weight() {
 }
 
 Character::~Character() {
+  std::cout << "Destructor Character" << std::endl;
   for (std::vector<Object *>::iterator it = inventory.begin(); it != inventory.end(); ++it) {
     delete (*it);
   }
