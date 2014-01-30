@@ -9,8 +9,8 @@ namespace lab3{
 		private:
 			std::vector<Map *> maps;
 			Player * p;
-			int current_map = 0;
 		public:
+			int current_map = 0;
 			Maphandler();
 			~Maphandler();
 			void add_maps();
