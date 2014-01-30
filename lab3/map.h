@@ -15,9 +15,9 @@ namespace lab3 {
       int height = 20;
       int length = 68;
       std::string map_info;
+      std::vector<Object *> objects;
 
     public:
-      std::vector<Object *> objects;
       Map();
       Map(lab3::Player *);
       ~Map();
@@ -29,6 +29,8 @@ namespace lab3 {
 
       void add_player(Player *);
       lab3::Player * get_current_player();
+
+      std::vector<Object *> & get_objects();
 
       // Player interactions
 

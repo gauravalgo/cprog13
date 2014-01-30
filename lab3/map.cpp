@@ -30,11 +30,17 @@ void lab3::Map::add_player(Player * p) {
 }
 
 bool lab3::Map::add_object_to_map(Object * o) {
+  // std::vector<Object *>::iterator it = objects.begin();
+  // objects.insert(it, o);
   objects.push_back(o);
 }
 
 void Map::set_map_info(std::string text){
   map_info = text;
+}
+
+std::vector<Object *> & Map::get_objects() {
+  return objects;
 }
 
 void lab3::Map::load_terrain() {

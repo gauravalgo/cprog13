@@ -38,10 +38,10 @@ void Maphandler::change_map(int mapnumber){
 }
 
 void Maphandler::remove_player(Map & m){
-  for (std::vector<Object *>::iterator it = m.objects.begin(); it != m.objects.end(); ++it) {
+  for (std::vector<Object *>::iterator it = m.get_objects().begin(); it != m.get_objects().end(); ++it) {
    	short id = (*it)->type_id();
    	if (id == 4){
-   		m.objects.erase(it);
+   		m.get_objects().erase(it);
    		break;
    }
   }

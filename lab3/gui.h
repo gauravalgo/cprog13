@@ -5,6 +5,7 @@
 #include <vector>
 #include "object.h"
 #include "map.h"
+#include "maphandler.h"
 
 namespace lab3 {
 	class Gui {
@@ -14,12 +15,13 @@ namespace lab3 {
 			WINDOW* map_window;
 			WINDOW* inventory_window;
 			std::vector<std::string> messages;
-			Map & map;
+      Maphandler & map;
+			// Map & map;
 
 		public:
-			Gui(Map & m);
+			Gui(Maphandler & m);
 			void init_ncurses();
-			void update_map(Map & new_map);
+			// void update_map(Map & new_map);
 			void create_windows();
 			void print_tile_info(std::string& text);
 			void print_info();

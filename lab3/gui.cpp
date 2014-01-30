@@ -7,10 +7,11 @@
 #include "object.h"
 #include "map.h"
 #include "treemap.h"
+#include "maphandler.h"
 
 using namespace lab3;
 
-  Gui::Gui(lab3::Map & m):map(m) {
+  Gui::Gui(lab3::Maphandler & m):map(m) {
     init_ncurses();
 }
 
@@ -37,9 +38,9 @@ void Gui::init_ncurses() {
   
 }
 
-void Gui::update_map(Map & new_map){
-  map = new_map;
-}
+// void Gui::update_map(Map & new_map){
+  // map = new_map;
+// }
 void Gui::create_windows(){
 	tile_info_window = newwin(3,70,22,0);
 	info_window = newwin(10,70,25,0);
@@ -57,7 +58,7 @@ void Gui::print_tile_info(std::string& text){
 
 void Gui::print_info(){
   int hp, hunger, weight;
-  map.get_current_player()->get_player_stats(hp, hunger, weight);
+  map.get_map().get_current_player()->get_player_stats(hp, hunger, weight);
 	werase(info_window);
   box(info_window, 0,0);
   mvwprintw(info_window, 0,1, "Logg");
@@ -70,7 +71,7 @@ void Gui::print_info(){
 }
 
 void Gui::print_map(){
-  std::vector<Object *>& objects = map.objects;
+  std::vector<Object *>& objects = map.get_map().get_objects();
 	werase(map_window);
   box(map_window, 0,0); 
   for(std::vector<Object *>::iterator it = objects.begin(); it != objects.end(); ++it) {

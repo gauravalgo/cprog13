@@ -14,7 +14,7 @@ typedef std::map<char, MenuActionPtrType> action_map;
 
 int RUNNING = true;
 lab3::Maphandler maphandler = *(new lab3::Maphandler()); 
-lab3::Gui gui(maphandler.get_map());
+lab3::Gui gui(maphandler);
 std::string tile_info_text;
 
 void move_self_up( void ) {
@@ -146,7 +146,7 @@ int main() {
     int level = maphandler.get_map().set_level;
     if (level > 0) {
       maphandler.change_map(maphandler.current_map + 1);
-      gui.update_map(maphandler.get_map());
+      // gui.update_map(maphandler.get_map());
       gui.show_notification_box(maphandler.get_map().get_map_info());
       gui.add_message("A whole new world, exciting!");
     }
