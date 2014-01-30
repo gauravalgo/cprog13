@@ -73,6 +73,7 @@ void action_display_inventory( void ) {
         selected = 0;
         maphandler.get_map().get_current_player()->apply_object_to_object(result_object);
         std::string message =  "You " + selected_object->action_description() + " the " + selected_object->description();
+        delete result_object;
         gui.add_message(message);
       }
     }
@@ -156,5 +157,6 @@ int main() {
     gui.print_map();
   }
   endwin();
+
   return 0;
 }
